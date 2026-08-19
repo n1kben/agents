@@ -7,6 +7,8 @@ description: Abstraction style. Use when extracting functions or judging whether
 
 Use abstractions to divide a large reasoning **world** into smaller ones.
 
+**Implementation style governs code within a boundary. Abstraction style decides where boundaries should exist and what those boundaries expose.**
+
 A function's world is everything its implementation may need to consider: its facts and states, available capabilities, possible effects, failures, and control flow.
 
 Inputs determine the world available inside a function. Outputs determine the world exposed to its callers. Narrow both sides of the boundary.
@@ -23,7 +25,11 @@ Review concrete code against every opportunity in this document. Introduce a bou
 
 > Outside the boundary, the surrounding code no longer needs to understand **\_\_**.
 
-The strongest abstractions complete both. If neither does, keep the code concrete. Moving code is not compression.
+Then name the cost:
+
+> What new concept or indirection must we now understand instead?
+
+The strongest abstractions complete both removal sentences and have a smaller cost than the knowledge they remove. If neither removal sentence works, keep the code concrete. Moving code is not compression.
 
 Each example moves from **Concrete** code, where the knowledge is inline, to **Abstracted** code, where a new boundary contains it. Concrete is the starting point, not a failure.
 
@@ -199,6 +205,8 @@ async function handleCancelReservation(
 
 `toCancellationCandidate` owns the boundary from the large, loose entity into a smaller coherent state. `decideCancellation` cannot observe customer details, delivery machinery, unrelated reservation fields, or malformed fee policy.
 
+The abstraction demonstrated here is `Reservation` → `CancellationCandidate`; extracting the decision is a separate opportunity covered later.
+
 Create a narrow model when an operation needs a stable subset of facts or a stronger subset of states. Pass the larger value when the operation genuinely reasons about the whole concept.
 
 ## 2. Effects grant too much authority: inject semantic capabilities
@@ -275,7 +283,7 @@ Dependency injection here means passing capabilities as values, not adding a con
 
 Extract pure decisions before mocking effects. Use lightweight fakes or stubs for the effects that remain, and test results and observable effects rather than internal call choreography.
 
-## 3. Decisions share a world with effects or mechanism: extract a pure core
+## 3. A decision carries irrelevant machinery: give the decision its own boundary
 
 When policy lives inside I/O, loops, or infrastructure, understanding it also requires considering storage, time, asynchronous failure, and execution mechanics.
 
@@ -397,9 +405,9 @@ The decision's world is one valuation, one user, one instant, and the values pro
 
 This is the **functional core, imperative shell**. It also supports **push ifs up, fors down**: pure decisions own meaningful branches; mechanisms iterate or execute their results.
 
-## 4. Mutation and algorithmic state enlarge an operation: isolate the transformation
+## 4. Algorithmic state leaks into the operation: hide it behind a value transformation
 
-Mutation adds identity, ordering, and intermediate state to a function's world. Keep it local when it is a useful implementation of a meaningful value transformation.
+Algorithmic state adds identity, ordering, and intermediate state to a function's world. Keep it behind a boundary when it is a useful implementation of a meaningful value transformation.
 
 ### Concrete
 
@@ -562,7 +570,7 @@ Result<Reservation, VehicleUnavailable>;
 
 Return the smallest meaningful result. Storage rows, provider responses, intermediate values, and operational metadata stay behind the boundary unless the caller's responsibility genuinely requires them.
 
-Resource lifetimes are protocols too.
+Resource lifetimes are protocols too. Clear ownership is an implementation concern. Introduce a scoped abstraction when callers would otherwise need to participate in the lifetime protocol.
 
 ### Concrete
 
