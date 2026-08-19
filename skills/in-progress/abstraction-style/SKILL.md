@@ -1,11 +1,11 @@
 ---
 name: abstraction-style
-description: Cognitive abstraction. Use when extracting functions or judging whether a boundary earns its indirection.
+description: Abstraction style. Use when extracting functions or judging whether a boundary earns its indirection.
 ---
 
-# Cognitive Abstraction
+# Abstraction Style
 
-Use cognitive abstractions to divide a large reasoning **world** into smaller ones.
+Use abstractions to divide a large reasoning **world** into smaller ones.
 
 A function's world is everything its implementation may need to consider: its facts and states, available capabilities, possible effects, failures, and control flow.
 
@@ -13,7 +13,7 @@ Inputs determine the world available inside a function. Outputs determine the wo
 
 The primary gain from an abstraction is inward: the new function has a smaller world. The secondary gain is outward: surrounding code can ignore the knowledge hidden behind the boundary.
 
-A cognitive abstraction does not need reuse. A function with one caller earns its existence when the reasoning it removes pays for its name, interface, and indirection.
+An abstraction does not need reuse. A function with one caller earns its existence when the reasoning it removes pays for its name, interface, and indirection.
 
 ## Compression test
 
