@@ -574,20 +574,14 @@ Wrapping an awkward language API without hiding meaningful knowledge adds little
 
 ## 5. Callers coordinate machinery or protocols: introduce a semantic boundary
 
-Infrastructure primitives and required call sequences force callers to reason about how an operation works rather than what it means.
+Infrastructure primitives and required call sequences force callers to reason about how an operation works rather than what it means. The boundary pays off when that protocol would otherwise spread.
 
 ### Concrete
 
 ```ts
-type ReservationWriteResult = {
-  reservationRow: ReservationRow;
-  vehicleRow: VehicleRow;
-  affectedRows: number;
-};
-
 async function handleReserveVehicle(
   command: ReserveVehicleCommand,
-): Promise<Result<ReservationWriteResult, ReservationError>> {
+): Promise<Result<Reservation, ReservationError>> {
   return database.transaction(async (transaction) => {
     const vehicle = await vehicleRepository.findForUpdate(
       transaction,
@@ -598,61 +592,60 @@ async function handleReserveVehicle(
       return Err(new VehicleUnavailable());
     }
 
-    const vehicleRow = await vehicleRepository.update(transaction, {
+    await vehicleRepository.update(transaction, {
       ...vehicle,
       status: "reserved",
     });
 
-    const reservationRow = await reservationRepository.insert(transaction, {
+    return reservationRepository.insert(transaction, {
       vehicleId: command.vehicleId,
       customerId: command.customerId,
       status: "pending",
+      source: "customer",
+    });
+  });
+}
+
+async function holdVehicleForPartner(
+  request: PartnerHoldRequest,
+): Promise<Result<Reservation, ReservationError>> {
+  return database.transaction(async (transaction) => {
+    const vehicle = await vehicleRepository.findForUpdate(
+      transaction,
+      request.vehicleId,
+    );
+
+    if (!vehicle || vehicle.status !== "available") {
+      return Err(new VehicleUnavailable());
+    }
+
+    await vehicleRepository.update(transaction, {
+      ...vehicle,
+      status: "reserved",
     });
 
-    return Ok({
-      reservationRow,
-      vehicleRow,
-      affectedRows: 2,
+    return reservationRepository.insert(transaction, {
+      vehicleId: request.vehicleId,
+      customerId: request.customerId,
+      status: "pending",
+      source: "partner",
     });
   });
 }
 ```
 
-The handler must know that reservation means lock vehicle, verify status, update vehicle, insert reservation, and keep those writes atomic. It also leaks rows and write counts to callers that only wanted a reservation.
+Both callers must know the same protocol: start a transaction, lock the vehicle, validate availability, update vehicle state, insert the reservation, and keep the writes atomic. A change to the reservation guarantee has multiple callers to audit.
 
 ### Abstracted
 
 ```ts
 type ReserveVehicle = (
-  vehicleId: VehicleId,
-  customerId: CustomerId,
+  input: {
+    vehicleId: VehicleId;
+    customerId: CustomerId;
+    source: ReservationSource;
+  },
 ) => Promise<Result<Reservation, VehicleUnavailable>>;
-
-function createReserveVehicle(database: Database): ReserveVehicle {
-  return async (vehicleId, customerId) => {
-    return database.transaction(async (transaction) => {
-      const vehicle = await vehicleRepository.findForUpdate(
-        transaction,
-        vehicleId,
-      );
-
-      if (!vehicle || vehicle.status !== "available") {
-        return Err(new VehicleUnavailable());
-      }
-
-      await vehicleRepository.update(transaction, {
-        ...vehicle,
-        status: "reserved",
-      });
-
-      return reservationRepository.insert(transaction, {
-        vehicleId,
-        customerId,
-        status: "pending",
-      });
-    });
-  };
-}
 ```
 
 ```ts
@@ -660,11 +653,26 @@ async function handleReserveVehicle(
   reserveVehicle: ReserveVehicle,
   command: ReserveVehicleCommand,
 ): Promise<Result<Reservation, ReservationError>> {
-  return reserveVehicle(command.vehicleId, command.customerId);
+  return reserveVehicle({
+    vehicleId: command.vehicleId,
+    customerId: command.customerId,
+    source: "customer",
+  });
+}
+
+async function holdVehicleForPartner(
+  reserveVehicle: ReserveVehicle,
+  request: PartnerHoldRequest,
+): Promise<Result<Reservation, ReservationError>> {
+  return reserveVehicle({
+    vehicleId: request.vehicleId,
+    customerId: request.customerId,
+    source: "partner",
+  });
 }
 ```
 
-The semantic operation owns the machinery and the guarantee: reserve the vehicle or make no change.
+The callers now depend on the semantic operation: reserve the vehicle or fail. The transaction, lock, state transition, insert order, and atomicity guarantee have one owner.
 
 Return the smallest meaningful result. Storage rows, provider responses, intermediate values, and operational metadata stay behind the boundary unless the caller's responsibility genuinely requires them.
 
