@@ -26,8 +26,6 @@ Temporary code should pass the deletion test: one cut to remove, not a thread to
 
 Commit early and often.
 
-## Leave it better
-
-Leave the code easier to change than you found it.
+## Suggested abstractions
 
 End with a list of suggested abstractions you found during the implementation.
