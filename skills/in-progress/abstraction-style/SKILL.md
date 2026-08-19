@@ -92,8 +92,6 @@ async function handleCancelReservation(
 }
 ```
 
-The operation receives the entire reservation and must interpret its state, optional dates, delivery lifecycle, and fee representation while also coordinating effects.
-
 ### Abstracted
 
 ```ts
@@ -203,8 +201,6 @@ async function handleCancelReservation(
 }
 ```
 
-`toCancellationCandidate` owns the boundary from the large, loose entity into a smaller coherent state. `decideCancellation` cannot observe customer details, delivery machinery, unrelated reservation fields, or malformed fee policy.
-
 The abstraction demonstrated here is `Reservation` → `CancellationCandidate`; extracting the decision is a separate opportunity covered later.
 
 Create a narrow model when an operation needs a stable subset of facts or a stronger subset of states. Pass the larger value when the operation genuinely reasons about the whole concept.
@@ -228,8 +224,6 @@ async function handleReminderRequest(
   return mailer.send(createReminder(valuation));
 }
 ```
-
-The database and mailer are implicit parts of the function's world. Tests must connect them, replace imported modules, or modify global state.
 
 ### Abstracted
 
@@ -259,7 +253,7 @@ async function sendReminder(
 
 The signature is a **seam** around the effects. The function can load a valuation and deliver a reminder; it cannot delete data, send an unrelated message, or reach other infrastructure.
 
-The complete world can now be supplied by a test:
+The seam can be supplied by a test:
 
 ```ts
 it("delivers the reminder", async () => {
@@ -330,8 +324,6 @@ async function handleCompleteValuation(
 }
 ```
 
-The transition policy is interleaved with time, persistence, and event publication.
-
 ### Abstracted
 
 ```ts
@@ -401,9 +393,7 @@ async function handleCompleteValuation(
 }
 ```
 
-The decision's world is one valuation, one user, one instant, and the values produced by the transition. It has no storage, clock, network, or asynchronous failure. The shell performs the effects without owning the policy.
-
-This is the **functional core, imperative shell**. It also supports **push ifs up, fors down**: pure decisions own meaningful branches; mechanisms iterate or execute their results.
+The decision has no storage, clock, network, or asynchronous failure. This is **functional core, imperative shell**: pure decisions own meaningful branches; mechanisms iterate or execute their results.
 
 ## 4. Algorithmic state leaks into the operation: hide it behind a value transformation
 
@@ -445,8 +435,6 @@ async function synchronizeCalendar(
   });
 }
 ```
-
-The synchronization operation contains I/O, mutable indexing, change interpretation, and snapshot construction.
 
 ### Abstracted
 
@@ -492,9 +480,9 @@ async function synchronizeCalendar(
 }
 ```
 
-`applyCalendarChanges` owns the mutable algorithm but exposes an immutable transformation. Its world is one calendar, its changes, and the resulting calendar. The synchronization shell no longer considers indexing or intermediate state.
+`applyCalendarChanges` owns the mutable algorithm but exposes an immutable transformation. The synchronization shell no longer considers indexing or intermediate state.
 
-Contain mutation that belongs to a domain computation. Wrapping an awkward language API without hiding meaningful knowledge adds little compression.
+Wrapping an awkward language API without hiding meaningful knowledge adds little compression.
 
 ## 5. Callers coordinate machinery or protocols: introduce a semantic boundary
 
@@ -542,8 +530,6 @@ async function handleReserveVehicle(
 }
 ```
 
-The handler's world includes transactions, locking, repositories, stored state, sequencing, and the atomicity guarantee. Its output exposes persistence rows and write metadata to every caller.
-
 ### Abstracted
 
 ```ts
@@ -560,13 +546,7 @@ async function handleReserveVehicle(
 }
 ```
 
-The handler's world is the command and the semantic capability to reserve. The implementation owns the machinery and the guarantee: reserve the vehicle or make no change.
-
-The capability also narrows the output from technical write details to the domain result callers need:
-
-```ts
-Result<Reservation, VehicleUnavailable>;
-```
+The implementation owns the machinery and the guarantee: reserve the vehicle or make no change.
 
 Return the smallest meaningful result. Storage rows, provider responses, intermediate values, and operational metadata stay behind the boundary unless the caller's responsibility genuinely requires them.
 
@@ -590,7 +570,7 @@ try {
 return withFile(path, (file) => importEvents(file));
 ```
 
-`withFile` owns acquisition and release on success, failure, and cancellation. The callback's world contains a valid open file; surrounding code no longer owns cleanup.
+`withFile` removes acquisition and release from the caller.
 
 Use a semantic operation when callers need a result rather than the machinery or sequence that produces it. Use a scoped callback when code must operate inside a lifetime without owning it.
 
@@ -677,18 +657,10 @@ async function checkout(
 }
 ```
 
-The adapter's world contains Stripe. Checkout's world contains local payment concepts and only the outcomes it can act upon.
-
-The contract is shaped by the domain rather than by a hypothetical set of payment providers:
+Shape the contract by the domain rather than by a hypothetical set of payment providers:
 
 ```ts
 const chargePayment: ChargePayment = createStripeChargePayment(stripe);
-```
-
-Replacement becomes a consequence of the seam. Different wiring can later provide the same domain capability:
-
-```ts
-const chargePayment: ChargePayment = createAdyenChargePayment(adyen);
 ```
 
 Translate foreign data and uncertainty into a local contract. The adapter owns provider request and response shapes, converts thrown failures into `Result`, and preserves unexpected failures as unexpected instead of disguising them as domain outcomes.
