@@ -15,6 +15,8 @@ Use `Result<Value, Error>` in TypeScript and Rust, `(Value, error)` in Go, typed
 
 Use throw, panic, or assert for programmer errors and violated invariants, not expected outcomes.
 
+Handle every signaled failure. Propagate, translate, retry, or deliberately resolve it rather than silently discarding it.
+
 Translate exceptions, promise rejections, and provider-specific errors into known failures where they enter your code.
 
 ```ts
@@ -31,25 +33,23 @@ try {
 }
 ```
 
----
+## 2. Narrow the world early
 
-## 2. Establish invariants early and preserve them
+Reduce the number of possibilities the remaining code has to consider as soon as enough information is available.
 
-Convert uncertain inputs into well-defined domain values at the boundary.
-
-Prefer parsing:
+Parse uncertain inputs at boundaries:
 
 ```ts
 const event = Event.parse(input);
 ```
 
-over assuming:
+rather than assuming:
 
 ```ts
 const event = input as Event;
 ```
 
-Resolve optionality as soon as the code requires a value.
+Resolve optional values early:
 
 ```ts
 const user = await users.find(id);
@@ -58,22 +58,77 @@ if (!user) {
   return Err(new UserNotFound());
 }
 
-// `user` is known from here onward.
+// From here, `user` is a User.
 const email = user.email;
-const name = user.name;
 ```
 
-Assert invariants the type system cannot express close to where they are established or relied upon:
+Handle sentinel values and exceptional cases once rather than carrying them through the rest of the computation:
+
+```ts
+const index = items.findIndex(matches);
+
+if (index === -1) {
+  return Err(new ItemNotFound());
+}
+
+// From here, `index` is a valid item index.
+```
+
+Once a possibility has been eliminated, the code below should not continue accounting for it.
+
+## 3. Make invalid states unrepresentable
+
+Choose representations that express the states the program actually has rather than combinations of flags and optional fields that can contradict each other.
+
+Prefer:
+
+```ts
+type RequestState =
+  | { type: "loading" }
+  | { type: "failed"; error: Error }
+  | { type: "loaded"; data: Data };
+```
+
+over:
+
+```ts
+type RequestState = {
+  isLoading: boolean;
+  error?: Error;
+  data?: Data;
+};
+```
+
+Prefer enums or unions when booleans erase meaning:
+
+```ts
+type Delivery = "silent" | "notify";
+```
+
+rather than:
+
+```ts
+sendNotification(notification, true);
+```
+
+Preserve semantic distinctions even when values share the same primitive representation. Keep `UserId` distinct from an arbitrary `string`, money distinct from arbitrary numbers, timestamps distinct from durations, and counts distinct from indexes.
+
+Make units, conversions, and rounding intentional:
+
+```ts
+const timeoutMs = 30_000;
+const pageCount = Math.ceil(itemCount / pageSize);
+```
+
+Assert invariants that cannot practically be represented in the type system:
 
 ```ts
 assert(index < items.length);
 ```
 
-Avoid weakening established guarantees with `any`, unchecked casts, `as Foo`, `!`, ignored errors, disabled warnings, or equivalent compiler escape hatches.
+Avoid weakening established guarantees with `any`, unchecked casts, `as Foo`, `!`, ignored errors, or equivalent compiler escape hatches. When an unsafe escape is necessary, keep it local and make the invariant that permits it explicit.
 
----
-
-## 3. Separate effects from computation
+## 4. Separate effects from computation
 
 Avoid interleaving external effects with local computation.
 
@@ -102,17 +157,29 @@ Pull external inputs and nondeterminism such as time and randomness up. Keep com
 
 Once external inputs are gathered, local computation should be deterministic where practical.
 
+Where independent effects can safely be performed together, batch them rather than repeatedly crossing an expensive boundary:
+
+```ts
+await orders.insertMany(ordersToCreate);
+```
+
+rather than:
+
+```ts
+for (const order of ordersToCreate) {
+  await orders.insert(order);
+}
+```
+
 Keep transactional scopes short. Do not hold a database transaction open across network calls, user interaction, or other long-running work.
 
----
-
-## 4. Make effects safe under retry and interruption
+## 5. Make effects safe under retry and interruption
 
 Assume an effect can fail partway through, time out after succeeding, or be attempted more than once.
 
 Make mutations idempotent where necessary. Use operation or idempotency IDs when duplicate execution matters. Handle partial success explicitly, keep retries bounded, and give asynchronous work a defined completion and failure path.
 
-A timeout means the outcome may be unknown, not that the effect did not happen. The caller should always have a safe next action.
+A timeout means the outcome may be unknown, not that the effect did not happen.
 
 ```ts
 const result = await payments.charge({
@@ -123,13 +190,39 @@ const result = await payments.charge({
 
 Retrying the same logical operation should not accidentally perform it twice.
 
----
+## 6. Keep values stable and local
 
-## 5. Favor immutability; keep mutation local
+Prefer immutable bindings and values by default.
 
-Treat values as immutable by default.
+Introduce a value when it becomes known and as close as practical to where it is used. Keep its scope no larger than necessary.
 
-Local mutation is fine when it makes the implementation simpler:
+Give each variable one meaning for its lifetime:
+
+```ts
+const area = width * height;
+const perimeter = 2 * (width + height);
+```
+
+rather than reusing a variable for unrelated meanings:
+
+```ts
+let value = width * height;
+
+// ...
+
+value = 2 * (width + height);
+```
+
+Establish or check a fact close to where it is relied upon:
+
+```ts
+assert(index < items.length);
+const item = items[index];
+```
+
+Avoid establishing a guarantee and then carrying it through unrelated work before use.
+
+Local mutation is fine when it makes an algorithm simpler and the variable retains the same meaning:
 
 ```ts
 const result = [];
@@ -143,45 +236,35 @@ for (const item of items) {
 return result;
 ```
 
-Keep mutation within a small, obvious owner. Avoid mutable state that escapes its scope or can be changed from unrelated places.
+Prefer constructing complete values over creating partially valid values and filling them in later.
 
----
-
-## 6. Bound work and resource usage
+## 7. Bound work and resource usage
 
 Anything that can grow or consume resources should have an explicit bound.
 
-Pay particular attention to queues, buffers, batches, payloads, concurrency, accumulated results, and operations that may continue indefinitely.
+Pay particular attention to queues, buffers, batches, payloads, concurrency, accumulated results, retries, and operations that may continue indefinitely.
 
 Define what happens when the bound is reached: reject, backpressure, paginate, split, shed work, or return an error.
 
 Queues must have a defined maximum rather than becoming accidental unbounded buffers.
 
----
+## 8. Keep state and resources owned
 
-## 7. Keep state and resources owned
+Every mutable piece of state should have one obvious owner responsible for changing it and maintaining its invariants.
 
-Every mutable piece of state should have an obvious owner responsible for changing it and maintaining its invariants.
+Keep mutation where ownership is visible. Avoid passing mutable state through unrelated code that can change it implicitly.
 
-Keep state manipulation centralized. Prefer helpers that compute what should happen while the owner applies the change:
+Keep one canonical mutable representation of a fact. Avoid mutable aliases or duplicate state that must remain synchronized.
 
-```ts
-const next = selectNextJob(queue);
-
-if (next) {
-  queue.remove(next);
-}
-```
-
-Prefer one canonical representation of each fact. Derive secondary values instead of synchronizing duplicated state:
+Derive secondary values instead of storing them separately:
 
 ```ts
 const isFinished = job.status === "completed" || job.status === "failed";
 ```
 
-Match finite states exhaustively, for example with an exhaustive `never` check in TypeScript.
+Match finite states exhaustively.
 
-Resources also need a clear owner. Prefer acquiring and releasing a resource in the same obvious scope, with cleanup guaranteed on both success and failure:
+Resources also need clear ownership. Acquire and release them in the same obvious scope, with cleanup guaranteed:
 
 ```ts
 const file = await open(path);
@@ -193,77 +276,65 @@ try {
 }
 ```
 
-The same principle applies to transactions, connections, timers, locks, and asynchronous tasks: the code that starts or acquires them should make their completion, cleanup, or cancellation evident.
+Apply the same principle to transactions, connections, timers, locks, queues, and asynchronous tasks.
 
----
+## 9. Make control flow and behavior explicit
 
-## 8. Prefer explicit, boring control flow
-
-Write control flow so the reader can see what happens next without mentally decoding the syntax.
+Write control flow so the reader can see what happens next without mentally decoding it.
 
 Prefer guard clauses over nesting:
 
 ```ts
-// Harder to scan
-if (user) {
-  if (user.active) {
-    return send(user);
-  } else {
-    return Err("inactive");
-  }
-} else {
-  return Err("not_found");
-}
-```
-
-```ts
-// Easier to scan
 if (!user) return Err("not_found");
 if (!user.active) return Err("inactive");
 
 return send(user);
 ```
 
-Prefer ordinary control-flow constructs when callbacks or expressions obscure sequencing:
+Use direct control-flow constructs rather than simulating them with mutable flags.
+
+Prefer simple, positive conditions when they make the valid case easier to see. Break apart compound boolean expressions when they obscure which cases are being handled.
+
+Prefer ordinary sequencing when expressions or callbacks hide execution order:
 
 ```ts
-// Sequencing is hidden inside reduce
-await items.reduce(async (previous, item) => {
-  await previous;
-  await send(item);
-}, Promise.resolve());
-```
-
-```ts
-// Sequencing is explicit
 for (const item of items) {
   await send(item);
 }
 ```
 
-Prefer exhaustive `switch` statements over nested ternaries when representing finite cases.
+If one operation must happen before another, keep that dependency structurally obvious and keep the dependent code close together.
 
-Boring does not mean verbose. It means the path through the code is visible.
+Make behaviorally significant library options explicit rather than relying on implicit defaults:
 
----
+```ts
+await fetch(url, {
+  redirect: "error",
+  cache: "no-store",
+});
+```
 
-## 9. Reuse existing concepts and shared code
+Use exhaustive switches for finite cases.
 
-Reuse existing domain concepts, canonical terminology, and shared code when they already mean the thing you need.
+## 10. Reuse and preserve existing concepts
 
-If the codebase uses `Order`, `OrderId`, and `parseOrderId`, use those rather than introducing a synonymous concept, another representation of the ID, or a local version of the same parser.
+Reuse existing domain concepts, canonical terminology, types, and shared code when they already mean the thing you need.
+
+If the codebase uses `Order`, `OrderId`, and `parseOrderId`, preserve those concepts rather than introducing synonyms, reducing them to primitives, or creating local variations.
 
 Reuse should follow shared meaning, not merely similar-looking implementation.
 
-If two pieces of code look alike but mean different things, keep them separate. When nothing existing fits, keep the implementation concrete and local rather than immediately creating something shared.
+If two pieces of code look alike but mean different things, keep them separate.
 
----
+When nothing existing fits, keep the implementation concrete and local rather than immediately creating something shared.
 
-## 10. Write for reading
+## 11. Write for reading
 
 Organize code in top-down reading order: high-level or root logic first, details afterwards.
 
-Keep statements that participate in the same idea together. Make equivalent operations look equivalent so meaningful differences stand out.
+Keep each computation contiguous. Avoid interleaving independent pieces of work.
+
+Make equivalent operations look equivalent so meaningful differences stand out.
 
 Use names that describe what something means, not merely how it was produced:
 
@@ -283,6 +354,13 @@ Introduce intermediate variables and constants when their names expose an import
 
 ```ts
 const isHappeningNow = event.start <= now && now < event.end;
+```
+
+Make significant literals reveal their meaning or unit:
+
+```ts
+const maxAttempts = 3;
+const timeoutMs = 30_000;
 ```
 
 Add comments only when they communicate information the code cannot express clearly itself: why something is done, an external constraint, or a non-obvious invariant.
