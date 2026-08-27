@@ -1,6 +1,7 @@
 ---
 name: abstraction-style
 description: Abstraction style. Use when extracting functions or judging whether a boundary earns its indirection.
+disable-model-invocation: true
 ---
 
 # Abstraction Style
@@ -268,7 +269,9 @@ type ReminderTarget = {
 
 type LoadReminderTarget = (
   valuationId: ValuationId,
-) => Promise<Result<ReminderTarget, ValuationNotFound | CustomerCannotBeReminded>>;
+) => Promise<
+  Result<ReminderTarget, ValuationNotFound | CustomerCannotBeReminded>
+>;
 
 type DeliverReminder = (
   reminder: Reminder,
@@ -639,13 +642,11 @@ Both callers must know the same protocol: start a transaction, lock the vehicle,
 ### Abstracted
 
 ```ts
-type ReserveVehicle = (
-  input: {
-    vehicleId: VehicleId;
-    customerId: CustomerId;
-    source: ReservationSource;
-  },
-) => Promise<Result<Reservation, VehicleUnavailable>>;
+type ReserveVehicle = (input: {
+  vehicleId: VehicleId;
+  customerId: CustomerId;
+  source: ReservationSource;
+}) => Promise<Result<Reservation, VehicleUnavailable>>;
 ```
 
 ```ts

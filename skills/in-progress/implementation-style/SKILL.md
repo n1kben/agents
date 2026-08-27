@@ -1,6 +1,7 @@
 ---
 name: implementation-style
 description: Implementation style. Use when writing or checking implementation code.
+disable-model-invocation: true
 ---
 
 # Implementation Style
@@ -119,6 +120,8 @@ Make units, conversions, and rounding intentional:
 const timeoutMs = 30_000;
 const pageCount = Math.ceil(itemCount / pageSize);
 ```
+
+// TODO: Define more explicit when to use type system vs not
 
 Assert invariants that cannot practically be represented in the type system:
 
