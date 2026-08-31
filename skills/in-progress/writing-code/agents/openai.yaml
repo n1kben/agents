@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writing Code"
+  short_description: "Write concrete code by use case"
+policy:
+  allow_implicit_invocation: true

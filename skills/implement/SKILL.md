@@ -11,3 +11,5 @@ Work in small vertical slices. Each slice should deliver one observable behavior
 Do one kind of work per step: prepare, implement, test, or commit.
 
 Commit early and often.
+
+At the end, mention only high-confidence candidates found during the work: **local boundaries** that shrink one use case's reasoning world, and **sharing candidates** that pass the rule of three.
