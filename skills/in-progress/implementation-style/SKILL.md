@@ -3,6 +3,8 @@ name: implementation-style
 description: Code implementation style. Use when writing code.
 ---
 
+organize by use cases, not by techincal responsibiltiy
+
 # Implementation Style
 
 ## Concrete first
