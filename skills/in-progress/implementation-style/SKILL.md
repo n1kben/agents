@@ -1,6 +1,6 @@
 ---
 name: implementation-style
-description: Implementation style. Use when writing or checking implementation code.
+description: Code implementation style. Use when writing code.
 ---
 
 # Implementation Style
