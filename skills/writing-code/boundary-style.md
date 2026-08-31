@@ -1,6 +1,6 @@
-# Abstraction Style
+# Boundary Style
 
-Abstraction is local compression. Use a boundary to shrink a reasoning **world**: the facts, states, capabilities, effects, failures, protocols, and control flow code must consider.
+A local boundary is compression, not coupling. Use a boundary to shrink a reasoning **world**: the facts, states, capabilities, effects, failures, protocols, and control flow code must consider.
 
 A boundary earns its indirection when it removes more knowledge than it adds. Abstraction does not require reuse; a one-caller function can earn its boundary.
 
@@ -40,6 +40,6 @@ Similarity is not compression. Do not create a boundary because code looks alike
 
 Do not wrap awkward APIs unless the wrapper removes real knowledge.
 
-Do not create broad services, managers, helpers, or utils as abstraction homes.
+Do not create broad services, managers, helpers, or utils as boundary homes.
 
 Do not make callers pass flags, modes, booleans, or optional callbacks to recover behavior you abstracted too early.

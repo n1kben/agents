@@ -1,6 +1,6 @@
 ---
 name: writing-code
-description: Concrete code, vertical slice architecture, zero sharing. Use when writing or changing code.
+description: Concrete code, vertical slice architecture, low coupling. Use when writing or changing code.
 ---
 
 Write concrete code using vertical slice architecture. Feature code lives with the use case, not in technical-layer buckets.
@@ -9,9 +9,12 @@ Keep high cohesion and low coupling. Coupling is the root of change pain.
 
 Use implementation style inside the slice. Read [`implementation-style.md`](implementation-style.md).
 
-Abstraction and sharing are different moves. Abstract to shrink a reasoning world; share only when duplicated knowledge proves shared meaning.
+## Abstraction
 
-DRY is considered harmful until sharing earns itself. Default to zero sharing: the wrong abstraction costs more than duplication. Read [`sharing-style.md`](sharing-style.md) before creating shared code.
+Local abstraction and shared abstraction are different moves. Local abstraction creates a boundary inside one use case; shared abstraction creates file/module coupling between use cases.
 
-Local abstraction is refactoring, not implementation. Read [`abstraction-style.md`](abstraction-style.md) when the user asks for abstraction work or a refactoring step needs a boundary.
+Read [`boundary-style.md`](boundary-style.md) when extracting code or introducing a seam.
 
+Read [`coupling-style.md`](coupling-style.md) when sharing code between modules or use cases.
+
+DRY is considered harmful by default: the wrong abstraction costs more than duplication.
