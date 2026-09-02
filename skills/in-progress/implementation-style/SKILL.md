@@ -1,6 +1,7 @@
 ---
 name: implementation-style
 description: Code implementation style. Use when writing code.
+disable-model-invocation: true
 ---
 
 organize by use cases, not by techincal responsibiltiy

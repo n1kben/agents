@@ -1,6 +1,7 @@
 ---
 name: vertical-slice-architecture
 description: Organize code by use case instead of technical layer. Use when adding feature code, deciding where code belongs, feeling pressure to abstract or share code, splitting services, or reducing coupling.
+disable-model-invocation: true
 ---
 
 # Vertical Slice Architecture

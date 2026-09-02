@@ -2,4 +2,4 @@ interface:
   display_name: "Vertical Slice Architecture"
   short_description: "Organize code by use case"
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

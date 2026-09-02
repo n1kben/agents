@@ -1,6 +1,7 @@
 ---
 name: implement
 description: Implement a plan in small, testable vertical slices.
+disable-model-invocation: true
 ---
 
 Work in small vertical slices. Each slice should deliver one observable behavior and be easy to review, test, revert, and delete.

@@ -12,4 +12,4 @@ Domain model is good coupling when it represents real shared business meaning an
 
 Avoid dumping grounds. Prefer one-job semantic operations over `UserService`, `BillingService`, `Repository`, `Common`, or `Utils`.
 
-Avoid deep coupling. Shared code should be copyable, movable, or replaceable without dragging a service graph, hidden dependencies, or unrelated reasons to change.
+Avoid deep coupling and large blast radius. Shared code should be copyable, movable, or replaceable without dragging a service graph, hidden dependencies, transitive coupling, or unrelated reasons to change.

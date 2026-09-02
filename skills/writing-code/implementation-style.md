@@ -14,7 +14,9 @@ Typed ambient storage is still ambient. React Context, SwiftUI Environment, proc
 
 Parse, don’t validate. Turn uncertain input into known data before the rest of the code depends on it.
 
-Make illegal states unrepresentable. Prefer variants, tagged unions, enums, branded IDs, and domain values over boolean flags, optional-field soup, primitive obsession, and unchecked casts.
+Make illegal states unrepresentable. Prefer algebraic data types, variants, tagged unions, enums, branded IDs, and domain values over boolean flags, optional-field soup, primitive obsession, and unchecked casts.
+
+Co-locate invariants. Put invariants with the domain value, state machine, aggregate, or boundary that owns them.
 
 As code goes deeper, the possible world should get smaller. Resolve optionals, eliminate sentinels, handle exceptional cases once, and stop accounting for eliminated cases.
 
@@ -22,7 +24,7 @@ Keep unsafe escape hatches local. State the invariant that makes `any`, unchecke
 
 ## Controlled effects
 
-Separate effects from computation. Prefer read → compute → write; keep time, randomness, network, storage, and environment access out of deterministic logic.
+Separate effects from computation. Prefer functional core, imperative shell and read → compute → write; keep time, randomness, network, storage, and environment access out of deterministic logic.
 
 Make effects safe to retry and interrupt. Use idempotency keys, operation IDs, explicit completion states, bounded retries, and clear handling for partial success or unknown outcome.
 
@@ -38,4 +40,4 @@ Keep control flow obvious. Prefer guard clauses, exhaustive switches, direct seq
 
 Use names that mean the thing. Preserve existing domain names, types, IDs, parsers, states, and workflows.
 
-For visual code, always create an isolated way to see and test it: story, preview, sandbox, fixture, or equivalent.
+For visual code, create an isolated way to see and interact with it: preview, Storybook, sandbox, fixture, or equivalent.
