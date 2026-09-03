@@ -21,8 +21,7 @@ Use TypeScript's type system to make illegal states difficult or impossible to c
 | Boundary validation | Parse data where it enters into a named domain type. Keep `Record<string, unknown>` inside boundary adapters. |
 | Schema-derived types | Reach for generated types, `Pick`, `Omit`, `Parameters`, `ReturnType`, `Awaited`, and `typeof` before declaring a duplicate interface. |
 | Object arguments | Prefer object arguments when positional parameters can be confused. Skip the allocation on measured hot paths. |
-| UI sandboxes | Every UI component or screen changed should be renderable in Storybook, the repository's component sandbox, or an equivalent isolated harness. Cover its meaningful states. |
-| Real tests | Do not mock what can run locally. Prefer real framework primitives, leak and disposable checks, and a running build for UI verification. |
+| Real tests | Do not mock what can run locally. Prefer real framework primitives, leak and disposable checks, and verification in a running system. |
 | Structured telemetry | Emit structured diagnostics with enough context to investigate from an identifier. Do not ship `console.log`. |
 
 ## Explicit errors
@@ -377,24 +376,9 @@ openFile({
 
 Skip on hot paths: per-frame render, tokenizers, parsers, anything in a tight loop where the allocation cost matters.
 
-## UI sandboxes
-
-All UI must be easy to render and exercise in isolation. For every component or screen added or changed, add or update its Storybook story, component sandbox entry, preview, or equivalent repository-native harness.
-
-Expose meaningful states directly rather than requiring a precise application history to reach them. Include the states relevant to the UI, such as loading, empty, populated, error, disabled, permission-restricted, long-content, and narrow-layout variants. A sandbox entry must render the real production component, not a visual copy.
-
-Design UI for this from the start:
-
-- Pass domain data, state, and callbacks through a small explicit interface.
-- Keep network access, routing, clocks, randomness, and persistent storage outside the presentational component when they are not intrinsic to it.
-- Make dependencies replaceable at the component boundary so the sandbox can use deterministic values without mocking internal implementation details.
-- Keep state derivation pure where practical so it can be tested without rendering.
-
-Use the repository's existing UI harness. If none exists, create the smallest local preview or sandbox that fits the current stack; do not introduce a large framework dependency for one component. Isolated rendering supplements interaction tests and verification in the running application—it does not replace them.
-
 ## Real tests
 
-Don't mock what can run locally. Prefer the framework's real test primitives, including leak and disposable checks. Exercise UI states in Storybook or the repository's sandbox, and verify integrated behavior in a running build. Mock only unavailable or impractical dependencies.
+Don't mock what can run locally. Prefer the framework's real test primitives, including leak and disposable checks, and verify integrated behavior in a running system. Mock only unavailable or impractical dependencies.
 
 Assert observable behavior rather than implementation details.
 
