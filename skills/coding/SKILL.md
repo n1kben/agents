@@ -3,91 +3,211 @@ name: coding
 description: Use when writing, changing, reviewing, or discussing code.
 ---
 
-The goal is code that can be understood locally and changed independently, with interfaces that make correct use obvious and incorrect use hard.
+Forget what you have learned about DRY and single sources of truth. The new baseline is to duplicate code and copy data.
 
-Build toward five qualities: high cohesion, low coupling, explicit boundaries, strong domain modeling, and behavior-focused verification.
+Software engineering already applies strong pressure toward reuse, abstraction, indirection, and shared ownership. Apply deliberate pressure in the other direction. Keep things local, independently changeable, and easy to reverse.
 
-## High Cohesion
+## Similar Is Not The Same
 
-Organize code around use cases and reasons to change. Code that changes together should live together.
+**Similarity is not identity.**
 
-### Organize Around Vertical Slices
+Start separate. Duplicate code. Copy data.
 
-A vertical slice contains the code required to deliver one behavior across the system. A change should follow one clear path; unrelated use cases should not meet in horizontal convenience layers. The goal is not zero blast radius, but a blast radius that is small, visible, and justified by the domain.
+Sharing is a claim that two things have one identity. Prove it. Name the one concept. State the invariant every use must preserve. If the copies may validly diverge, keep them separate.
 
-## Low Coupling
+### Rule Of Three
 
-Every shared abstraction couples its dependents. Share identity, not appearance.
+Repetition does not prove identity. Use the Rule of Three as permission to inspect, never as an order to extract. The third occurrence earns a question, not an abstraction.
 
-Similarity is a snapshot; identity is a promise about change. Sharing asserts that two things have one reason to change, which predicts a future humans and agents are bad at predicting. When identity is uncertain, prefer duplication. Joining things later is easier than separating them after dependents have gathered around an abstraction.
+Wait for a real change. Extract only when one rule forces every occurrence to change. If one occurrence may stay unchanged, keep the cases separate.
 
-### Prefer Locality Over Small Files
+### The Life Of A File
 
-Keep code close to its only consumer. A new file makes an implementation detail discoverable, nameable, and available to depend on. What can be depended on eventually will be. Extract only when the concept has a coherent identity and deserves an independent boundary. File length alone is not a design reason.
+Let a file grow. Do not design its final module structure up front.
 
-### Do Not Mistake The Same Values For The Same Policy
+Split around a data structure, not a line count. Give the concept a name from the ubiquitous language. Choose its representation. Keep its invariants and operations together.
 
-Two video players may both accept `.mov` and `.mp4`, but a format is not supported in the abstract; it is supported by a particular player. If one adds `.webm` or drops `.mov`, a shared `isSupportedVideoExtension` couples policies that should evolve independently. Let each player own its formats. Share extension parsing, not support policy.
+Every module creates a dependency. Make it earn its existence by protecting an invariant, hiding a representation, or reducing coupling. A module is an information-hiding boundary, not a shorter file. Keep implementation details with their consumers.
 
-### Keep Inputs And State Local
+Do not create modules named after technical roles such as controllers, services, repositories, validators, or utilities. Organize around domain concepts and behaviors.
 
-Make every input explicit and treat function arguments as immutable. Global state, configuration, time, randomness, and services are hidden arguments; pass them explicitly. Arguments are values to observe, not state to own. Return what should change, then let the owning layer apply it.
+### The Wrong Abstraction
 
-Keep state local when possible. When branches share it, lift it only to their nearest common owner. State may mutate inside its owner, but it crosses boundaries as values, never as mutable arguments.
+**Prefer duplication over the wrong abstraction.**
 
-## Explicit Boundaries
+Do not force different cases into one abstraction with type parameters, record constraints, flags, modes, callbacks, or optional fields.
 
-Boundaries should reveal intent, constrain use, and separate policy from mechanics.
+If a change for one case disturbs another, inline the abstraction and split the cases. Do not add machinery to defend an earlier mistake.
 
-### Give Workflows Names
+### Single Source Of Truth
 
-A boolean or enum that selects a workflow is often a missing verb. `processOrder(order, mode: .refund, sendEmail: false)` makes the caller assemble policy and permits invalid combinations. Prefer `refundOrder(order)`. Let the use case own the complete policy and push only shared mechanics down.
+One fact has one source. Two owners have two facts. Copy data when ownership changes. Matching values and representations prove nothing.
 
-### Push Decisions And Effects Up
+```ts
+type Customer = {
+  currentAddress: Address;
+};
 
-Centralize control flow. Choose once between `placeStandardOrder` and `placeExpressOrder`; neither should receive `isExpress`. Keep `if` and `switch` in the parent and move branch-free mechanics into helpers. If a condition follows data through the call tree, the workflows are similar, not the same.
+type Order = {
+  shippingAddress: Address;
+};
+```
 
-Centralize effects. Keep the sequence in the parent: read state, compute a result, then save or send. `calculateTotal` returns a value; it does not also save the order or send analytics. The parent applies changes; leaf functions stay pure.
+At checkout, both addresses may contain the same value. They still belong to different things. The customer's address belongs to the customer. The shipping address belongs to the order.
 
-### Parse At System Boundaries
+Making the order refer to the customer's mutable address lets a later update overwrite the order's history. Copying preserves both facts. Sharing destroys one.
 
-Turn uncertain external input into a value that proves the facts the program needs. Reject invalid input once, at the earliest boundary. Do not carry uncertainty into the program and ask every function to check it again.
+The same applies to configuration and policy. Equal timeout values do not make one timeout policy. Equal supported-format lists do not make one support policy. Share only when one rule governs every use.
 
-### Make Expected Failure Explicit
+### Vertical Slice Architecture
 
-Expected failures belong in the function's type or signature. Callers must be able to discover and exhaustively handle them without reading the implementation. Use the strongest checked failure mechanism the language provides.
+Keep one behavior in one file. A behavior change should follow one clear path through the system.
 
-Reserve unchecked failure for defects and broken invariants. Translate expected failures from foreign APIs into named domain failures at the system boundary. Do not erase useful failure variants into a generic error too early.
+A vertical slice creates high cohesion inside a behavior and low coupling between behaviors. A technical layer collects code that looks alike and turns one behavior change into shotgun surgery.
 
-## Strong Domain Modeling
+Use:
 
-Make the possible world small. Every state admitted by a type is a state the program must understand. Use domain values, units, identifiers, enums, and tagged variants to encode what is true. Avoid primitive strings, boolean flags, and bags of optional fields that permit contradictions. A comment is not a constraint.
+```text
+checkout.ts
+```
 
-Prefer compile-time enforcement. If an invariant cannot be encoded, assert it in the code paths that establish and rely on it. Assertions catch programmer errors; parse or return explicit failures for invalid external input.
+Not:
 
-### Do Not Confuse Current State With Historical Fact
+```text
+controllers/
+services/
+repositories/
+validators/
+utils/
+```
 
-A customer's current address and an order's shipping address may contain the same values at checkout, but they do not have the same identity. The customer address changes when the customer moves; the order address records where that order was sent. Updating one must never rewrite the other.
+Split only when a real concept needs its own invariant-protecting boundary. Never split to shorten a file or make similar code appear once.
 
-### Do Not Collapse Different Questions Into One Answer
+## Move Conditionals Up
 
-A subscription's billing status and an account's access status may both begin as `active` or `inactive`, but billing asks whether the subscription is paid while access asks whether the account may use the product. Grace periods, term endings, and security suspensions make those answers diverge. Let each concept own its status, then connect them through explicit policy.
+**Branch once, then commit to the branch.**
 
-## Behavior-Focused Verification
+Put conditionals at the highest level that can choose a whole branch. A boolean or enum that selects a workflow is a missing verb. Make the decision once; do not carry it through the call tree.
 
-### Test The Contract
+Keep alternative behaviors whole. This is especially important for feature flags.
 
-Test behavior, not choreography. Test at the highest useful seam: a use case, public module, route, component, or job. Assert observable outputs, failures, persisted state, and emitted messages. A test should survive renaming a helper, changing call order, or moving code when behavior does not change. Derive expected values from the specification, not by repeating the implementation.
+Copy the existing path:
 
-Inject a small world. Pass only the external capabilities the code needs through narrow interfaces. Mock system boundaries—external APIs, time, randomness, filesystems, and networks—and keep internal collaborators real. If a test must assemble half the application, the boundary is too wide. Test the invariants and failure paths that matter.
+```ts
+if (newCheckoutEnabled) {
+  checkoutV2(order);
+} else {
+  checkoutV1(order);
+}
+```
 
-### Leave Structured Evidence
+even when the implementations contain substantial duplication. Do not spread the flag through validation, pricing, persistence, and delivery.
 
-Shipped code must use the repository's structured diagnostics instead of ad hoc prints. Include stable event names and enough identifiers and context to investigate a failure from the telemetry alone. Never record secrets or sensitive payloads.
+Whole paths evolve independently. Rollback is local. Removing the flag means deleting one path, not untangling conditions throughout the system.
+
+Do not invent strategies, modes, configuration, or abstractions merely to avoid duplication between paths whose purpose is to diverge.
+
+**Prefer code you can delete over code you must untangle.**
+
+## Value Semantics At Boundaries
+
+**State mutates inside its owner and crosses boundaries as values.**
+
+Treat function arguments as immutable. Return a new value instead of mutating the caller's state: `const updatedOrder = applyDiscount(order, discount)`.
+
+Mutation needs an owner. Follow the Single Writer Principle: only the owner mutates its state. Never give unrelated code mutable access.
+
+Keep state with its smallest owner. Each branch owns its state even when representations match. Coordinate by passing or copying values. Share an owner only when correctness requires atomic change.
+
+### Functional Core, Imperative Shell
+
+**Read state. Compute with values. Apply the result.**
+
+```ts
+const order = await orders.get(orderId);
+
+const result = priceOrder(order, pricing);
+
+await orders.save(result.order);
+await events.publish(result.events);
+```
+
+The owning slice reads and writes. Pure code computes. Keep effects, time, randomness, configuration, databases, networks, and services visible at the outside. Do not hide the sequence behind code that reaches outward from the computation.
+
+Keep concrete dependencies in the slice. Do not create shared ports, interfaces, or adapters merely for substitution or testing.
+
+## Parse, Don't Validate
+
+**Turn uncertainty into knowledge at the boundary.**
+
+External data starts uncertain. Do not spread that uncertainty through the program.
+
+Avoid shotgun parsing. Parse once at each ownership boundary into that owner's local type. Do not reuse another slice's parser or domain type merely because the external representation matches.
+
+Turn strings, numbers, JSON, database rows, and SDK responses into values owned by the slice. Once a fact is known, stop representing it as uncertain.
+
+### Make Impossible States Impossible
+
+Reject primitive obsession. Use slice-local identifiers, units, enums, and tagged variants to make the possible world smaller. Equal representations do not require shared types.
+
+Prefer:
+
+```ts
+type Payment =
+  | { kind: "pending" }
+  | { kind: "paid"; paidAt: Instant }
+  | { kind: "failed"; reason: PaymentFailure };
+```
+
+over:
+
+```ts
+type Payment = {
+  isPaid: boolean;
+  paidAt?: Instant;
+  failureReason?: string;
+};
+```
+
+The second representation admits combinations that have no meaning. Every state admitted by a type is a state the rest of the program must understand.
+
+Parse invalid external input. Assert broken internal invariants.
+
+**A comment is not a constraint.**
+
+## Errors As Values
+
+**Expected failure is part of the contract.**
+
+If a failure can happen during normal operation, put it in the owning use case's contract using the strongest checked mechanism the language provides.
+
+Prefer:
+
+```ts
+type PlaceOrderResult =
+  | { kind: "placed"; order: Order }
+  | { kind: "outOfStock"; productId: ProductId }
+  | { kind: "paymentDeclined"; reason: DeclineReason };
+```
+
+over:
+
+```ts
+type PlaceOrderResult =
+  | { ok: true; order: Order }
+  | { ok: false; message: string };
+```
+
+Different failures are different facts. Do not erase the distinction before the caller has finished making decisions from it.
+
+Translate foreign failures at the boundary. Domain code does not understand HTTP statuses, database codes, or SDK exceptions. Do not create a shared error taxonomy merely because use cases receive similar failures.
+
+Expected failures are values. Broken invariants are defects. Do not confuse them.
 
 ## Language And Framework-Specific Style Guides
 
-- Writing Swift, read [`swift-style.md`](swift-style.md).
-- Writing SwiftUI, also read [`swiftui-style.md`](swiftui-style.md).
-- Writing TypeScript, read [`typescript-style.md`](typescript-style.md).
-- Writing React, also read [`react-style.md`](react-style.md).
+- Designing public interfaces or APIs, read [interface-style.md](interface-style.md).
+- Writing Swift, read [swift-style.md](swift-style.md).
+- Writing SwiftUI, also read [swiftui-style.md](swiftui-style.md).
+- Writing TypeScript, read [typescript-style.md](typescript-style.md).
+- Writing React, also read [react-style.md](react-style.md).
