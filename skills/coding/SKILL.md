@@ -17,9 +17,9 @@ Sharing is a claim that two things have one identity. Prove it. Name the one con
 
 ### Rule Of Three
 
-Repetition does not prove identity. Use the Rule of Three as permission to inspect, never as an order to extract. The third occurrence earns a question, not an abstraction.
+The Rule of Three triggers inspection, not extraction. Count does not prove identity. Wait for change.
 
-Wait for a real change. Extract only when one rule forces every occurrence to change. If one occurrence may stay unchanged, keep the cases separate.
+Extract only when one rule forces every occurrence to change. If one occurrence may stay unchanged, keep the cases separate.
 
 ### The Life Of A File
 
@@ -27,7 +27,7 @@ Let a file grow. Do not design its final module structure up front.
 
 Split around a data structure, not a line count. Give the concept a name from the ubiquitous language. Choose its representation. Keep its invariants and operations together.
 
-Every module creates a dependency. Make it earn its existence by protecting an invariant, hiding a representation, or reducing coupling. A module is an information-hiding boundary, not a shorter file. Keep implementation details with their consumers.
+Every module creates a dependency. Make it earn its existence by owning one named concept, protecting its invariant, or hiding its representation. A module is an information-hiding boundary, not a shorter file. Keep implementation details with their consumers.
 
 Do not create modules named after technical roles such as controllers, services, repositories, validators, or utilities. Organize around domain concepts and behaviors.
 
@@ -43,42 +43,45 @@ If a change for one case disturbs another, inline the abstraction and split the 
 
 One fact has one source. Two owners have two facts. Copy data when ownership changes. Matching values and representations prove nothing.
 
-```ts
-type Customer = {
-  currentAddress: Address;
-};
+```text
+type alias Customer =
+    { currentAddress : Address }
 
-type Order = {
-  shippingAddress: Address;
-};
+type alias Order =
+    { shippingAddress : Address }
+
+order =
+    { shippingAddress = customer.currentAddress }
+
+movedCustomer =
+    { customer | currentAddress = newAddress }
 ```
 
-At checkout, both addresses may contain the same value. They still belong to different things. The customer's address belongs to the customer. The shipping address belongs to the order.
-
-Making the order refer to the customer's mutable address lets a later update overwrite the order's history. Copying preserves both facts. Sharing destroys one.
+The order keeps the checkout address after the customer moves. The customer's address belongs to the customer. The shipping address belongs to the order. Snapshotting the value preserves both facts. Deriving the order address from the customer's current state collapses them.
 
 The same applies to configuration and policy. Equal timeout values do not make one timeout policy. Equal supported-format lists do not make one support policy. Share only when one rule governs every use.
 
 ### Vertical Slice Architecture
 
-Keep one behavior in one file. A behavior change should follow one clear path through the system.
-
-A vertical slice creates high cohesion inside a behavior and low coupling between behaviors. A technical layer collects code that looks alike and turns one behavior change into shotgun surgery.
+Keep one behavior in one file. Keep cohesion inside the slice. Keep coupling low between slices. Horizontal layers turn one behavior change into shotgun surgery.
 
 Use:
 
 ```text
-checkout.ts
+Checkout.elm
+    validate
+    price
+    reserve
+    confirm
 ```
 
 Not:
 
 ```text
-controllers/
-services/
-repositories/
-validators/
-utils/
+Controllers/Checkout.elm
+Services/Checkout.elm
+Repositories/Checkout.elm
+Validators/Checkout.elm
 ```
 
 Split only when a real concept needs its own invariant-protecting boundary. Never split to shorten a file or make similar code appear once.
@@ -93,15 +96,22 @@ Keep alternative behaviors whole. This is especially important for feature flags
 
 Copy the existing path:
 
-```ts
-if (newCheckoutEnabled) {
-  checkoutV2(order);
-} else {
-  checkoutV1(order);
-}
+```text
+if newCheckoutEnabled then
+    order
+        |> validateCheckoutV2
+        |> priceCheckoutV2
+        |> reserveInventoryV2
+        |> confirmCheckoutV2
+else
+    order
+        |> validateCheckoutV1
+        |> priceCheckoutV1
+        |> reserveInventoryV1
+        |> confirmCheckoutV1
 ```
 
-even when the implementations contain substantial duplication. Do not spread the flag through validation, pricing, persistence, and delivery.
+Keep both implementations whole, even with substantial duplication. Do not spread the flag through validation, pricing, persistence, and delivery.
 
 Whole paths evolve independently. Rollback is local. Removing the flag means deleting one path, not untangling conditions throughout the system.
 
@@ -113,7 +123,7 @@ Do not invent strategies, modes, configuration, or abstractions merely to avoid 
 
 **State mutates inside its owner and crosses boundaries as values.**
 
-Treat function arguments as immutable. Return a new value instead of mutating the caller's state: `const updatedOrder = applyDiscount(order, discount)`.
+Treat function arguments as immutable. Return a new value instead of mutating the caller's state.
 
 Mutation needs an owner. Follow the Single Writer Principle: only the owner mutates its state. Never give unrelated code mutable access.
 
@@ -123,16 +133,17 @@ Keep state with its smallest owner. Each branch owns its state even when represe
 
 **Read state. Compute with values. Apply the result.**
 
-```ts
-const order = await orders.get(orderId);
+```text
+let order = Orders.get orderId
+let result = priceOrder pricing order
 
-const result = priceOrder(order, pricing);
-
-await orders.save(result.order);
-await events.publish(result.events);
+Orders.save result.order
+Events.publish result.events
 ```
 
-The owning slice reads and writes. Pure code computes. Keep effects, time, randomness, configuration, databases, networks, and services visible at the outside. Do not hide the sequence behind code that reaches outward from the computation.
+The owning slice reads and writes. Pure code computes. Purity does not justify sharing. Keep the computation in the owning slice.
+
+Keep effects, time, randomness, configuration, databases, networks, and services visible at the outside. Do not hide the sequence behind code that reaches outward from the computation.
 
 Keep concrete dependencies in the slice. Do not create shared ports, interfaces, or adapters merely for substitution or testing.
 
@@ -152,26 +163,26 @@ Reject primitive obsession. Use slice-local identifiers, units, enums, and tagge
 
 Prefer:
 
-```ts
-type Payment =
-  | { kind: "pending" }
-  | { kind: "paid"; paidAt: Instant }
-  | { kind: "failed"; reason: PaymentFailure };
+```text
+type Payment
+    = Pending
+    | Paid Instant
+    | Failed PaymentFailure
 ```
 
 over:
 
-```ts
-type Payment = {
-  isPaid: boolean;
-  paidAt?: Instant;
-  failureReason?: string;
-};
+```text
+type alias Payment =
+    { isPaid : Bool
+    , paidAt : Maybe Instant
+    , failureReason : Maybe String
+    }
 ```
 
 The second representation admits combinations that have no meaning. Every state admitted by a type is a state the rest of the program must understand.
 
-Parse invalid external input. Assert broken internal invariants.
+Parse external input. Reject invalid input. Assert broken internal invariants.
 
 **A comment is not a constraint.**
 
@@ -183,19 +194,31 @@ If a failure can happen during normal operation, put it in the owning use case's
 
 Prefer:
 
-```ts
-type PlaceOrderResult =
-  | { kind: "placed"; order: Order }
-  | { kind: "outOfStock"; productId: ProductId }
-  | { kind: "paymentDeclined"; reason: DeclineReason };
+```text
+type PlaceOrderError
+    = OutOfStock ProductId
+    | PaymentDeclined DeclineReason
+
+placeOrder : Order -> Result PlaceOrderError Order
 ```
 
 over:
 
-```ts
-type PlaceOrderResult =
-  | { ok: true; order: Order }
-  | { ok: false; message: string };
+```text
+placeOrder : Order -> Result String Order
+```
+
+or raising an expected failure outside the return type:
+
+```text
+placeOrder : Order -> Order
+placeOrder order =
+    case charge order of
+        Declined reason ->
+            raise (PaymentDeclined reason)
+
+        Charged payment ->
+            persistOrder payment order
 ```
 
 Different failures are different facts. Do not erase the distinction before the caller has finished making decisions from it.

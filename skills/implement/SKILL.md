@@ -1,11 +1,14 @@
 ---
 name: implement
 description: Implement a plan in small, testable vertical slices.
-disable-model-invocation: true
 ---
 
-Work in small vertical slices. Each slice should deliver one observable behavior and be easy to review, test, revert, and delete.
+Implement the plan one observable vertical slice at a time.
 
-Before each slice, propose only the prep work needed to make the change easy. Go back and forth with the user until the prep is agreed; then do the prep, commit it, and make the easy change.
+For each slice:
 
-When done, suggest local refactor opportunities and rule-of-three sharing candidates. Do not extract them during implementation.
+1. Read [Make The Change Easy](references/make-the-change-easy.md). Agree with the user how to make the change easy, then perform the preparation.
+2. Read [Make The Easy Change](references/make-the-easy-change.md). Implement the behavior concretely and WET, then verify it.
+3. Read [Review The Result](references/review-the-result.md). Suggest worthwhile abstractions or improvements in chat.
+
+Read only the current phase's reference. Complete each phase before starting the next. Repeat the cycle for the next slice.
