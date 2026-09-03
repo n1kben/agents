@@ -38,19 +38,6 @@ Replace protocols with semantic operations. If callers must coordinate transacti
 
 Translate foreign systems at a seam. Adapters own provider terms, request shapes, response shapes, exceptions, error taxonomies, and idempotency rules.
 
-### Identity layers at boundaries
-
-Identity is domain knowledge, not just a primitive type. Prefer boundaries that expose only the identities needed for the decision.
-
-Prefer the aggregate business identity (root identity) as the main external input/output.
-- Business identity: the name your domain uses for the concept (`OrderId`, `CustomerId`).
-- Internal entity identity: useful inside the aggregate when operations target children (`OrderLineId`, `ReservationId`).
-- Technical identity: infrastructure or storage-focused IDs when the persistence model requires them.
-
-A boundary is stronger when callers can work with business identity and never see storage identifiers unless they are domain-meaningful.
-
-If a caller must operate on a child entity, make that boundary explicit (`remove item line`, `reprice line`) and pass that child identity intentionally.
-
 ## Bad boundaries
 
 Similarity is not compression. Do not create a boundary because code looks alike; create one because it shrinks the reasoning world.
