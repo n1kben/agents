@@ -11,7 +11,9 @@ Software engineering already applies strong pressure toward reuse, abstraction, 
 
 **Similarity is not identity.**
 
-Start separate. Duplicate code. Copy data.
+Start concrete. Keep cases separate. Duplicate code. Copy data.
+
+Concrete code exposes differences. Abstraction hides them behind one name.
 
 Sharing is a claim that two things have one identity. Prove it. Name the one concept. State the invariant every use must preserve. If the copies may validly diverge, keep them separate.
 
