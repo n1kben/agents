@@ -94,32 +94,9 @@ Split only when a real concept needs its own invariant-protecting boundary. Neve
 
 Put conditionals at the highest level that can choose a whole branch. A boolean or enum that selects a workflow is a missing verb. Make the decision once; do not carry it through the call tree.
 
-Keep alternative behaviors whole. This is especially important for feature flags.
+Keep alternative behaviors whole. Do not invent strategies, modes, configuration, or abstractions merely to avoid duplication between paths whose purpose is to diverge.
 
-Copy the existing path:
-
-```text
-if newCheckoutEnabled then
-    order
-        |> validateCheckoutV2
-        |> priceCheckoutV2
-        |> reserveInventoryV2
-        |> confirmCheckoutV2
-else
-    order
-        |> validateCheckoutV1
-        |> priceCheckoutV1
-        |> reserveInventoryV1
-        |> confirmCheckoutV1
-```
-
-Keep both implementations whole, even with substantial duplication. Do not spread the flag through validation, pricing, persistence, and delivery.
-
-Whole paths evolve independently. Rollback is local. Removing the flag means deleting one path, not untangling conditions throughout the system.
-
-Do not invent strategies, modes, configuration, or abstractions merely to avoid duplication between paths whose purpose is to diverge.
-
-**Prefer code you can delete over code you must untangle.**
+When implementing or reviewing feature flags, read [references/feature-flags.md](references/feature-flags.md).
 
 ## Value Semantics At Boundaries
 
@@ -231,8 +208,8 @@ Expected failures are values. Broken invariants are defects. Do not confuse them
 
 ## Language And Framework-Specific Style Guides
 
-- Designing public interfaces or APIs, read [interface-style.md](interface-style.md).
-- Writing Swift, read [swift-style.md](swift-style.md).
-- Writing SwiftUI, also read [swiftui-style.md](swiftui-style.md).
-- Writing TypeScript, read [typescript-style.md](typescript-style.md).
-- Writing React, also read [react-style.md](react-style.md).
+- Designing public interfaces or APIs, read [interfaces.md](interfaces.md).
+- Writing Swift, read [swift.md](swift.md).
+- Writing SwiftUI, also read [swiftui.md](swiftui.md).
+- Writing TypeScript, read [typescript.md](typescript.md).
+- Writing React, also read [react.md](react.md).
