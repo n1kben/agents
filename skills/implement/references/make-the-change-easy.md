@@ -2,12 +2,10 @@
 
 Before changing code, inspect the planned behavior and the code it must change.
 
-Look for a wrong abstraction that makes the change difficult: shared code whose callers need flags, modes, booleans, or optional callbacks to recover distinct behavior, or whose change has an unrelated blast radius. The preparation may inline, split, or localize that behavior.
+Find only the structural friction specific to the planned change. Each smell below reads **what makes the change hard** → **a possible behavior-preserving preparation**:
 
-Explain what makes the change difficult. Propose the smallest behavior-preserving preparation that would make it straightforward. Discuss the proposal with the user until you agree on the preparation and the easy change it enables.
+- **Divergent abstraction**: adding one behavior requires a flag, mode, boolean, optional callback, or edits for unrelated callers. → inline the abstraction, split the behaviors, or localize the affected path.
+- **Entangled decision**: changing a rule also requires reasoning about I/O, time, storage, loops, retries, or asynchronous failure. → separate the decision from the machinery that executes it.
+- **Leaking machinery**: the caller coordinates transactions, locks, resource lifetimes, call order, provider data, or foreign errors. → put the protocol behind a semantic operation or translate the foreign system at a seam.
 
-If the change is already easy, explain why and agree to skip preparation.
-
-Do not edit code until the shared idea is clear and the user agrees with it.
-
-Then perform only the agreed preparation. Preserve behavior and verify that it still works. Keep the preparation separate from the behavior change in version history when commits are part of the workflow.
+Explain the friction and agree with the user on the smallest behavior-preserving preparation. If the change is already easy, skip preparation. Perform and verify only the agreed preparation.

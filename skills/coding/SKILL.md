@@ -17,15 +17,17 @@ Do not ask whether they look alike. Ask whether they are allowed to diverge. If 
 
 Let actual changes provide the evidence. When one case changes, ask whether the same rule makes every other case wrong. If not, the cases were only similar.
 
+Similar cases can still contain a genuinely shared concept. Extract only that subset and leave the enclosing cases separate. Two records may remain distinct while both contain the same `Location`.
+
 ### The Life Of A File
 
 **A module boundary should protect a concept, not satisfy a size limit.**
 
 Let a file grow while its contents change for the same reasons. Do not design its final module structure up front.
 
-Split when a concept earns an independent boundary. Give it a name from the ubiquitous language, choose its representation, and keep its invariants and operations together. The resulting module should make a concrete guarantee and hide only the constructors or representation that would let callers bypass it.
+Split when a coherent concept becomes apparent through the work. Look for a stable name in the system's language, state or rules that need one owner, or a part that changes independently of its surroundings.
 
-If there is no guarantee to enforce, keep the data and helpers with their consumers. File length alone does not justify extraction.
+These are clues, not a checklist. Create the module only when the boundary clarifies ownership, protects an invariant, hides a representation, or gives callers a smaller contract. Otherwise, keep the code with its consumers. File length alone does not justify extraction.
 
 Do not split primarily by technical roles such as controllers, services, repositories, validators, or utilities. Prefer modules organized around domain concepts, behaviors, and their data structures.
 
@@ -221,7 +223,7 @@ Expected failures are values. Broken invariants are defects. Do not confuse them
 
 ## Language And Framework-Specific Style Guides
 
-- Implementing or reviewing feature flags, read [references/feature-flags.md](references/feature-flags.md).
+- Implementing or reviewing feature flags, read [feature-flags.md](feature-flags.md).
 - Designing public interfaces or APIs, read [interfaces.md](interfaces.md).
 - Writing Swift, read [swift.md](swift.md).
 - Writing SwiftUI, also read [swiftui.md](swiftui.md).
