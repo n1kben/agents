@@ -18,4 +18,6 @@ Sharing creates coupling between use cases.
 
 - **Rule of Three**: the same behavior now has three concrete occurrences. → point out the coupling candidate; suggest sharing when the occurrences have one identity, one invariant, and one reason to change.
 
+Spawn a subagent that reads [Tiger Style](tiger-style.md) and tries to find improvements to the code or useful local abstractions.
+
 Report only worthwhile suggestions in chat. For each, name the evidence and explain why it would help; do not apply it. If none have earned a recommendation, say so.

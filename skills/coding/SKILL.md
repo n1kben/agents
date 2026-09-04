@@ -86,11 +86,9 @@ Validators/Checkout.elm
 
 Split only when a real concept needs its own invariant-protecting boundary. Never split to shorten a file or make similar code appear once.
 
-## Move Conditionals Up
+## No Hidden Control Flow
 
-**Branch once, then commit to the branch.**
-
-Put a conditional at the highest level that knows which complete behavior to run. Do not pass that choice down and make each step interpret it.
+The highest-level function that knows which complete behavior to run should branch once and commit to that branch. Do not pass the choice down for each step to interpret.
 
 Bad — pass the choice through a generic workflow:
 
@@ -111,7 +109,7 @@ else
     saveDraft draft
 ```
 
-Moving the conditional up may duplicate orchestration. Accept that, or share a smaller operation with the same meaning and rules in both behaviors. For example, `publishDraft` and `saveDraft` may both call `persistDraft`; that does not require a generic workflow parameterized by `shouldPublish`.
+Accept duplicated orchestration, or share only smaller operations with the same meaning and rules in both behaviors. `publishDraft` and `saveDraft` may both call `persistDraft`; they do not need a generic workflow parameterized by `shouldPublish`.
 
 ## Value Semantics At Boundaries
 
