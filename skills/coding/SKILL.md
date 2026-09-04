@@ -9,37 +9,33 @@ Software engineering already applies strong pressure toward reuse, abstraction, 
 
 ## Similar Is Not The Same
 
-**Similarity is not identity.**
+**Similarity invites comparison. Identity justifies sharing.**
 
-Start concrete. Keep cases separate. Duplicate code. Copy data.
+Two pieces of code can have the same shape and still represent different behaviors. Share them only when they express one identity: one fact, rule, or behavior that must remain coherent everywhere it appears.
 
-Concrete code exposes differences. Abstraction hides them behind one name.
+Do not ask whether they look alike. Ask whether they are allowed to diverge. If one can change without making the other wrong, keep them separate.
 
-Sharing is a claim that two things have one identity. Prove it. Name the one concept. State the invariant every use must preserve. If the copies may validly diverge, keep them separate.
-
-### Rule Of Three
-
-The Rule of Three triggers inspection, not extraction. Count does not prove identity. Wait for change.
-
-Extract only when one rule forces every occurrence to change. If one occurrence may stay unchanged, keep the cases separate.
+Let actual changes provide the evidence. When one case changes, ask whether the same rule makes every other case wrong. If not, the cases were only similar.
 
 ### The Life Of A File
 
-Let a file grow. Do not design its final module structure up front.
+**A module boundary should protect a concept, not satisfy a size limit.**
 
-Split around a data structure, not a line count. Give the concept a name from the ubiquitous language. Choose its representation. Keep its invariants and operations together.
+Let a file grow while its contents change for the same reasons. Do not design its final module structure up front.
 
-Every module creates a dependency. Make it earn its existence by owning one named concept, protecting its invariant, or hiding its representation. A module is an information-hiding boundary, not a shorter file. Keep implementation details with their consumers.
+Split when a concept earns an independent boundary. Give it a name from the ubiquitous language, choose its representation, and keep its invariants and operations together. The resulting module should make a concrete guarantee and hide only the constructors or representation that would let callers bypass it.
 
-Do not create modules named after technical roles such as controllers, services, repositories, validators, or utilities. Organize around domain concepts and behaviors.
+If there is no guarantee to enforce, keep the data and helpers with their consumers. File length alone does not justify extraction.
+
+Do not split primarily by technical roles such as controllers, services, repositories, validators, or utilities. Prefer modules organized around domain concepts, behaviors, and their data structures.
 
 ### The Wrong Abstraction
 
 **Prefer duplication over the wrong abstraction.**
 
-Do not force different cases into one abstraction with type parameters, record constraints, flags, modes, callbacks, or optional fields.
+An abstraction is wrong when independently changing cases must negotiate through it. Type parameters, record constraints, flags, modes, callbacks, and optional fields are warning signs when their purpose is to keep those cases together. They are appropriate only when the generic relationship is itself a stable concept.
 
-If a change for one case disturbs another, inline the abstraction and split the cases. Do not add machinery to defend an earlier mistake.
+When that happens, inline the abstraction and restore each behavior to its owner. Then extract only any smaller concept that still has one meaning and one reason to change. Do not add machinery to defend an earlier mistake.
 
 ### Single Source Of Truth
 
@@ -92,11 +88,28 @@ Split only when a real concept needs its own invariant-protecting boundary. Neve
 
 **Branch once, then commit to the branch.**
 
-Put conditionals at the highest level that can choose a whole branch. A boolean or enum that selects a workflow is a missing verb. Make the decision once; do not carry it through the call tree.
+Put a conditional at the highest level that knows which complete behavior to run. Do not pass that choice down and make each step interpret it.
 
-Keep alternative behaviors whole. Do not invent strategies, modes, configuration, or abstractions merely to avoid duplication between paths whose purpose is to diverge.
+Bad — pass the choice through a generic workflow:
 
-When implementing or reviewing feature flags, read [references/feature-flags.md](references/feature-flags.md).
+```text
+save shouldPublish draft =
+    draft
+        |> validate shouldPublish
+        |> persist shouldPublish
+        |> notify shouldPublish
+```
+
+Good — choose between complete behaviors:
+
+```text
+if shouldPublish then
+    publishDraft draft
+else
+    saveDraft draft
+```
+
+Moving the conditional up may duplicate orchestration. Accept that, or share a smaller operation with the same meaning and rules in both behaviors. For example, `publishDraft` and `saveDraft` may both call `persistDraft`; that does not require a generic workflow parameterized by `shouldPublish`.
 
 ## Value Semantics At Boundaries
 
@@ -120,11 +133,11 @@ Orders.save result.order
 Events.publish result.events
 ```
 
-The owning slice reads and writes. Pure code computes. Purity does not justify sharing. Keep the computation in the owning slice.
+The owner reads and writes. Pure code computes. Purity does not justify sharing. Keep the computation with its owner.
 
 Keep effects, time, randomness, configuration, databases, networks, and services visible at the outside. Do not hide the sequence behind code that reaches outward from the computation.
 
-Keep concrete dependencies in the slice. Do not create shared ports, interfaces, or adapters merely for substitution or testing.
+Keep concrete dependencies with the behavior that uses them. Do not create shared ports, interfaces, or adapters merely for substitution or testing.
 
 ## Parse, Don't Validate
 
@@ -132,13 +145,13 @@ Keep concrete dependencies in the slice. Do not create shared ports, interfaces,
 
 External data starts uncertain. Do not spread that uncertainty through the program.
 
-Avoid shotgun parsing. Parse once at each ownership boundary into that owner's local type. Do not reuse another slice's parser or domain type merely because the external representation matches.
+Avoid shotgun parsing. Parse once at the boundary into a type that captures what is known.
 
-Turn strings, numbers, JSON, database rows, and SDK responses into values owned by the slice. Once a fact is known, stop representing it as uncertain.
+Turn strings, numbers, JSON, database rows, and SDK responses into structured values. Once a fact is known, stop representing it as uncertain.
 
 ### Make Impossible States Impossible
 
-Reject primitive obsession. Use slice-local identifiers, units, enums, and tagged variants to make the possible world smaller. Equal representations do not require shared types.
+Encode invariants as early as possible in compile-time-enforced types. Use identifiers, units, enums, and tagged variants to make the possible world smaller.
 
 Prefer:
 
@@ -161,7 +174,7 @@ type alias Payment =
 
 The second representation admits combinations that have no meaning. Every state admitted by a type is a state the rest of the program must understand.
 
-Parse external input. Reject invalid input. Assert broken internal invariants.
+When compile-time types cannot enforce an internal invariant, assert it at the point of use. Type guarantees travel with values; assertions protect only the code they guard.
 
 **A comment is not a constraint.**
 
@@ -208,6 +221,7 @@ Expected failures are values. Broken invariants are defects. Do not confuse them
 
 ## Language And Framework-Specific Style Guides
 
+- Implementing or reviewing feature flags, read [references/feature-flags.md](references/feature-flags.md).
 - Designing public interfaces or APIs, read [interfaces.md](interfaces.md).
 - Writing Swift, read [swift.md](swift.md).
 - Writing SwiftUI, also read [swiftui.md](swiftui.md).
