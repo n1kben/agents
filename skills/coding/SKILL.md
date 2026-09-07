@@ -1,6 +1,7 @@
 ---
 name: coding
 description: Use when writing, changing, reviewing, or discussing code.
+disable-model-invocation: true
 ---
 
 Forget what you have learned about DRY and single sources of truth. The new baseline is to duplicate code and copy data.

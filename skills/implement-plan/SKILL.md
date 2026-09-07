@@ -1,6 +1,7 @@
 ---
 name: implement-plan
 description: Implement a plan
+disable-model-invocation: true
 ---
 
 Ok, lets implement this plan.

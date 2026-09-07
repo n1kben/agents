@@ -1,0 +1,5 @@
+interface:
+  display_name: "Shaping an API"
+  short_description: "Design APIs around what callers need to do"
+policy:
+  allow_implicit_invocation: false
