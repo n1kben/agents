@@ -1,94 +1,54 @@
 ---
 name: domain-modeling
-description: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md, or recording or editing an ADR.
+description: Build and sharpen a project's domain model. Use when discussing codebase terminology, planning features, stress-testing ideas, clarifying business rules, writing or editing a CONTEXT.md, or recording project language.
 ---
 
 # Domain Modeling
 
-Build the domain model as you learn about the problem. Do not try to get the taxonomy right up front. Start with concrete cases, ask what information is actually there, and let the terms, relationships, and boundaries come out of that.
+Actively build and sharpen the project's domain model as you design. This is the _active_ discipline: working through examples, challenging the language, and writing the glossary down the moment things crystallise.
 
-A good habit is to consider a few different ways to represent the same situation before settling on one. Pay attention to data that keeps traveling together, states that should not be possible, and invariants that should always hold. The goal is not a clever model. It is a model where the important facts of the domain work out nicely.
+Merely _reading_ `CONTEXT.md` for vocabulary is not this skill. This skill is for when you're changing the model, not just consuming it.
 
 ## File structure
 
-Use one root `CONTEXT.md` for the project's domain language, and `docs/adr/` for ADRs:
+The domain model lives in `CONTEXT.md` at the root:
 
-```text
+```text id="u7wq2a"
 /
 ├── CONTEXT.md
-├── docs/
-│   └── adr/
-│       ├── 0001-event-sourced-orders.md
-│       └── 0002-postgres-for-write-model.md
-└── src/
+└── ...
 ```
 
-Create files lazily. If there is nothing useful to write yet, do not create them.
+Create it lazily. If no `CONTEXT.md` exists, create one when the first term is resolved.
 
 ## During the session
 
-### Start with concrete scenarios
+### Work through examples
 
-When a relationship is fuzzy, make it concrete. Walk through a real case and then try the awkward cases: cancellation after shipment, two users sharing an account, an address changing after an order was placed, whatever fits the domain.
+Prefer concrete examples and counterexamples to abstract discussion. When something is unclear, make up a small scenario and ask what should happen.
 
-Use the cases to discover the model rather than making the cases fit a model you already chose.
+Use examples to discover the model, not merely illustrate it. Probe boundaries, invariants, edge cases, and impossible states. Challenge `always`, `never`, `must`, and `only`: is this a domain invariant, or simply how things work today?
 
-### Ask about identity
+When an example doesn't fit, don't assume something is wrong. Ask what it teaches you about the model.
 
-Ask what makes two things the same thing.
+Work from examples toward language, then test the language with more examples.
 
-If two values contain exactly the same information, are they interchangeable? If all of the information changes, can it still be the same thing? Those questions usually tell you whether identity matters.
+### Sharpen the language
 
-Also distinguish a current fact from a historical snapshot. A Customer's current address and the shipping address captured on an Order may look identical while representing different facts.
+Treat `CONTEXT.md` as the current model, not established truth.
 
-### Similar is not the same
+Challenge **similar vs same**, fuzzy or overloaded terms, hidden assumptions, and distinctions that may not actually matter. Don't collapse concepts because they look similar, and don't distinguish them merely because they have different names. A distinction should make a difference in the domain.
 
-Do not combine concepts just because they have the same fields or happen to behave the same way right now.
-
-Ask whether they mean the same thing in the domain. Do they have the same invariants? Do they change for the same reasons? Can one change without the other? If the answers differ, keep them separate even if the representations happen to look similar.
-
-### Find the invariants
-
-When you hear "always", "never", "only", "at most", or "unless", there is probably something useful there.
-
-Get clear on what should always hold and which states can actually exist. These guarantees often tell you more about the shape of the domain than trying to organize things directly.
-
-### Challenge the language
-
-When the user uses a term that conflicts with `CONTEXT.md`, call it out immediately:
-
-"Your glossary defines 'cancellation' as X, but here you seem to mean Y. Are those actually the same thing?"
-
-When a term is vague or overloaded, sharpen it:
-
-"You're saying 'account'. Do you mean the Customer or the User? Those seem like different things."
-
-Do not invent two terms when the domain really has one concept either. The goal is to make meaningful distinctions, not more vocabulary.
+Treat contradictions as clues. When new information conflicts with the current model, ask whether the cases are actually different, a distinction is missing, or the existing language needs to change.
 
 ### Cross-reference with code
 
-Treat the code as evidence about the current model, not automatically as the truth.
+Use the code as another source of examples and counterexamples. When what the user says, `CONTEXT.md`, and the code disagree, surface it and work out what the disagreement teaches you about the model.
 
-If the conversation and code disagree, surface the disagreement:
+Don't assume the code is the truth. It may reflect an old model, an implementation constraint, or a case the current language doesn't yet explain.
 
-"Your code cancels an entire Order, but you just said individual Order Lines can be cancelled. Which reflects the domain?"
+### Update CONTEXT.md inline
 
-That contradiction is often where something useful is hiding.
+When the language crystallises, update `CONTEXT.md` right there. Don't batch changes: capture them as they happen. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
 
-### Update `CONTEXT.md` as things become clear
-
-When a term or distinction crystallises, capture it right away. Do not batch these up for later.
-
-Use [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
-
-`CONTEXT.md` is the domain language: terms, meanings, distinctions, relationships, and domain facts. Keep implementation details out of it. Do not turn it into a spec, scratch pad, or design document.
-
-### Offer ADRs sparingly
-
-Only offer an ADR when all three are true:
-
-1. **Hard to reverse** — changing the decision later would be meaningfully expensive.
-2. **Surprising without context** — a future reader is likely to ask why it was done this way.
-3. **A real trade-off** — there were genuine alternatives and one was chosen for a reason.
-
-If any of these are missing, skip the ADR. Use [ADR-FORMAT.md](./ADR-FORMAT.md).
+`CONTEXT.md` should be totally devoid of implementation details. Do not treat it as a spec, scratch pad, or repository for implementation decisions. It is a glossary and nothing else.
