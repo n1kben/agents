@@ -1,0 +1,3 @@
+interface:
+  display_name: "Swift"
+  short_description: "Write Swift and SwiftUI with explicit types and inputs"
