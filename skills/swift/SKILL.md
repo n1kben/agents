@@ -11,6 +11,6 @@ Use result type when failure needs to be stored, passed around, or composed as a
 
 ## SwiftUI
 
-Pass view requirements explicitly. Keep app state, services, config, and capabilities out of `@Environment`; read them at the boundary and pass values or closures.
+Pass view requirements explicitly. Never read a requirement from `@Environment` or `@EnvironmentObject`. Pass every requirement as an initializer value, binding, or closure.
 
 When you add or modify a view, include previews for the states that matter: loading, empty, loaded, error, disabled, long content, accessibility sizes, or constrained layouts when relevant. Keep previews deterministic. No network, persistence, clocks, or hidden setup.
