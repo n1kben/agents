@@ -1,6 +1,0 @@
-interface:
-  display_name: "Make Change Easy"
-  short_description: "Prepare code so the behavior change becomes easy"
-  default_prompt: "Use $make-change-easy to prepare this code for the requested change."
-policy:
-  allow_implicit_invocation: false

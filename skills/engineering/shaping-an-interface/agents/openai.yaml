@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shaping an Interface"
+  short_description: "Design a clear and durable code boundary"
+  default_prompt: "Use $shaping-an-interface to design this boundary around what its callers need."

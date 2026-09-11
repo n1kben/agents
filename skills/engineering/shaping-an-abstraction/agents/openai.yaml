@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shaping an Abstraction"
+  short_description: "Test and shape one shared abstraction"
+  default_prompt: "Use $shaping-an-abstraction to examine and shape this suggested abstraction."
