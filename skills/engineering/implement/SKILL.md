@@ -1,7 +1,6 @@
 ---
 name: implement
 description: A conversation-led workflow for implementing code changes in observable slices with separate preparation and verification. Use when the user asks to implement a requested change or agreed plan.
-disable-model-invocation: true
 ---
 
 # Implement

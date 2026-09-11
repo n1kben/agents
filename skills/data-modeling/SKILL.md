@@ -51,6 +51,36 @@ If the model answers today's query by destroying distinctions that may matter to
 
 ## Present the Model
 
-Present the concrete need, representative examples, proposed facts and representation, identity and time semantics, authoritative and derived values, preserved history, migration path, and strongest reason the model may be wrong.
+Use this structure for the working proposal. Omit details that do not affect the decision.
+
+```md
+# {Model or change}
+
+## Need
+What must be recorded, changed, or remain knowable?
+
+## Examples
+Representative cases, including relevant absence, corrections, and history.
+
+## Facts
+- Meaning and source
+- Identity and cardinality
+- When it happened, became effective, and was recorded
+- Whether it can change or be corrected
+
+## Representation
+The proposed schema, record, or event shape.
+
+## Authority
+Which data is authoritative, which is derived, and who maintains it.
+
+## Evolution
+How existing records and consumers move without inventing or losing facts.
+
+## Open Questions
+Remaining assumptions and the strongest reason this model may be wrong.
+```
+
+Do not create a separate permanent document by default; the agreed schema, events, constraints, and migrations become the source of truth.
 
 Do not change persistent data while the model is still being discussed. Once the user agrees, implement only the agreed representation and migration, then verify it against representative old and new data.

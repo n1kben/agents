@@ -1,7 +1,6 @@
 ---
 name: spike
 description: A bounded technical experiment for reducing one consequential uncertainty. Use when a decision is blocked by unknown feasibility, behavior, performance, or compatibility.
-disable-model-invocation: true
 ---
 
 # Spike
