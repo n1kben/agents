@@ -1,6 +1,7 @@
 ---
 name: shaping-an-abstraction
 description: A conversation-led workflow for deciding whether concrete code deserves a shared abstraction. Use when implementation has exposed a specific sharing candidate, not when an interface already needs to exist.
+disable-model-invocation: true
 ---
 
 # Shaping An Abstraction

@@ -1,3 +1,5 @@
 interface:
   display_name: "Feature Flags"
   short_description: "Keep gated behavior whole and easy to remove"
+policy:
+  allow_implicit_invocation: false

@@ -1,3 +1,5 @@
 interface:
   display_name: "Localization"
   short_description: "Shape localized copy around its context"
+policy:
+  allow_implicit_invocation: false

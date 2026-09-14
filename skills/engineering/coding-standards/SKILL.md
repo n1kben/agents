@@ -1,6 +1,7 @@
 ---
 name: coding-standards
 description: Shared defaults for structuring safe, maintainable production code. Use when writing, refactoring, implementing, or reviewing code.
+disable-model-invocation: true
 ---
 
 Follow explicit project conventions first. Otherwise use these standards as defaults. Treat design guidance as a judgment call; reserve absolute rules for correctness and safety.

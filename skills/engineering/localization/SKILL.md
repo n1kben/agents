@@ -1,6 +1,7 @@
 ---
 name: localization
 description: Guidance for naming and composing localizable messages without losing context. Use when adding or reviewing translations, message keys, interpolation, plurals, accessibility copy, or localized UI text.
+disable-model-invocation: true
 ---
 
 Translation identity belongs to the screen, route, view, or use case—not to the current source-language words. Two controls that both say “Done” may need different translations later, so keep separate scoped keys unless they express one concept that must always change together.

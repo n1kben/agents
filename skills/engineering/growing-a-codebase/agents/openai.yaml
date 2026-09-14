@@ -1,3 +1,5 @@
 interface:
   display_name: "Growing a Codebase"
   short_description: "Grow structure from concrete use cases"
+policy:
+  allow_implicit_invocation: false

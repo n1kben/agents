@@ -1,6 +1,7 @@
 ---
 name: shaping-an-interface
 description: A conversation-led workflow for designing a code boundary around its callers. Use when a function, type, module, component, service, or endpoint already needs an interface.
+disable-model-invocation: true
 ---
 
 # Shaping An Interface

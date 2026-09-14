@@ -1,6 +1,7 @@
 ---
 name: typescript
 description: TypeScript-specific patterns for typed failures, parsed boundaries, valid state models, and safe narrowing. Use when writing, changing, reviewing, or discussing TypeScript code.
+disable-model-invocation: true
 ---
 
 TypeScript does not record thrown exceptions or promise rejection types. Use the repository's existing `Result<T, E>` convention to put recoverable failures in the signature.

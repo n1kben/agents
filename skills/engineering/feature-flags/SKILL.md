@@ -1,6 +1,7 @@
 ---
 name: feature-flags
 description: Patterns for keeping feature-flagged behavior whole, reversible, and removable. Use when designing, implementing, reviewing, or retiring feature flags and staged rollouts.
+disable-model-invocation: true
 ---
 
 **Prefer code you can delete over code you must untangle.**

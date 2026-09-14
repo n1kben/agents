@@ -1,6 +1,7 @@
 ---
 name: swift
 description: Swift-specific patterns for typed failures, explicit dependencies, SwiftUI composition, previews, and localization. Use when writing, changing, reviewing, or discussing Swift or SwiftUI code.
+disable-model-invocation: true
 ---
 
 Swift's typed throws puts recoverable failures in the function signature.

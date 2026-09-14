@@ -1,6 +1,7 @@
 ---
 name: growing-a-codebase
 description: Guidance for growing code from concrete use cases while letting boundaries emerge from evidence. Use when adding or changing behavior, deciding where code belongs, splitting code, or considering reuse.
+disable-model-invocation: true
 ---
 
 # Growing A Codebase

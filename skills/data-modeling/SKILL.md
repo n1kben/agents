@@ -1,6 +1,7 @@
 ---
 name: data-modeling
 description: A conversation-led workflow for shaping persistent data without losing facts, distinctions, or history. Use when designing schemas, records, events, storage formats, migrations, or analytical data.
+disable-model-invocation: true
 ---
 
 # Data Modeling

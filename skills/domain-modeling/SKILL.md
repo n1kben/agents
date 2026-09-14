@@ -1,6 +1,7 @@
 ---
 name: domain-modeling
 description: Build and sharpen a project's domain model. Use when discussing codebase terminology, planning features, stress-testing ideas, clarifying business rules, writing or editing a CONTEXT.md, or recording project language.
+disable-model-invocation: true
 ---
 
 # Domain Modeling

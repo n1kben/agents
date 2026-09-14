@@ -1,6 +1,7 @@
 ---
 name: react
 description: React-specific patterns for derived rendering, event handling, effects, and inspectable UI states. Use when writing, changing, reviewing, or discussing React components and hooks.
+disable-model-invocation: true
 ---
 
 In React, derive the rendered result from props and state. Do not mirror derived values into state.

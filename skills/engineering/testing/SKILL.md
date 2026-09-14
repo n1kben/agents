@@ -1,6 +1,7 @@
 ---
 name: testing
 description: Guidance for choosing test seams and building behavior-focused evidence with appropriate fakes and risk coverage. Use when writing, changing, reviewing, or discussing tests or testability.
+disable-model-invocation: true
 ---
 
 # Testing
