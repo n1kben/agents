@@ -1,0 +1,36 @@
+date,title,subtitle,url,source_url
+2013-12-30,Elm 0.10.1,Tools and Libraries,https://elm-lang.org/news/0.10.1,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.10.1.elm
+2013-10-24,Elm 0.10,"faster strings, colors, bug fixes, and searchable docs",https://elm-lang.org/news/0.10,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.10.elm
+2014-01-21,Elm 0.11,Drastically improved FFI,https://elm-lang.org/news/0.11,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.11.elm
+2014-05-01,Elm 0.12.1,"Fast, Immutable Arrays",https://elm-lang.org/news/0.12.1,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.12.1.elm
+2014-05-20,Elm 0.12.3,Hardware accelerated 3D rendering with WebGL,https://elm-lang.org/news/0.12.3,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.12.3.elm
+2014-03-24,Elm 0.12,Interactive UI,https://elm-lang.org/news/0.12,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.12.elm
+2014-09-25,Elm 0.13,Architecture Improvements,https://elm-lang.org/news/0.13,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.13.elm
+2014-12-10,Elm 0.14,"Simpler Core, Better Tools",https://elm-lang.org/news/0.14,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.14.elm
+2015-04-20,Elm 0.15,Asynchrony with Tasks,https://elm-lang.org/news/0.15,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.15.elm
+2012-09-28,Elm 0.4,Graphics Upgrade,https://elm-lang.org/news/0.4,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.4.elm
+2012-10-25,Elm 0.5,The Libraries you Need,https://elm-lang.org/news/0.5,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.5.elm
+2012-12-08,Elm 0.6,"Time, Dates, and Syntax",https://elm-lang.org/news/0.6,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.6.elm
+2013-01-25,Elm 0.7.1,Library Cultivation,https://elm-lang.org/news/0.7.1,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.7.1.elm
+2013-01-04,Elm 0.7,Extensible Records,https://elm-lang.org/news/0.7,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.7.elm
+2013-05-29,Elm 0.8,Too many improvements to fit in a pithy title,https://elm-lang.org/news/0.8,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.8.elm
+2013-08-13,Elm 0.9,Fast and reliable static checks,https://elm-lang.org/news/0.9,https://github.com/elm/elm-lang.org/blob/master/pages/news/0.9.elm
+2016-08-30,Blazing Fast HTML,Round Two,https://elm-lang.org/news/blazing-fast-html-round-two,https://github.com/elm/elm-lang.org/blob/master/pages/news/blazing-fast-html-round-two.elm
+2014-07-23,Blazing Fast HTML,Virtual DOM in Elm,https://elm-lang.org/news/blazing-fast-html,https://github.com/elm/elm-lang.org/blob/master/pages/news/blazing-fast-html.elm
+2015-06-30,Compiler Errors for Humans,Rethinking the terminal UX in Elm 0.15.1,https://elm-lang.org/news/compiler-errors-for-humans,https://github.com/elm/elm-lang.org/blob/master/pages/news/compiler-errors-for-humans.elm
+2015-11-19,Compilers as Assistants,Making Elm faster and friendlier in 0.16,https://elm-lang.org/news/compilers-as-assistants,https://github.com/elm/elm-lang.org/blob/master/pages/news/compilers-as-assistants.elm
+2019-09-03,Elm + Bekk,Towards a Homegrown Programming Language,https://elm-lang.org/news/elm-and-bekk,https://github.com/elm/elm-lang.org/blob/master/pages/news/elm-and-bekk.elm
+2013-05-21,Working on Elm full-time,Elm ♥ Prezi,https://elm-lang.org/news/elm-and-prezi,https://github.com/elm/elm-lang.org/blob/master/pages/news/elm-and-prezi.elm
+2016-05-10,A Farewell to FRP,Making signals unnecessary with The Elm Architecture,https://elm-lang.org/news/farewell-to-frp,https://github.com/elm/elm-lang.org/blob/master/pages/news/farewell-to-frp.elm
+2026-07-06,Road to Elm 1.0,Faster Builds with Elm 0.19.2,https://elm-lang.org/news/faster-builds,https://github.com/elm/elm-lang.org/blob/master/pages/news/faster-builds.elm
+2017-03-01,Elm + Google Summer of Code,,https://elm-lang.org/news/google-summer-of-code-2017,https://github.com/elm/elm-lang.org/blob/master/pages/news/google-summer-of-code-2017.elm
+2016-07-11,How to Use Elm at Work,,https://elm-lang.org/news/how-to-use-elm-at-work,https://github.com/elm/elm-lang.org/blob/master/pages/news/how-to-use-elm-at-work.elm
+2013-09-05,Interactive Programming,Hot-swapping in Elm,https://elm-lang.org/news/interactive-programming,https://github.com/elm/elm-lang.org/blob/master/pages/news/interactive-programming.elm
+2012-12-14,Making Pong,An intro to games in Elm,https://elm-lang.org/news/making-pong,https://github.com/elm/elm-lang.org/blob/master/pages/news/making-pong.elm
+2016-01-04,New Adventures for Elm,Joining NoRedInk and creating Elm Software Foundation,https://elm-lang.org/news/new-adventures-for-elm,https://github.com/elm/elm-lang.org/blob/master/pages/news/new-adventures-for-elm.elm
+2014-01-01,Elm Package Manager,Making it easy to share code,https://elm-lang.org/news/package-manager,https://github.com/elm/elm-lang.org/blob/master/pages/news/package-manager.elm
+2013-09-03,Elm REPL,Elm in the terminal,https://elm-lang.org/news/repl,https://github.com/elm/elm-lang.org/blob/master/pages/news/repl.elm
+2018-08-21,Small Assets without the Headache,Minification made easy with Elm 0.19,https://elm-lang.org/news/small-assets-without-the-headache,https://github.com/elm/elm-lang.org/blob/master/pages/news/small-assets-without-the-headache.elm
+2016-11-14,The Perfect Bug Report,Debugging with Elm 0.18,https://elm-lang.org/news/the-perfect-bug-report,https://github.com/elm/elm-lang.org/blob/master/pages/news/the-perfect-bug-report.elm
+2019-10-21,The Syntax Cliff,Teaching syntax with Elm 0.19.1,https://elm-lang.org/news/the-syntax-cliff,https://github.com/elm/elm-lang.org/blob/master/pages/news/the-syntax-cliff.elm
+2018-11-14,Working with Files,and accidentally simplifying the HTTP package,https://elm-lang.org/news/working-with-files,https://github.com/elm/elm-lang.org/blob/master/pages/news/working-with-files.elm

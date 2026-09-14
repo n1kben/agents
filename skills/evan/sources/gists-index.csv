@@ -1,0 +1,39 @@
+created_at,updated_at,description,files,url
+2026-06-16T14:18:21Z,2026-06-16T14:18:22Z,,gistfile1.txt,https://gist.github.com/evancz/98279d42641b9c9d46ebcd756e111098
+2022-04-21T14:33:29Z,2026-05-22T11:29:50Z,Notes for CS51 guest lecture.,cs51.md | data-visualization.elm | parser-1.elm | parser-2.elm | webgl.elm,https://gist.github.com/evancz/368c6a660b127ab28948a6684a8dce83
+2022-04-19T21:21:42Z,2026-05-22T11:33:58Z,Syntax Hints (OCaml -> Elm),ocaml.elm,https://gist.github.com/evancz/17cfb9ff531f839f82f050d05cd725b2
+2019-08-22T16:21:07Z,2019-08-22T16:21:07Z,my settings for Sublime Text,Preferences.sublime-settings,https://gist.github.com/evancz/1eef86cc99632e15a8f4d793bbda3d1f
+2018-07-28T04:07:32Z,2018-08-10T18:24:21Z,,labor-force-participation.md,https://gist.github.com/evancz/e5b9b4236884b53cef13bb81a5e5d66f
+2018-01-23T05:37:19Z,2025-07-16T00:25:42Z,It seems really complicated to use custom fonts well. This explores some ideas of how to make it easier.,font-face.md,https://gist.github.com/evancz/e243e9cc824f7b3f23e79fb3fb590e81
+2017-12-15T23:45:17Z,2020-12-25T13:18:48Z,Cron job to remind myself to stretch,cron.md | stretch.sh,https://gist.github.com/evancz/550a94e9e262062cf64a6766a0445010
+2017-10-19T00:23:51Z,2026-06-29T20:50:34Z,Why do I have to write JSON decoders in Elm?,data-interchange.md,https://gist.github.com/evancz/1c5f2cf34939336ecb79b97bb89d9da6
+2017-05-18T23:18:50Z,2026-09-11T18:13:44Z,Recursive values in Elm,recursive-values.md | zzz-cycle.png,https://gist.github.com/evancz/07436448b7d6c947f21742dab46d1218
+2016-09-22T01:22:16Z,2020-04-15T15:59:26Z,,Spelling.elm | build.sh | index.html,https://gist.github.com/evancz/e69723b23958e69b63d5b5502b0edf90
+2016-09-08T04:58:58Z,2016-09-08T04:58:58Z,,chess.elm,https://gist.github.com/evancz/c18fe62d42b16b80132426b36f9d1349
+2016-08-13T03:32:55Z,2016-08-13T03:32:56Z,,Chat.elm | elm-package.json,https://gist.github.com/evancz/8c5b4eca657dc465c823850eb371ccb2
+2016-06-29T18:02:38Z,2016-07-31T21:52:01Z,,elm-0.17.1.md,https://gist.github.com/evancz/d5f418f42827262ece857aa8ff6458c6
+2015-10-08T06:08:52Z,2016-01-16T06:21:18Z,,benchmark-report.md,https://gist.github.com/evancz/76b619a83a6650a89918
+2015-10-06T21:39:37Z,2016-02-22T04:59:34Z,,incomplete-pattern-match-changes.md,https://gist.github.com/evancz/e590750a5bd1ea04c2d2
+2014-12-14T02:33:24Z,2026-03-12T19:26:20Z,Some thoughts on how to have nicer discussions online,Guidelines.md,https://gist.github.com/evancz/e494e3e3d14ca2683061
+2014-11-11T04:10:00Z,2015-08-29T14:09:12Z,"Trying out different ways to avoid toFloat conversions, based on this discussion (https://groups.google.com/forum/#!topic/elm-discuss/YPA2ww2P9PU)",Floatify.elm | Original-Better.elm | Original-Minimal.elm | Original.elm,https://gist.github.com/evancz/6df7c788ffa5e555fdd9
+2014-10-14T21:38:15Z,2018-03-12T13:14:17Z,"Imagine conversations and questions for a time when people say ""union type"" instead of ""algebraic data type"". Think about how the responses might work if you said ""ADT"" instead.",union-types.md,https://gist.github.com/evancz/06fe634245a3aab4a61b
+2014-10-01T23:58:28Z,2015-08-29T14:07:08Z,"Some helpful guidance, links, and examples to make this hackathon more fun and productive.",hackathon_elm-html.md,https://gist.github.com/evancz/1e3c4f662347838b9f31
+2014-09-12T02:29:51Z,2023-03-23T15:27:46Z,A style guide for Elm tools,Haskell-Style-Guide.md,https://gist.github.com/evancz/0a1f3717c92fe71702be
+2014-08-05T12:50:29Z,2015-08-29T14:04:55Z,A proposal for how to make all of the command line tools nicer.,Command Line Refresh.md,https://gist.github.com/evancz/d32d3cda89c6cfb01428
+2014-07-18T16:00:34Z,2022-12-21T14:28:57Z,Ideas and guidelines for architecting larger applications in Elm to be modular and extensible,Architecture.md,https://gist.github.com/evancz/2b2ba366cae1887fe621
+2014-07-18T14:59:22Z,2017-03-03T14:58:17Z,Potential outline of a simple and useful lens library for Elm,Focus.md,https://gist.github.com/evancz/78293dc6a4ac2547676c
+2014-05-20T22:35:08Z,2015-08-29T14:01:38Z,"Thwomp program, except Thwomp blinks periodically",ThwompBlinks.elm,https://gist.github.com/evancz/84f064ad0ea4b752e850
+2014-05-15T02:08:40Z,2015-08-29T14:01:26Z,"A triangle that rotates, but done in a slow way. Ideally you send a transformation matrix to the GPU rather than a whole new entity!",Triangle.elm,https://gist.github.com/evancz/b4eaa03e75295c610a35
+2014-04-23T19:50:39Z,2015-11-23T20:44:04Z,,History.elm,https://gist.github.com/evancz/11229888
+2014-04-23T19:39:40Z,2015-08-29T14:00:26Z,General purpose library for undo/redo. Inspired by David Nolen's talk at Philly ETE.,History.elm,https://gist.github.com/evancz/11229518
+2014-03-27T00:10:09Z,2015-08-29T13:57:47Z,,Deriving.elm,https://gist.github.com/evancz/9796849
+2014-02-27T16:11:08Z,2015-08-29T13:56:48Z,A bunch of synced check boxes,Checks.elm,https://gist.github.com/evancz/9253197
+2014-02-27T01:22:33Z,2015-08-29T13:56:47Z,,Field.elm,https://gist.github.com/evancz/9242401
+2014-02-11T11:24:45Z,2015-08-29T13:56:16Z,,Animal.elm | Animal.js,https://gist.github.com/evancz/8933129
+2014-01-24T18:00:19Z,2016-01-04T09:29:25Z,How one might implement a Workflow (Monad) library in some future version of Elm.,Workflow.elm | WorkflowUsage.elm,https://gist.github.com/evancz/8602608
+2014-01-20T15:00:45Z,2019-03-21T17:37:12Z,"Example usage of Elm ""ports"" that uses signals, non-signals, records, and tuples. Build the Elm code with ""elm --only-js Shanghai.elm"" and include all of the JS in the HTML document.",Ports.js | Shanghai.elm | Shanghai.html,https://gist.github.com/evancz/8521339
+2014-01-16T15:18:56Z,2020-10-22T10:46:12Z,Embed an Elm module in HTML. Compile with `elm-make Stamper.elm` or just generate the HTML automatically by specifying an HTML output file with `elm-make Stamper.elm --output=Main.html`,Main.html | Stamper.elm,https://gist.github.com/evancz/8456627
+2013-10-25T15:41:04Z,2015-12-26T13:09:15Z,Examples of markdown interpolation in Elm's markdown branch: https://github.com/evancz/Elm/tree/markdown,NameEntry.elm | Physics.elm,https://gist.github.com/evancz/7156716
+2013-10-09T18:49:55Z,2015-12-25T02:59:00Z,How to evaluate a simple lambda calculus with a call-by-value semantics: http://www.seas.harvard.edu/courses/cs152/2013sp/lectures/lec07.pdf,Evaluator.hs,https://gist.github.com/evancz/6906151
+2013-10-06T06:29:05Z,2015-12-24T19:28:57Z,,ExplicitList.elm | Private.elm | Underscore.elm,https://gist.github.com/evancz/6850278
+2013-05-15T05:59:14Z,2015-12-17T08:39:12Z,"Embedding an Elm module in HTML. Warning, this is using a pre-release version of Elm 0.8, so the API may change!!!",Mario.elm | Mario.html | Mario.js,https://gist.github.com/evancz/5581910
