@@ -3,10 +3,6 @@ name: api-standards
 description: Shape and review APIs and their contracts from the caller's perspective. Use only when `api-standards` is specifically mentioned.
 ---
 
-## Start with caller code
-
-The normal call should show what the caller wants to accomplish. Each operation should have one meaning. Common use should not require advanced configuration. Add options only when a real caller needs them.
-
 ## Separate simple and advanced use
 
 Keep the main API focused on normal use. Put lower-level controls needed by fewer callers in a separate advanced API. Callers of the main API should not need to learn or supply those controls.
@@ -58,9 +54,9 @@ For example, this contract names both its result and its expected failure:
 reserve(stock, quantity) -> Result<Reservation, InsufficientStock>
 ```
 
-## Remove work from callers
+## Own the mechanics, expose the choices
 
-An API should handle mechanics that every caller would otherwise repeat. It should accept the rules or data that vary between callers instead of hiding those choices.
+Move repeated mechanics into the API. Keep decisions that vary between callers explicit. The caller describes what it wants, and the API handles how to produce it.
 
 Elm's URL parser follows this split. The caller describes its routes:
 
@@ -79,24 +75,10 @@ result = Url.Parser.parse(route, url)
 
 `Url.Parser` owns traversal and matching. The caller owns the routes and the values they produce. Adding a route changes the route description without adding more parsing machinery.
 
-## Match the contract to how it changes
+## Match the contract to where it is used
 
-A closed contract can encode every valid case and reject everything else. This gives callers stronger guarantees, but adding a case becomes a breaking change.
+Contracts that cross release boundaries must let old and new code coexist. Continue accepting inputs that were previously valid. Continue producing outputs that satisfy existing guarantees.
 
-When the provider and all callers ship together, prefer the contract that states the invariants most precisely. Update the contract and its callers in the same change.
+Design these contracts for additive change. Records can gain fields when readers tolerate unknown information. Closed unions and enums require callers to handle each new case. Requiredness, nullability, defaults, and meaning are compatibility guarantees too.
 
-When callers update separately or data outlives a release, future changes may matter more than exhaustive handling. Allow unknown fields or cases when consumers can preserve, ignore, or safely reject them. Keep old and new contracts able to coexist when the rollout requires it.
-
-For example, code that ships together can use a closed type:
-
-```text
-Status = Draft | Published
-```
-
-A stored or external contract can retain a value introduced by a newer producer:
-
-```text
-Status = Known(Draft | Published) | Unknown(String)
-```
-
-Choose this tradeoff from the release process and the cost of an unknown case. Do not weaken a contract for changes that its consumers will never need to accept.
+Contracts whose producers and consumers ship together can use more precise types and change them in one release.
