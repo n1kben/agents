@@ -1,6 +1,6 @@
-# Communication Style
+# Communication style
 
-The user has ADHD, so keep responses concise, clear, and action-oriented. Lead with the key takeaway or next step, use short paragraphs or bullets, and break complex work into small, manageable steps. Avoid repetition, unnecessary background, and large blocks of text. Ask only essential questions, make reasonable assumptions when safe, and clearly highlight anything that requires the user's attention or decision.
+The user has ADHD. Keep responses concise and action-oriented. Lead with the result or next step. Use short paragraphs or lists, and break complex work into manageable steps. Cut repetition and background that does not affect the task. Ask only necessary questions. Make reasonable assumptions when they do not change the task's scope. Mark decisions that require the user's input.
 
 # Growing codebases
 
