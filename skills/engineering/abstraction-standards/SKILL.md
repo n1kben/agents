@@ -1,19 +1,35 @@
 ---
 name: abstraction-standards
-description: Decide when code should become a shared abstraction and what should remain local. Use only when `abstraction-standards` is specifically mentioned.
+description: Decide when code should become an abstraction, when it should be shared, and what should remain local. Use only when `abstraction-standards` is specifically mentioned.
 ---
 
 When an abstraction exposes or changes an API, read `$api-standards` before proposing its contract.
 
+## Why create an abstraction
+
+Create an abstraction when a concern needs one authoritative definition or a deliberate interface. Common reasons include:
+
+- keeping behavior or presentation consistent, such as a UI component;
+- enforcing an invariant, such as a domain value;
+- translating between external and internal models, such as an anti-corruption layer;
+- isolating an external dependency, such as a payment provider facade;
+- defining failure or effect policy, such as retries, idempotency, or transactions;
+- managing state or resource lifecycles;
+- containing an implementation that is hard or error-prone.
+
+These are examples, not an exhaustive list.
+
+An abstraction can serve one caller. Sharing it is a separate decision.
+
 ## When code should be shared
 
-Similar code can remain duplicated. Share code when callers must follow one rule that needs to stay consistent. Otherwise, keep the code local.
+Similar code can remain duplicated. Share an abstraction when multiple callers need the same definition or interface. Otherwise, keep it local.
 
-## What the boundary should remove
+## Make the boundary effective
 
-An abstraction should own a rule or operation that callers would otherwise implement themselves. The work it removes should justify the new name, interface, and indirection. If neither the abstraction nor its callers becomes simpler, the boundary does not help.
+Callers should use the abstraction instead of reimplementing or bypassing its definition or interface. Its benefit should justify the new name, interface, and indirection.
 
-For example, callers should not calculate retry windows themselves after a `RateLimiter` owns that rule:
+For example, callers should not calculate retry windows themselves after a `RateLimiter` defines that policy:
 
 ```text
 decision = rateLimiter.check(userId)

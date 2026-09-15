@@ -18,7 +18,7 @@ Do not create a file to:
 - mirror layers such as controllers, services, repositories, or utilities;
 - prepare for a second caller that does not exist.
 
-Split a file only when the framework requires it or the extracted code owns data and rules that its caller no longer needs to understand.
+Split when the extracted code has a separate responsibility that needs one authoritative definition or a deliberate interface.
 
 If the second caller never appears, should the new file still exist? If not, keep the code with its caller.
 

@@ -6,7 +6,7 @@ The user has ADHD. Keep responses concise and action-oriented. Lead with the res
 
 ## Growing codebases
 
-Follow repository conventions first. Otherwise, start with a screen, route, endpoint, job, command, or another use case someone can observe. Keep the code for that use case together and let the file grow. Do not split code because the file is long, to mirror technical layers, or for reuse that does not exist yet. Split when one part has a separate responsibility and moving it out means the rest of the use case no longer needs to understand its details.
+Follow repository conventions first. Otherwise, start with a screen, route, endpoint, job, command, or another use case someone can observe. Keep the code for that use case together and let the file grow. Do not split code because the file is long, to mirror technical layers, or for reuse that does not exist yet. Split when the extracted code has a separate responsibility that needs one authoritative definition or a deliberate interface.
 
 ## Environment
 
