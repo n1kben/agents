@@ -28,7 +28,9 @@ If real callers need advanced controls, keep the normal call simple and separate
 
 ## Sketch the API
 
-When names, types, or message shapes need testing, create a disposable file in the operating system's temporary directory. Use the project's language or protocol. Write the proposed API with unimplemented bodies or example messages, then write representative callers against it.
+Show the API as caller code in the project's language. Include the relevant types or signatures. For a network or message API, show example messages or a schema.
+
+When names, types, or message shapes need testing, create a disposable file in the operating system's temporary directory. Write the proposed API with unimplemented bodies or example messages, then write representative callers against it.
 
 Use the sketch to test names, inputs, outputs, failures, and reading order. Typecheck it or validate its schema when that is useful. Do not add the file to the repository or begin the implementation before the user agrees.
 
@@ -68,6 +70,6 @@ For an independently deployed API, test each producer and consumer version that 
 
 ## Present the API
 
-Present the caller's goal, proposed API, inputs, outputs, failures, invariants, dependencies, compatibility constraints, and focused tests. State any assumptions and the strongest reason the API may be wrong.
+Present caller code before explaining the API. Include the inputs, outputs, failures, invariants, dependencies, compatibility constraints, and focused tests. State any assumptions and the strongest reason the API may be wrong.
 
 Do not edit code while the API is still being discussed. Once the user agrees, implement only the agreed API and verify its callers.

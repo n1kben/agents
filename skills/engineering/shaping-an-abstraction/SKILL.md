@@ -42,6 +42,6 @@ If the answer is no, try another seam. It is fine to end by waiting or rejecting
 
 ## Present the abstraction
 
-Present the proposed name, the rule or behavior it would contain, its callers, what stays local, the evidence for sharing, and the strongest argument against it.
+Present the proposed name, the rule or behavior it would contain, its callers, what stays local, the evidence for sharing, and the strongest argument against it. Use a small dependency diagram to show the proposed split. Use a call sequence instead when order matters.
 
 If the abstraction is worth introducing, use `shaping-an-api` to define how callers should use it. Do not edit code until the user agrees with both the abstraction and its API.
