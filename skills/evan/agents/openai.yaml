@@ -1,7 +1,0 @@
-interface:
-  display_name: "Evan"
-  short_description: "Talk with a source-grounded simulated Evan"
-  default_prompt: "Use $evan to start a conversation with Evan about language design and growing software."
-
-policy:
-  allow_implicit_invocation: false
