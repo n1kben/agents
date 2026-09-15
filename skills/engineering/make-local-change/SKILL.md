@@ -24,6 +24,8 @@ If the second caller never appears, should the new file still exist? If not, kee
 
 ## Ask before sharing
 
+Do not pause to discuss optional sharing.
+
 Unless the user has already approved the design, do not:
 
 - create shared code for the change;
@@ -34,11 +36,3 @@ Unless the user has already approved the design, do not:
 You may use existing shared code without changing its contract.
 
 Leave unrelated code alone.
-
-## Finish before suggesting sharing
-
-Implement and verify the request first. Do not pause to discuss optional sharing.
-
-Before reporting the task complete, check the duplication introduced by the change. Mention a shared refactor only when two current callers must follow the same rule. Name the callers and the rule, then show the smallest shared edit. Do not apply it without the user's agreement.
-
-If a local implementation cannot be correct, stop before changing shared code. Show the failing path and the local alternative. Then propose the smallest shared edit and wait for the user's agreement.
