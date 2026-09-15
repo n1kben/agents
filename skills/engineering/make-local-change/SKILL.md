@@ -1,9 +1,10 @@
 ---
-name: local-change
+name: make-local-change
 description: Implement a feature without extracting shared code. Keep private helpers and types with their caller, allow duplication, and ask before changing shared APIs. Use only when explicitly invoked.
+disable-model-invocation: true
 ---
 
-# Local change
+# Make local change
 
 Implement the request in the feature that uses it. Duplication is allowed.
 

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Make Local Change"
+  short_description: "Implement one feature without premature sharing"
+  default_prompt: "Use $make-local-change to implement this feature without creating shared code."
+
+policy:
+  allow_implicit_invocation: false
