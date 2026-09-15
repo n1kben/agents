@@ -1,7 +1,6 @@
 ---
 name: api-standards
-description: Standards for APIs that express caller intent, make invalid use difficult, and account for how callers update.
-disable-model-invocation: true
+description: Shape and review APIs and their contracts from the caller's perspective. Use only when `api-standards` is specifically mentioned.
 ---
 
 ## Start with caller code

@@ -1,5 +1,0 @@
-interface:
-  display_name: "Testing"
-  short_description: "Test observable behavior at useful seams"
-policy:
-  allow_implicit_invocation: false

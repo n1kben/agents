@@ -2,5 +2,3 @@ interface:
   display_name: "Abstraction standards"
   short_description: "Decide what code should be shared"
   default_prompt: "Use $abstraction-standards to assess this abstraction."
-policy:
-  allow_implicit_invocation: false

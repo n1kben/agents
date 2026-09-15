@@ -1,10 +1,6 @@
----
-name: typescript
-description: TypeScript-specific patterns for typed failures, parsed boundaries, valid state models, and safe narrowing. Use when writing, changing, reviewing, or discussing TypeScript code.
-disable-model-invocation: true
----
+# TypeScript
 
-TypeScript does not record thrown exceptions or promise rejection types. Use the repository's existing `Result<T, E>` convention to put recoverable failures in the signature.
+TypeScript does not encode thrown exceptions or promise rejection types. Use the repository's existing `Result<T, E>` convention to include recoverable failures in the return type.
 
 ```ts
 type Result<T, E> =
@@ -22,7 +18,7 @@ declare function loadUser(
 
 Do not add a Result dependency when a small local union is enough.
 
-## Parse Boundaries
+## Parse boundaries
 
 Use `unknown` for external data. When the repository has a schema system, infer the TypeScript type from the schema.
 
@@ -42,11 +38,11 @@ function parseUser(input: unknown): Result<User, ParseUserError> {
 }
 ```
 
-Derive from generated schemas and existing values with `typeof`, `Pick`, `Omit`, `Parameters`, `ReturnType`, and `Awaited` before declaring another representation of the same data.
+Derive types from generated schemas and existing values before declaring another representation of the same data. Use utilities such as `typeof`, `Pick`, `Omit`, `Parameters`, `ReturnType`, and `Awaited`.
 
-## Model Valid States
+## Model valid states
 
-Use discriminated unions when variants carry different facts. Avoid boolean flags and optional fields that admit contradictory combinations.
+Use discriminated unions when variants carry different data. Avoid boolean flags and optional fields that allow contradictory combinations.
 
 ```ts
 // Don't: loading, data, and error can contradict each other.
@@ -82,8 +78,8 @@ function title(state: UserState): string {
 }
 ```
 
-## Narrow Before Casting
+## Narrow before casting
 
-Prefer discriminants, `in`, `typeof`, `instanceof`, and verified type guards over `as`. A type guard must check the complete claim it makes. Use `satisfies` when a value should be checked without widening its literal types.
+Prefer discriminants, `in`, `typeof`, `instanceof`, and verified type guards over `as`. A type guard must check every condition required by its return type. Use `satisfies` to check a value without widening its literal types.
 
 Keep `any` and unchecked casts confined to unavoidable interoperability boundaries.

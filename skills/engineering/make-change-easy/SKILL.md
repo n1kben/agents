@@ -1,7 +1,6 @@
 ---
 name: make-change-easy
-description: Pitch behavior-preserving refactors that make a specified code change small and direct. Use only when explicitly invoked before implementation.
-disable-model-invocation: true
+description: Pitch behavior-preserving refactors that make a specified code change small and direct. Use only when `make-change-easy` is specifically mentioned.
 ---
 
 # Make the change easy

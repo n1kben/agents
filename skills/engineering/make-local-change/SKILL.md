@@ -1,7 +1,6 @@
 ---
 name: make-local-change
-description: Keep a requested feature local. Allow duplication, keep private code with its caller, and ask before creating or changing shared code. Use only when explicitly invoked.
-disable-model-invocation: true
+description: Keep a requested feature local. Allow duplication, keep private code with its caller, and ask before creating or changing shared code. Use only when `make-local-change` is specifically mentioned.
 ---
 
 # Keep the change local

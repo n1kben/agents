@@ -1,5 +1,0 @@
-interface:
-  display_name: "TypeScript"
-  short_description: "Model valid states and parse boundaries"
-policy:
-  allow_implicit_invocation: false

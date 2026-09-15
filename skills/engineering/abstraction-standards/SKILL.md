@@ -1,7 +1,6 @@
 ---
 name: abstraction-standards
-description: Standards for deciding what code belongs in a shared abstraction and what should stay with each caller.
-disable-model-invocation: true
+description: Decide when code should become a shared abstraction and what should remain local. Use only when `abstraction-standards` is specifically mentioned.
 ---
 
 When an abstraction exposes or changes an API, read `$api-standards` before proposing its contract.

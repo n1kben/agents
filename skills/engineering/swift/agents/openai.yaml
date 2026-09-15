@@ -1,5 +1,0 @@
-interface:
-  display_name: "Swift"
-  short_description: "Write Swift and SwiftUI with explicit types and inputs"
-policy:
-  allow_implicit_invocation: false

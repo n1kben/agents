@@ -1,12 +1,20 @@
 ---
 name: coding-standards
-description: Defaults for production code with explicit behavior, state ownership, and failures.
-disable-model-invocation: true
+description: Apply shared coding standards and relevant specialized guidance. Use only when `coding-standards` is specifically mentioned.
 ---
 
 Follow explicit project conventions first. Otherwise, use these standards as defaults. Apply structural guidance with judgment. Treat correctness and safety rules as strict.
 
 When writing or reviewing an API, read `$api-standards`. Before moving code into a shared abstraction, read `$abstraction-standards`.
+
+Read only the references relevant to the task:
+
+- For feature flags, experiment gates, kill switches, staged flag rollouts, or flag retirement, read [feature-flags.md](references/feature-flags.md).
+- For localization, i18n, translations, message keys, plurals, accessibility copy, or localized UI text, read [localization.md](references/localization.md).
+- For React components, hooks, Effects, state, or UI previews, read [react.md](references/react.md).
+- For Swift, SwiftUI, typed throws, or Xcode previews, read [swift.md](references/swift.md).
+- For tests, testability, fakes, coverage, or test design, read [testing.md](references/testing.md).
+- For TypeScript or TSX, schema inference, discriminated unions, or type narrowing, read [typescript.md](references/typescript.md).
 
 ## Arrange code for reading
 
