@@ -5,11 +5,9 @@ description: Pitch behavior-preserving refactors that make a specified code chan
 
 # Make the change easy
 
-Apply the **pitching** skill.
-
 Inspect the code needed for the requested change. If the feature needs no refactor first, say `No preparation needed.` and stop.
 
-Otherwise, pitch one behavior-preserving refactor at a time. For each pitch, show:
+Otherwise, pitch behavior-preserving refactors. For each pitch, show:
 
 1. The problem in the current code.
 2. Why it makes the requested change harder.
