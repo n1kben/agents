@@ -1,6 +1,7 @@
 ---
 name: implement
-description: Implement an agreed code change in observable vertical slices with verification. Use when the user asks to implement a requested change or agreed plan.
+description: Implement an agreed code change in observable vertical slices with verification.
+disable-model-invocation: true
 ---
 
 # Implement
