@@ -1,93 +1,109 @@
 ---
 name: coding-standards
-description: Shared defaults for structuring safe, maintainable production code. Use when writing, refactoring, implementing, or reviewing code.
+description: Defaults for production code with explicit behavior, state ownership, and failures.
 disable-model-invocation: true
 ---
 
-Follow explicit project conventions first. Otherwise use these standards as defaults. Treat design guidance as a judgment call; reserve absolute rules for correctness and safety.
+Follow explicit project conventions first. Otherwise, use these standards as defaults. Apply structural guidance with judgment. Treat correctness and safety rules as strict.
 
-## Write For The Reader
+When writing or reviewing an API, read `$api-standards`. Before moving code into a shared abstraction, read `$abstraction-standards`.
 
-Organize around the reader's first pass. Put the important, high-level operation before its implementation details. Put helpers after the code that introduces their need.
+## Arrange code for reading
 
-Keep names in the language of the behavior. If a value, function, or type is difficult to name honestly, clarify the code before adding another name.
+Put the high-level operation before the details it uses. Show the sequence without requiring the reader to open every helper. Define a helper after the code that first uses it.
 
-## Use The Smallest Boundary
+Name values, functions, and types after the behavior they represent. A name that is difficult to state precisely may indicate that the code combines separate responsibilities. Check the code before inventing a vague name.
 
-Use the simplest construct that can do the job. Prefer a value or function when that is enough. Introduce a type when it carries a fact or rules out invalid states. Reach for a stateful object, component, or module when state, identity, lifetime, or a protocol needs an owner.
+## Show the sequence in the coordinating function
 
-A boundary should remove something substantial from the caller's concerns. Keep it local unless a separate abstraction-shaping task has established that multiple callers should share it.
+The function coordinating an operation should show its main steps and where it chooses between complete behaviors. Put each complete behavior in a named function. Do not spread the same choice across several helpers.
 
-Test a proposed boundary by naming what it removes:
+Instead of passing the choice through the call chain:
 
-> Inside the boundary, this code no longer needs to consider **\_\_**.
->
-> Outside the boundary, callers no longer need to understand **\_\_**.
->
-> What new concept or indirection must we understand instead?
+```text
+handleSave(command):
+  validate(command.document, command.kind)
+  persist(command.document, command.kind)
+  notify(command.document, command.kind)
+```
 
-If neither side becomes meaningfully simpler, moving the code is not useful compression. The reasoning removed should justify the name, interface, and indirection introduced.
+Prefer choosing once, then calling the named behavior:
 
-Keep one reason to change together. Separate code when its parts can change independently, not to satisfy a size limit or a preferred file shape.
+```text
+handleSave(command):
+  match command:
+    SaveDraft(document): saveDraft(document)
+    Publish(document): publishDocument(document)
+```
 
-## No Hidden Control Flow
+## Pass values across boundaries
 
-Keep control flow in the highest-level function that knows which complete behavior to run. Push `if`s up and `for`s down: the parent chooses and tells the story; leaf functions perform focused work with little or no branching.
+Treat function arguments as immutable. Return a new value instead of mutating state owned by the caller.
 
-Do not pass a choice downward for several helpers to reinterpret. Keep caller-specific choices with the caller.
+Instead of mutating state owned by the caller:
 
-## Value Semantics At Boundaries
+```text
+applyDiscount(cart)
+```
 
-**State mutates inside its owner and crosses boundaries as values.**
+return the changed value:
 
-Treat function arguments as immutable. Return a new value instead of mutating the caller's state.
+```text
+discountedCart = applyDiscount(cart)
+```
 
-Mutation needs an owner. Follow the Single Writer Principle: only the owner mutates its state. Never give unrelated code mutable access.
+## Separate decisions from effects
 
-Keep state with its smallest owner. Each branch owns its state even when representations match. Coordinate by passing or copying values. Share an owner only when correctness requires atomic change.
+Separate calculations from code that reads or writes storage, calls the network, reads the clock, generates random values, or renders an interface. Show the order of these effects in the coordinating function.
 
-## Separate Decisions From Effects
+Pass the narrow value or capability an operation needs rather than an application container or ambient dependency.
 
-The owner reads and writes. Pure code computes what should happen where practical. Keep deterministic decisions separate from storage, network, time, randomness, UI frameworks, retries, and other effects. Keep the sequence visible in the orchestration.
+Give nonvisual behavior an entry point that can be tested without rendering the interface. Inspect views with the project's preview or sandbox tool.
 
-Make dependencies visible at the boundary that uses them. Ask for the narrow value or capability required rather than an application container or ambient dependency.
+For example, compute a renewal before performing its effects:
 
-Keep business behavior independent of its view. Give nonvisual behavior a nonvisual entry point that can be exercised without rendering the application. Make views inspectable with previews, stories, sandboxes, or the project's equivalent.
+```text
+account = accounts.load(accountId)
+renewal = decideRenewal(account, today)
+accounts.save(renewal.account)
+notifications.send(renewal.notice)
+```
 
-## Parse Early, Assert Late
+## Represent known facts
 
-External data starts uncertain. Do not spread that uncertainty through the program.
+Parse external data once at the boundary. Convert it into values that record what the program knows. After establishing a fact, pass the parsed value instead of the unchecked input.
 
-Avoid shotgun parsing. Parse once at the boundary into a type that captures what is known.
+Use types to rule out invalid states when the language allows it. Use distinct types for identifiers, units, and finite alternatives when primitive values would lose those facts. Avoid boolean flags and combinations of optional fields when they admit states the program cannot handle.
 
-Turn strings, numbers, JSON, database rows, and SDK responses into structured values. Once a fact is known, stop representing it as uncertain.
+State the assumptions that affect correctness and check them. When the type system cannot express an invariant, assert it near its use.
 
-State the assumptions that affect correctness and check that they are true. Put facts that must travel in types or constructed values. Assert internal invariants near their use when the type system cannot express them.
+Parse an external value before passing it into the program:
 
-### Make Impossible States Impossible
+```text
+email = EmailAddress.parse(request.email)
+createAccount(email)
+```
 
-Encode invariants as early as possible in compile-time-enforced types. Use identifiers, units, enums, and tagged variants to make the possible world smaller.
+Code below that boundary receives an `EmailAddress`, not another unchecked string.
 
-Every state admitted by a type is a state the rest of the program must understand. Avoid boolean flags, optional-field combinations, and primitive values when a more precise representation can rule out invalid states.
+## Represent expected failures
 
-When compile-time types cannot enforce an internal invariant, assert it at the point of use. Type guarantees travel with values; assertions protect only the code they guard.
+Return failures that can occur during normal operation as part of the use case's contract. Use the strongest checked mechanism the language provides. Treat a broken invariant as a defect.
 
-**A comment is not a constraint.**
+Keep distinct failures separate until the caller has made every decision that depends on them. Translate database, network, and service errors at their boundaries. Do not create a shared error hierarchy only because several use cases receive errors from the same dependency.
 
-## Errors As Values
+Make expected outcomes visible in the return type:
 
-**Expected failure is part of the contract.**
+```text
+placeOrder(order) -> Result<Order, OutOfStock | PaymentDeclined>
+```
 
-If a failure can happen during normal operation, put it in the owning use case's contract using the strongest checked mechanism the language provides.
+Do not turn these outcomes into an unspecified error before the caller handles them.
 
-Different failures are different facts. Do not erase the distinction before the caller has finished making decisions from it.
+## Give state and resources an owner
 
-Translate foreign failures at the boundary. Domain code does not understand HTTP statuses, database codes, or SDK exceptions. Do not create a shared error taxonomy merely because use cases receive similar failures.
+Give mutable state and resources one owner. Other code receives values rather than mutable access. Keep state with the smallest owner that can enforce its rules. Matching representations do not require shared state. Share an owner only when related facts must change atomically.
 
-Expected failures are values. Broken invariants are defects. Do not confuse them.
+Keep resource acquisition and cleanup with that owner.
 
-## Own State And Work
-
-Give mutable state and resources one clear owner. Keep acquisition and cleanup together.
-
-Bound queues, buffers, batches, concurrency, retries, polling, and loops. Make partial completion and interruption explicit when they can occur.
+Set limits for queues, buffers, batches, concurrency, retries, polling, and loops. Define what partial completion and interruption mean when they can occur.

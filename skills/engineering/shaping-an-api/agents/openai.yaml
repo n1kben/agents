@@ -1,6 +1,0 @@
-interface:
-  display_name: "Shaping an API"
-  short_description: "Design an API and plan how callers migrate"
-  default_prompt: "Use $shaping-an-api to design this API and plan how its callers will migrate."
-policy:
-  allow_implicit_invocation: false
