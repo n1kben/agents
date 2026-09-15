@@ -11,4 +11,4 @@ Ask whether two observations concern the same identity, especially when they loo
 
 Test the model with examples and counterexamples. If a case does not fit, revise the model or narrow its context. Compare representations by what they can express, rule out, or forget. Prefer one whose possible values match the valid situations. Keep earlier facts when later questions may need them.
 
-Explain the model through a concrete case. Use designing when choosing how to change the world.
+Explain the model through a concrete case.
