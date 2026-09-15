@@ -1,0 +1,6 @@
+interface:
+  display_name: "Modeling"
+  short_description: "Model real-world facts and relationships"
+  default_prompt: "Use $modeling to work out the model for this situation."
+policy:
+  allow_implicit_invocation: true

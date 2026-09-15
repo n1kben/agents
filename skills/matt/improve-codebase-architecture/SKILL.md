@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Improve Codebase Architecture
 
-Invoke explicitly as `$improve-codebase-architecture`. Architecture guidance is bundled under `references/`. Reuse the existing local [grilling](../grilling/SKILL.md) and [domain-modeling](../domain-modeling/SKILL.md) skills when indicated below.
+Invoke explicitly as `$improve-codebase-architecture`. Architecture guidance is bundled under `references/`. Reuse the existing local [grilling](../../grilling/SKILL.md) skill when indicated below.
 
 Surface architectural friction and propose **deepening opportunities**: refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability.
 
@@ -65,9 +65,9 @@ Do NOT propose interfaces yet. After the file is written, ask the user: "Which o
 
 ### 3. Grilling loop
 
-Once the user picks a candidate, read and follow [the local grilling skill](../grilling/SKILL.md) to walk the decision tree with them: constraints, dependencies, the shape of the deepened module, what sits behind the seam, what tests survive.
+Once the user picks a candidate, read and follow [the local grilling skill](../../grilling/SKILL.md) to walk the decision tree with them: constraints, dependencies, the shape of the deepened module, what sits behind the seam, what tests survive.
 
-Side effects happen inline as decisions crystallize; read and follow [the local domain-modeling skill](../domain-modeling/SKILL.md) to keep the domain model current as you go. For this workflow, preserve the project’s existing style for `CONTEXT.md` rather than applying a prescribed template. Do not introduce ADRs.
+Keep the domain model current as decisions crystallize. Preserve the project's existing style for `CONTEXT.md`. Do not introduce ADRs.
 
 
 - **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md`. Create the file lazily if it doesn't exist.
@@ -76,4 +76,4 @@ Side effects happen inline as decisions crystallize; read and follow [the local 
 
 ## Source
 
-Adapted from [Matt Pocock’s skills](https://github.com/mattpocock/skills/tree/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/improve-codebase-architecture), including codebase-design and its supporting documents. Uses the existing local grilling and domain-modeling skills. Bundled locally under the [MIT license](LICENSE).
+Adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills/tree/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/improve-codebase-architecture), including codebase-design and its supporting documents. Uses the existing local grilling skill. Bundled locally under the [MIT license](LICENSE).
