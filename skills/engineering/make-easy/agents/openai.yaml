@@ -1,0 +1,7 @@
+interface:
+  display_name: "Make Easy"
+  short_description: "Pitch refactors that make one change direct"
+  default_prompt: "Use $make-easy to pitch refactors that make this change direct."
+
+policy:
+  allow_implicit_invocation: false

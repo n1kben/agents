@@ -1,0 +1,7 @@
+interface:
+  display_name: "Pitching"
+  short_description: "Shape work through one proposal at a time"
+  default_prompt: "Use $pitching to propose changes to this one at a time."
+
+policy:
+  allow_implicit_invocation: true
