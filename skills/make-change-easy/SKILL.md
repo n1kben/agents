@@ -10,8 +10,7 @@ behavior.
 
 Pay special attention when the change introduces a second consumer of existing behavior. Apply any
 named coding standards to decide whether the behavior should remain local or have one authoritative
-owner. If sharing is justified but the existing code belongs to one caller, pitch a
-behavior-preserving refactor that gives the responsibility neutral ownership.
+owner.
 
 If the feature needs no refactor first, say `No preparation needed.` and stop.
 
