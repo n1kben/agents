@@ -1,6 +1,6 @@
 ---
 name: coding-standards
-description: Grow, implement, and review code from use cases through boundaries, contracts, tests, and readable implementation. Use only when `coding-standards` is specifically mentioned.
+description: Use only when `coding-standards` is specifically mentioned.
 ---
 
 # Coding standards
