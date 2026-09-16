@@ -1,8 +1,20 @@
 ---
 name: spiking
-description: Suggest and run a small, bounded investigation when a decision is blocked by something we could test or learn. Use when the user asks to spike something, or when evidence could resolve an uncertainty that discussion cannot.
+description: Use when a decision is blocked by uncertainty that can be resolved through a small test or inspection, or when the user asks to spike something.
 ---
 
-A spike is a small, bounded investigation that answers a question with evidence. Suggest one by naming the question it would answer. If the question is not testable yet, ask me for the missing criteria or constraints. Then explain why it matters and the smallest useful investigation.
+# Spiking
 
-Wait for my feedback before starting. Once approved, run the spike in a background agent when available. Give experiments that change files an isolated worktree or temporary directory, whichever best represents the real case. Inspect the evidence yourself and recommend what to do next. Stop when the question is answered or the boundary is reached.
+## Propose the spike
+
+State the question it will answer, what you will test or inspect, why the result matters, and when you will stop.
+
+Prefer the smallest investigation that represents the real case. Ask a question only when missing information prevents a meaningful test.
+
+Wait for the user's approval before starting.
+
+## Run and report
+
+Use a background agent when available. Give file-changing experiments an isolated worktree or temporary directory when appropriate.
+
+Inspect the evidence yourself. Report what you learned, what remains uncertain, and what you recommend doing next. Stop when the question is answered or the agreed boundary is reached.
