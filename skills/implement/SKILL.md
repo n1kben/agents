@@ -30,8 +30,9 @@ without changing its contract. Leave unrelated code alone.
 
 ## Verify and review
 
-Verify the observable behavior. Perform an adversarial review against **coding-standards** and fix
-issues within the agreed change.
+Verify the observable behavior. Perform an adversarial review against **coding-standards**. Fix
+findings whose remedy is implied by the agreed change and remains within its scope. Pitch any
+finding that requires a new decision. Finish the review before moving on.
 
-After completing the local change, judge any discovered abstractions against **coding-standards**
-and pitch them all at once, up to five.
+After the review is complete, judge any optional abstractions discovered during implementation
+against **coding-standards** and pitch them.
