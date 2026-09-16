@@ -1,14 +1,37 @@
 ---
 name: implement
-description: Implement an agreed code change in observable vertical slices with verification.
+description: Implement an agreed code change locally with verification.
 disable-model-invocation: true
 ---
 
 # Implement
 
-1. Apply the **make-change-easy** skill.
-2. Implement and verify the agreed change, applying the **make-local-change** and **coding-standards** skills.
-3. Perform an adversarial review against **coding-standards** and fix issues within the agreed change.
-4. For abstractions discovered from the completed local change, judge them against **coding-standards**, then pitch them one at a time.
+Read and apply the **coding-standards** skill throughout.
 
-Do not create or change abstractions while implementing the requested change. Keep the change local, then defer any abstraction proposals to step 4.
+## Make the change easy
+
+Before implementation, inspect the affected code and any existing implementation of similar
+behavior. Identify the behavior-preserving refactors that would make the change easy and local.
+
+Pitch the refactors without applying them. Explain the problem in the current code and how each
+refactor makes the requested change easier. Include before-and-after pseudocode showing the relevant
+types and interfaces.
+
+Wait until every refactor has been approved or rejected. Then apply the approved refactors one at a
+time. Verify and commit each refactor before starting the next.
+
+## Make the easy change
+
+When all approved preparation is complete, make the agreed change locally in the feature that needs
+it. Duplication is allowed.
+
+Do not create or change shared code beyond approved preparation. You may use existing shared code
+without changing its contract. Leave unrelated code alone.
+
+## Verify and review
+
+Verify the observable behavior. Perform an adversarial review against **coding-standards** and fix
+issues within the agreed change.
+
+After completing the local change, judge any discovered abstractions against **coding-standards**
+and pitch them all at once, up to five.
