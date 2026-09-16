@@ -1,7 +1,6 @@
 interface:
   display_name: "Designing"
   short_description: "Explore and shape a design from real cases"
-  default_prompt: "Use $designing to work through this design before implementation."
 
 policy:
   allow_implicit_invocation: true
