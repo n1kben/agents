@@ -1,4 +1,0 @@
-interface:
-  display_name: "API standards"
-  short_description: "Judge an API from its callers' side"
-  default_prompt: "Use $api-standards to assess this API."
