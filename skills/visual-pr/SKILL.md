@@ -10,10 +10,7 @@ Draft, create, or update the pull request for the current branch with a descript
 
 ## Prepare
 
-Read these references before writing:
-
-- `references/pr-description-template.md`
-- `references/visual-outline.md`
+Read `references/pr-description-template.md` before writing. Read `references/visual-outline.md` only if the user explicitly asks for an outline.
 
 Inspect the repository's `AGENTS.md` and pull request template. Repository rules take precedence.
 
@@ -38,14 +35,13 @@ Use facts from the repository and task. Do not invent motivation, constraints, t
 
 ## Write the description
 
-Follow `references/pr-description-template.md` exactly, plus any repository-required sections.
+Follow the required sections in `references/pr-description-template.md`, plus any repository-required sections.
 
 - Keep **Why the change** to one sentence.
 - Keep **Special things to note** to one to three reviewer-relevant bullets. Use `- None.` if nothing needs attention.
-- Make **Change outline** a compact structural view. Include only the contracts, types, files, components, calls, state, or data flow needed to explain the change.
-- Prefer `diff` blocks for changes to an existing shape. Show a complete block when most of the shape is new or diff notation hides ownership or order.
 - For a user-interface change, include before-and-after screenshots from the app, sandbox, or story. If useful screenshots cannot be produced, say why.
-- List every changed file under **Files changed**. Give each file one sentence of no more than 25 words. Show the changed public interface in a small `diff` block when the file changes one.
+- List every changed file under **Files changed**. Give each file one sentence of no more than 25 words.
+- When a changed component or function introduces or changes an API contract, show its actual TypeScript declaration diff from the base and head. Include the `interface` or `type` name and exact props, parameters, return types, and callback signatures that matter, even if the declaration is not exported. For other languages, show the exact source declaration. Do not substitute a component list, inferred signature, or prose summary.
 - Include importer counts when they materially help a reviewer judge the effect of a public-interface change and the counts can be verified.
 - Keep implementation detail out unless it changes reviewer behavior or explains an important decision.
 

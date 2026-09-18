@@ -7,7 +7,6 @@
 ## Special things to note
 
 - {List one to three reviewer warnings, migrations, compatibility constraints, deliberate omissions, or surprising decisions. Use "None." when there are none.}
-```
 
 ## UI evidence
 
@@ -19,12 +18,9 @@
 
 {Describe the change in one sentence of no more than 25 words.}
 
-```diff
-- previous public interface
-+ new public interface
-```
+{If a component or function API contract changed, paste a small `diff` block of its actual source declaration from the base and head. Include non-exported TypeScript props types too. Preserve exact property types, optional markers, and callback signatures. Do not replace the declaration with component names or a prose summary.}
 
-{Repeat for every changed file. Omit the interface block when no public interface changed.}
+{Repeat for every changed file. Omit the declaration block when no API contract changed.}
 
 ## Verification
 
