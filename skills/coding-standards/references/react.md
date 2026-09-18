@@ -49,6 +49,10 @@ Keep every Effect focused on one synchronization task. List every reactive value
 
 Prefer the repository's framework loader, server component, or established query layer over fetching in an Effect. When direct Effect-based fetching is necessary, handle cancellation and stale responses explicitly.
 
+## Race conditions
+
+Before async work updates state, check whether its inputs are still current or a newer operation has superseded it. Cancel or ignore stale results when only the latest should win. If every result matters, coordinate updates and test both completion orders. Use a functional state update when computing from current state.
+
 ## Inspectable UI states
 
 Render the production component with explicit props and deterministic fixtures. Add stories, a component sandbox, or the project's equivalent for meaningful states.
