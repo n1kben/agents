@@ -1,11 +1,12 @@
 ---
 name: visual-pr
-description: Create or update pull requests with concise visual descriptions. Always use for pull request work.
+description: Use only when explicitly invoked as $visual-pr to draft, create, or update a pull request with a concise visual description.
+disable-model-invocation: true
 ---
 
 # Visual PR
 
-Draft, create, or update the pull request for the current branch with a description that helps a reviewer understand why the change exists, how behavior changed, and where to look. Use this workflow for every pull request description, even when the user does not name this skill.
+Draft, create, or update the pull request for the current branch with a description that helps a reviewer understand why the change exists, how behavior changed, and where to look.
 
 ## Prepare
 

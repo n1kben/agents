@@ -7,15 +7,6 @@
 ## Special things to note
 
 - {List one to three reviewer warnings, migrations, compatibility constraints, deliberate omissions, or surprising decisions. Use "None." when there are none.}
-
-## Change outline
-
-{Use the smallest set of visual-outline views that explains the implementation. Name and order them based on the change. Do not include unused categories.}
-
-{Short explanation.}
-
-```diff
-{A contract, type, component tree, file tree, call tree, control flow, or data flow. Use the language that best fits the content.}
 ```
 
 ## UI evidence
@@ -26,7 +17,7 @@
 
 [`path/to/file.ts`](path/to/file.ts) ({old count} → {new count} importers)
 
-{Describe the change in one sentence of no more than 25 words. Omit importer counts when they are not relevant or cannot be verified.}
+{Describe the change in one sentence of no more than 25 words.}
 
 ```diff
 - previous public interface
