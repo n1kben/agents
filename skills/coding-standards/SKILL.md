@@ -153,20 +153,10 @@ the boundary.
 
 ## Separate decisions from effects
 
-~~Use a functional core and an imperative shell. The core has a pure boundary: the same inputs
-produce the same result, and the call makes no observable changes. It may use local mutation
-internally. The shell holds dependencies, reads state, and applies the result.~~
-
-```text
-account = accounts.load(accountId)
-renewal = decideRenewal(account, today)
-accounts.save(renewal.account)
-notifications.send(renewal.notice)
-```
-
-~~Pass the narrow value or capability an operation needs. Do not pass an application container when
-a clock, repository, or parsed value will do. Broad dependencies hide what a function can observe
-and change.~~
+Keep decisions free of effects when they do not need them. Load the data, make the decision, then
+write the result. When several writes must succeed together, keep them in one transaction and pass
+that transaction only to the code involved. A stateful abstraction may hide the whole sequence
+behind one method.
 
 ## Bound work
 
