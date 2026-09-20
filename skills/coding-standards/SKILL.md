@@ -151,12 +151,9 @@ Whoever creates mutable state owns it and its lifetime. Only the owner changes t
 code may request changes through returned values or callbacks, but the mutable value never crosses
 the boundary.
 
-## Separate decisions from effects
+## Functional core, imperative shell
 
-Keep decisions free of effects when they do not need them. Load the data, make the decision, then
-write the result. When several writes must succeed together, keep them in one transaction and pass
-that transaction only to the code involved. A stateful abstraction may hide the whole sequence
-behind one method.
+Prefer a functional core and move effects to the edges.
 
 ## Bound work
 
