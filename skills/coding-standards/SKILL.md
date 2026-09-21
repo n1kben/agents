@@ -19,6 +19,11 @@ Read only the references relevant to the task:
 - For TypeScript or TSX, schema inference, discriminated unions, or type narrowing, read
   [typescript.md](references/typescript.md).
 
+## Enforce architecture boundaries
+
+When creating or changing a dependency boundary, add a build or lint check where practical. Make
+its error message name the supported path.
+
 ## Build one use case at a time
 
 Start with a screen, route, endpoint, job, command, or another observable use case. Identify what
@@ -150,6 +155,9 @@ an expected failure. Fail immediately.
 Whoever creates mutable state owns it and its lifetime. Only the owner changes that state. Other
 code may request changes through returned values or callbacks, but the mutable value never crosses
 the boundary.
+
+Before adding a write to persistent state, find who owns changes to it and use that update path.
+Do not add a parallel write path without an explicit design decision.
 
 ## Functional core, imperative shell
 
