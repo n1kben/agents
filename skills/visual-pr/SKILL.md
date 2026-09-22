@@ -23,7 +23,21 @@ The editor accepts another save while a request is pending, so this change preve
 ## Special things to note
 
 <!-- One to three bullets. Use "- None." when there is nothing to note. -->
-- Save remains disabled until the request finishes.
+- None.
+
+<!-- Describe observable changes to workflows, commands, jobs, or other use cases. Omit when there are none. -->
+## Use-case changes
+
+- Saving a draft now prevents another submission until the current request finishes.
+
+<!-- For each new or changed endpoint, show a compact diff of its public contract: method/path, parameters, request/response fields, status, or errors as applicable. Show only what changed, not implementation code. Omit this section when no endpoints changed. -->
+## API endpoint interfaces
+
+```diff
+POST /drafts
+-Request: { content: string }
++Request: { content: string, idempotencyKey: string }
+```
 
 <!-- Omit for non-UI changes. Explain when useful screenshots cannot be produced. -->
 ## UI evidence
@@ -31,41 +45,23 @@ The editor accepts another save while a request is pending, so this change preve
 Before: ![Save button while a request is pending](screenshots/save-before.png)
 After: ![Disabled Save button while a request is pending](screenshots/save-after.png)
 
-## Files changed
+## Module changes
 
-<!-- Show the smallest useful file tree, call tree, component tree, or pseudocode here. Use a diff when before and after clarify the change. -->
-Save flow:
+<!-- Repeat for every changed module or file. Keep each description to one sentence of at most 25 words. -->
+[`src/Editor.tsx`](src/Editor.tsx)
 
-```diff
- Editor.onSave
--  saveDraft()
-+  setPending(true)
-+  try
-+    await saveDraft()
-+  finally
-+    setPending(false)
-```
+Disables Save while the request is pending.
 
-Component tree:
+[`src/api/saveDraft.ts`](src/api/saveDraft.ts)
+
+Updates the module's exported draft-saving function to require an idempotency key.
+
+<!-- Directly below each relevant module, show exact base-to-head declaration diffs for its exported module interface, including exports used only by other files in the app. In TypeScript, use exported declarations; in Elm, use names in the module's exposing list. Show parameters, return types, and exposed record fields that changed. Omit unexported helpers and private member signatures. Endpoint contracts belong in the API endpoint interfaces section. Do not show call stacks, component trees, or implementation pseudocode. Modules without an exported interface change need only the description. -->
+Exported module interface:
 
 ```diff
- <Editor>
--  <SaveButton />
-+  <SaveButton disabled={pending} />
- </Editor>
-```
-
-<!-- Repeat for every changed file. Keep each description to one sentence of at most 25 words. Omit importer counts when they do not help. -->
-[`src/Editor.tsx`](src/Editor.tsx) (2 → 3 importers)
-
-Disables Save while the request is pending and updates the callback contract.
-
-<!-- Show the exact declaration diff from the base and head when a change affects callers, even if the props type is not exported. Omit internal-only type changes. -->
-```diff
- type EditorProps = {
--  onSave: () => void;
-+  onSave: () => Promise<void>;
- };
+-export function saveDraft(content: string): Promise<Draft>;
++export function saveDraft(content: string, idempotencyKey: string): Promise<Draft>;
 ```
 
 ## Verification
