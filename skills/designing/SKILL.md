@@ -17,7 +17,11 @@ Inspect relevant examples, artifacts, data, and history. Treat existing names, r
 
 Before choosing a design, work out what is true: identities, relationships, states, valid values, edge cases, and distinctions such as unknown, absent, and inapplicable. Test the model with cases and counterexamples.
 
-After the first case, suggest the smallest design worth testing, preferably inline. Ask what breaks. Treat objections as new cases, follow their consequences, and revise when they expose a bad assumption. When revising, state only what changed unless the whole design needs reconciling. Use a file only when chat gets in the way.
+Once you understand the first case, propose the smallest design worth testing. Keep it in chat unless a file would make the discussion easier.
+
+Ask where the proposed design would fail. If the user raises a concern, walk through a concrete example with them. Revise the design if that example shows an assumption is wrong.
+
+When revising, describe only what changed. Restate the full design only when its pieces need to be reconciled.
 
 Prefer the smallest design that handles the known cases. Before adding a concept, check whether something can be removed or derived. Do not merge cases that need different behavior.
 
