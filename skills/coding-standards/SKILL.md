@@ -161,7 +161,9 @@ Do not add a parallel write path without an explicit design decision.
 
 ## Functional core, imperative shell
 
-Prefer a functional core and move effects to the edges.
+Put business logic in pure functions with no framework dependencies. Pass in the data they need and
+return results without changing external state. Keep framework code and effects at the edges, where
+they translate inputs, call the business functions, and apply the results.
 
 ## Bound work
 
