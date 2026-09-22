@@ -9,4 +9,4 @@ Always show the before and after when pitching a change to something that alread
 
 Pitch one at a time, or however many I ask for. Wait for my feedback before continuing. Keep
 pitching until I stop you or there is nothing useful left to pitch. If I ask a side question, answer
-it, then continue pitching.
+it, then continue where you left off.
