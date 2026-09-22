@@ -6,66 +6,70 @@ disable-model-invocation: true
 
 # Visual PR
 
-Draft, create, or update the pull request for the current branch with a description that helps a reviewer understand why the change exists, how behavior changed, and where to look.
+Read the repository's `AGENTS.md` and pull request template. Check for an existing pull request with `gh pr view`. Read the full diff against its base, relevant code, linked work, and verification. If there is no pull request, inspect the branch, working tree, and commits.
 
-## Prepare
+Write a description that shows why the change exists, what changed, and where a reviewer should look. Replace this example with facts from the branch, add any repository-required sections, and remove the comments before publishing:
 
-Read `references/pr-description-template.md` before writing. Read `references/visual-outline.md` only if the user explicitly asks for an outline.
+````md
+<!-- Use only verified facts. Leave out unrelated working-tree changes. -->
+<!-- Omit when there are no relevant links. -->
+[Issue #42](https://github.com/example/repo/issues/42)
 
-Inspect the repository's `AGENTS.md` and pull request template. Repository rules take precedence.
+## Why the change
 
-Find the current branch's pull request with:
+<!-- One sentence. -->
+The editor accepts another save while a request is pending, so this change prevents duplicate submissions.
 
-```sh
-gh pr view --json url,number,title,state,baseRefName,headRefName
+## Special things to note
+
+<!-- One to three bullets. Use "- None." when there is nothing to note. -->
+- Save remains disabled until the request finishes.
+
+<!-- Omit for non-UI changes. Explain when useful screenshots cannot be produced. -->
+## UI evidence
+
+Before: ![Save button while a request is pending](screenshots/save-before.png)
+After: ![Disabled Save button while a request is pending](screenshots/save-after.png)
+
+## Files changed
+
+<!-- Show the smallest useful file tree, call tree, component tree, or pseudocode here. Use a diff when before and after clarify the change. -->
+Save flow:
+
+```diff
+ Editor.onSave
+-  saveDraft()
++  setPending(true)
++  try
++    await saveDraft()
++  finally
++    setPending(false)
 ```
 
-If there is no pull request, inspect the branch, working tree, and commits. Do not commit, push, or create a pull request unless the user asked you to create or publish one. Never include unrelated working-tree changes.
+Component tree:
 
-## Understand the change
+```diff
+ <Editor>
+-  <SaveButton />
++  <SaveButton disabled={pending} />
+ </Editor>
+```
 
-Read:
+<!-- Repeat for every changed file. Keep each description to one sentence of at most 25 words. Omit importer counts when they do not help. -->
+[`src/Editor.tsx`](src/Editor.tsx) (2 → 3 importers)
 
-- the complete diff against the pull request base
-- enough surrounding code to identify behavior and ownership
-- linked tickets, plans, and task artifacts that are available
-- existing tests and verification results relevant to the change
+Disables Save while the request is pending and updates the callback contract.
 
-Use facts from the repository and task. Do not invent motivation, constraints, test results, or links.
+<!-- Show the exact declaration diff from the base and head when a change affects callers, even if the props type is not exported. Omit internal-only type changes. -->
+```diff
+ type EditorProps = {
+-  onSave: () => void;
++  onSave: () => Promise<void>;
+ };
+```
 
-## Write the description
+## Verification
 
-Follow the required sections in `references/pr-description-template.md`, plus any repository-required sections.
-
-- Keep **Why the change** to one sentence.
-- Keep **Special things to note** to one to three reviewer-relevant bullets. Use `- None.` if nothing needs attention.
-- For a user-interface change, include before-and-after screenshots from the app, sandbox, or story. If useful screenshots cannot be produced, say why.
-- List every changed file under **Files changed**. Give each file one sentence of no more than 25 words.
-- When a changed component or function introduces or changes an API contract, show its actual TypeScript declaration diff from the base and head. Include the `interface` or `type` name and exact props, parameters, return types, and callback signatures that matter, even if the declaration is not exported. For other languages, show the exact source declaration. Do not substitute a component list, inferred signature, or prose summary.
-- Include importer counts when they materially help a reviewer judge the effect of a public-interface change and the counts can be verified.
-- Keep implementation detail out unless it changes reviewer behavior or explains an important decision.
-
-Write as one person talking to another. Use plain, concise language.
-
-## Save and publish
-
-Write the body to a repository task artifact when the repository has an established location. Otherwise, use a temporary file outside the repository so the PR description does not add an unrelated tracked file.
-
-When the user asked to update or create the pull request:
-
-1. Apply the description with `gh pr edit <number> --body-file <path>` or create the pull request with `gh pr create --body-file <path>`.
-2. Read the published pull request back with `gh pr view`.
-3. Confirm that the title, body, base branch, and head branch are correct.
-
-When the user asked only for a draft, return the draft without changing GitHub.
-
-## Report
-
-Return:
-
-- the pull request link, if one exists
-- whether the description was drafted or published
-- the description file, if it is a durable task artifact
-- any missing screenshot, verification, ticket, or publishing context
-
-Keep the handoff short. Do not repeat the full PR description in the final response when it is already available through a link or file.
+<!-- List checks that actually ran. Use "Not run" with a reason when needed. -->
+- `npm test` passed.
+````
