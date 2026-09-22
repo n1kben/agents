@@ -1,6 +1,7 @@
 ---
 name: remove-first
 description: Use when editing text, including code, or proposing edits to it. Check what can be removed or combined before adding more.
+disable-model-invocation: true
 ---
 
 # Remove first

@@ -1,6 +1,7 @@
 ---
 name: outline-first-writing
 description: Develop a piece of writing through a clear outline, paragraph pitches, and a brief, direct, conversational draft. Use when the user wants to plan or write an article, essay, post, or other substantial piece collaboratively.
+disable-model-invocation: true
 ---
 
 # Outline-first writing
