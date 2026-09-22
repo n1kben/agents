@@ -15,6 +15,6 @@ Wait for the user's approval before starting.
 
 ## Run and report
 
-Use a cloud agent when available and the spike can run from committed code. Otherwise, use a background agent when available. Isolate local file-changing experiments in a worktree or temporary directory.
+Run every spike in a background agent. Use a cloud agent when available and the test can run from committed code. Otherwise, give the agent a local worktree with the state it needs. If that is impractical, use the current checkout only when the spike will not conflict with ongoing work.
 
 Inspect the evidence yourself. Report what you learned, what remains uncertain, and what you recommend doing next. Stop when the question is answered or the agreed boundary is reached.
