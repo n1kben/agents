@@ -1,0 +1,4 @@
+interface:
+  display_name: "Matpreferenser"
+  short_description: "Matcha inköpsvaror mot våra produktval"
+  default_prompt: "Använd $matpreferenser för att välja rätt produkter till min inköpslista."

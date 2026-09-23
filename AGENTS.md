@@ -17,3 +17,7 @@ If a request conflicts with an established boundary, explain the conflict before
 ## Environment
 
 We're running node v22 which runs TypeScript natively
+
+## Pull requests
+
+Never merge a pull request on my behalf or enable auto-merge. Prepare the pull request for review and leave the final merge action to me.
