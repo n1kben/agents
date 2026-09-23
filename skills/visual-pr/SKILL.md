@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 Read the repository's `AGENTS.md` and pull request template. Check for an existing pull request with `gh pr view`. Read the full diff against its base, relevant code, linked work, and verification. If there is no pull request, inspect the branch, working tree, and commits.
 
+Use `gh` 2.99.0 or newer to upload UI evidence. Pass each image with a separate `--attach` flag when creating or editing the pull request.
+
 Write a description that shows why the change exists, what changed, and where a reviewer should look. Replace this example with facts from the branch, add any repository-required sections, and remove the comments before publishing:
 
 ````md
