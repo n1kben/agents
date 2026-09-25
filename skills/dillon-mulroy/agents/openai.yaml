@@ -1,0 +1,8 @@
+interface:
+  display_name: "Dillon Mulroy"
+  short_description: "Review TypeScript using Dillon Mulroy's coding standards"
+  default_prompt: "Review the relevant code using Dillon Mulroy's coding standards. Report concrete findings first, then recommend or apply changes as requested."
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false
