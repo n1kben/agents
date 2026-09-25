@@ -15,4 +15,4 @@ Find the reader's question and the answer the piece needs to earn. In one senten
 
 When revising, look for claims you make more than once, even in different words. Keep the clearest version. Merge paragraphs that repeat the premise just to add one detail. Use headings and lists only when they help readers find their way.
 
-For sentence-level voice, use [conversational-prose](../conversational-prose/SKILL.md).
+For sentence-level voice, use [unslop](../unslop/SKILL.md).

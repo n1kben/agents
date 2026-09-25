@@ -11,7 +11,9 @@ Read and apply the **coding-standards** skill throughout.
 ## Make the change easy
 
 Before implementation, inspect the affected code and any existing implementation of similar
-behavior. Identify the behavior-preserving refactors that would make the change easy and local.
+behavior. First check whether deleting, combining, or simplifying existing code would achieve the
+requested behavior. Then identify any behavior-preserving refactors needed to make the remaining
+change easy and local.
 
 Pitch the refactors without applying them. Explain the problem in the current code and how each
 refactor makes the requested change easier. Include before-and-after pseudocode showing the relevant
