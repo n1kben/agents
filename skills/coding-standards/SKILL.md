@@ -19,11 +19,6 @@ Read only the references relevant to the task:
 - For TypeScript or TSX, schema inference, discriminated unions, or type narrowing, read
   [typescript.md](references/typescript.md).
 
-## Enforce architecture boundaries
-
-When creating or changing a dependency boundary, add a build or lint check where practical. Make
-its error message name the supported path.
-
 ## Build one use case at a time
 
 Start with a screen, route, endpoint, job, command, or another observable use case. Identify what
