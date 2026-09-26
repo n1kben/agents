@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Design Engineering
+  short_description: Apply Emil Kowalski's UI craft principles
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

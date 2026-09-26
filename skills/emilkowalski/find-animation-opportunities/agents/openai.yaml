@@ -1,0 +1,8 @@
+interface:
+  display_name: Find Animation Opportunities
+  short_description: Find worthwhile animation opportunities
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

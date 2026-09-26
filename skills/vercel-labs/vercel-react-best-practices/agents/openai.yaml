@@ -1,0 +1,8 @@
+interface:
+  display_name: Vercel React Best Practices
+  short_description: Apply Vercel React and Next.js performance guidance
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

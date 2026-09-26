@@ -1,0 +1,8 @@
+interface:
+  display_name: Improve Animations
+  short_description: Audit motion and plan prioritized improvements
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

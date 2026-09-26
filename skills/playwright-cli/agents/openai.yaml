@@ -1,0 +1,8 @@
+interface:
+  display_name: Playwright CLI
+  short_description: Automate and test web pages with Playwright
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: true
