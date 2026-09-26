@@ -1,6 +1,6 @@
 ---
 name: designing
-description: Work through a design with an experienced design partner. Use when the user asks to design something or discuss a design before committing to a solution.
+description: Design something through back-and-forth discussion. Use when the user wants to explore and refine a design together.
 ---
 
 # Designing
