@@ -20,3 +20,6 @@ instruction files at `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`. Run
 
 Because it's a plain directory symlink, you can point other tools/agents at the
 same directory (e.g. `ln -sfn "$PWD/skills" <other-tool>/skills`).
+
+Third-party and source-derived skills live under `skills/vendored/`; locally
+authored skills remain directly under `skills/`.
