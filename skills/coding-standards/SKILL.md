@@ -66,6 +66,13 @@ If a contract's producers and consumers can ship together, update every caller a
 API in the same change. Do not leave compatibility wrappers or parallel paths. If the migration
 must span several changes, mark the adapter as temporary and record the condition for removing it.
 
+Before changing a contract, answer:
+
+- What happens if the producer updates before the consumer?
+- What happens if the consumer updates before the producer?
+- What happens when new code reads data written by the old version?
+- What happens when old code reads data written by the new version?
+
 Code released together only needs types for current valid states. Contracts used across releases,
 and data that outlives a release, must remain compatible with older versions.
 
@@ -127,6 +134,13 @@ Check rules the type system cannot enforce immediately before code that depends 
 
 ## Make expected failures explicit
 
+Before defining an operation's errors, answer:
+
+- Which failures can happen during correct operation?
+- Which failures can the caller handle differently?
+- Which failures are dependency details that must be translated?
+- Which conditions mean the program's assumptions are wrong?
+
 Name each expected failure in the function's type instead of replacing them with a general error.
 
 ```text
@@ -141,8 +155,8 @@ database unique_violation -> HandleAlreadyTaken
 payment gateway timeout   -> PaymentTemporarilyUnavailable
 ```
 
-Expected failures can happen during correct operation. A violated internal invariant is a bug, not
-an expected failure. Fail immediately.
+Expected failures can happen during correct operation. Treat violated internal invariants as bugs
+and fail immediately.
 
 ## Do not share mutable state
 
@@ -158,10 +172,20 @@ Do not add a parallel write path without an explicit design decision.
 Put business rules in functions that do not depend on a framework or change external state. Let
 framework code parse inputs, call those functions, and save, send, or display their results.
 
-## Bound work
+## Own scheduling and bound work
 
-Set limits on queues, batches, concurrency, retries, polling, and work driven by external input.
-Define what happens when a limit is reached.
+Do not perform substantial work directly in reaction to external events. Accept the work into an
+owned, bounded queue and process it at the program's pace. This keeps control flow internal and
+enables batching, backpressure, and predictable resource use.
+
+Before implementing work driven by external input, answer:
+
+- What happens when requests arrive faster than they can be processed?
+- What happens when the queue reaches its limit?
+- Who waits, retries, or loses work?
+- How does the system return to normal?
+
+Set explicit limits on queues, batches, concurrency, retries, and polling.
 
 ## Define failure recovery
 
