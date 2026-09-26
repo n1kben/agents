@@ -13,13 +13,17 @@ cd ~/Developer/n1kben/agents
 make install
 ```
 
-`make install` symlinks this repo's `skills/` directory (wherever it lives) to
-`~/.claude/skills` and `~/.agents/skills`. It also links `AGENTS.md` to the global
-instruction files at `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`. Run
-`make uninstall` to remove the links.
+`make install` symlinks `skills/` to `~/.claude/skills` and `~/.agents/skills`.
+It also links `AGENTS.global.md` to `~/.claude/CLAUDE.md` and
+`~/.codex/AGENTS.md`. Run `make uninstall` to remove the links.
 
 Because it's a plain directory symlink, you can point other tools/agents at the
 same directory (e.g. `ln -sfn "$PWD/skills" <other-tool>/skills`).
 
-Third-party and source-derived skills live under `skills/vendored/`; locally
-authored skills remain directly under `skills/`.
+## Layout
+
+- `AGENTS.global.md` contains instructions shared across projects.
+- `AGENTS.md` contains instructions for working in this repository.
+- `skills/` contains locally authored skills.
+- `skills/vendored/` contains third-party and source-derived skills.
+- `skills/in-progress/` contains skills that are not ready for general use.
