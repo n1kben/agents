@@ -10,7 +10,7 @@ create the file with these sections:
 - **Access:** login steps and how to obtain credentials without storing them;
 - **Test data:** how to create or find valid data;
 - **Surfaces:** relevant app, API, sandbox, preview, and Storybook URLs;
-- **Evidence:** useful logs and available capture tools;
+- **Evidence:** capture tools, their installation commands, and where artifacts should be saved;
 - **Cleanup:** how to undo test changes.
 
 Include project-specific facts an agent could not guess. Never store secrets in the file. Ensure

@@ -6,10 +6,11 @@ disable-model-invocation: true
 
 # Verify
 
-Verification surrounds implementation:
+Inspect the current state and fill in what is missing:
 
-1. Before implementation, read `VERIFICATION.md`. If it does not exist, read
-   [setup](references/setup.md) and create it. Then read [plan](references/plan.md).
-2. After implementation, read [run](references/run.md).
+1. If `VERIFICATION.md` does not exist, read [setup](references/setup.md) and create it.
+2. Find the `.feature` file for the current change. If it does not exist, read
+   [plan](references/plan.md) and create it.
+3. When the change is ready to exercise, read [run](references/run.md) and verify it.
 
-Infer the phase from the work already completed. Do not ask the user to choose a mode.
+Do not ask the user to choose a mode.
