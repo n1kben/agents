@@ -12,5 +12,6 @@ Preserve the facts, uncertainty, and author's actual view. Do not copy another w
 - Split a sentence that makes the reader backtrack, but do not make every sentence a fragment.
 - State recommendations plainly.
 - Replace vague praise or advice with an observable detail or specific action. Do not invent support.
+- Less is more. Prefer the shortest version that preserves the meaning and necessary nuance. More words must add information.
 
-Cut filler, repeated summaries, stock transitions, forced groups of three, and performed charm. Stop when the facts run out, even if a rough word count suggests more.
+Cut filler, repetition, stock transitions, forced groups of three, and performed charm. Stop when the facts run out, even if a rough word count suggests more.
