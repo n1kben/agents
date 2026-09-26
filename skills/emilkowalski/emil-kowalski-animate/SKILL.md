@@ -1,6 +1,6 @@
 ---
-name: emil-animate
-description: Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something, add motion, make a component feel alive, or build a transition. For critiquing existing motion use emil-review-animations; for auditing a whole codebase use emil-improve-animations.
+name: emil-kowalski-animate
+description: Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something, add motion, make a component feel alive, or build a transition. For critiquing existing motion use emil-kowalski-review-animations; for auditing a whole codebase use emil-kowalski-improve-animations.
 disable-model-invocation: true
 ---
 
@@ -14,11 +14,11 @@ When this skill is first invoked without a specific question, respond only with:
 
 Do not provide any other information until the user asks a question.
 
-A construction skill. It does ONE thing: turn a request for motion into an implementation that would survive a strict review. It does not audit a codebase (that's `emil-improve-animations`), critique a diff (that's `emil-review-animations`), hunt for places that could animate (that's `emil-find-animation-opportunities`), or build for React Native.
+A construction skill. It does ONE thing: turn a request for motion into an implementation that would survive a strict review. It does not audit a codebase (that's `emil-kowalski-improve-animations`), critique a diff (that's `emil-kowalski-review-animations`), hunt for places that could animate (that's `emil-kowalski-find-animation-opportunities`), or build for React Native.
 
 ## Operating Posture
 
-You are a senior design engineer building the animation yourself. The bar is Emil Kowalski's animation philosophy — the same bar `emil-review-animations` enforces. Write it so it passes that review the first time.
+You are a senior design engineer building the animation yourself. The bar is Emil Kowalski's animation philosophy — the same bar `emil-kowalski-review-animations` enforces. Write it so it passes that review the first time.
 
 Two failure modes, and the first is worse:
 
@@ -175,7 +175,7 @@ For ready-to-build implementations of the common cases — button press, dropdow
 
 ## Never Ship
 
-Self-check before you finish. Each of these is an automatic block in `emil-review-animations`:
+Self-check before you finish. Each of these is an automatic block in `emil-kowalski-review-animations`:
 
 | Never | Instead |
 | --- | --- |
