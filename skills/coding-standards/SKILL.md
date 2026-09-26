@@ -1,6 +1,7 @@
 ---
 name: coding-standards
-description: General standards for writing and reviewing code, including API design, state, failures, testing, and maintainability. Use during implementation and code review unless the project has its own rule.
+description: Use only when `coding-standards` is specifically mentioned.
+disable-model-invocation: true
 ---
 
 # Coding standards
@@ -21,9 +22,8 @@ Read only the references relevant to the task:
 
 ## Build one use case at a time
 
-Choose one thing the system must do, such as render a screen, serve a route, or run a job. Keep the
-code needed for that behavior together. Extract a part only when it has a separate responsibility;
-file length alone is not a reason to split it.
+Build one complete behavior at a time, such as a screen, route, or job. Keep its code together until
+part of it takes on a different job. File length alone is not a reason to split it.
 
 ## Share code only when it must change together
 
@@ -41,12 +41,11 @@ what actually varies.
 
 ## Keep difficult behavior in one place
 
-When code is hard to get right or bugs recur, put the behavior, rules, and guarantees needed for
-correctness in one abstraction. Callers should use it instead of reproducing it. This can be useful
-even when there is only one caller.
+When code is hard to get right or bugs recur, put its behavior, rules, and guarantees in one
+abstraction. Callers should not repeat them. The abstraction does not need multiple callers.
 
-Choose the smallest construct that fits the situation. Start with a pure function. Add state,
-lifetime, or coordination only when the behavior requires it.
+Use the simplest construct that works. Prefer a pure function. Add state or coordination only when
+needed.
 
 Delete wrappers that only rename another call. Keep a wrapper only if it changes or guarantees
 behavior.
@@ -63,13 +62,12 @@ publish(document)
 
 ## Preserve contracts across versions
 
-First determine whether a contract's producers and consumers can be updated together. If they can,
-migrate every caller and delete the old API in the same change. Do not leave compatibility wrappers
-or parallel paths. If the migration needs more than one change, mark any adapter as temporary and
-state when it can be removed.
+If a contract's producers and consumers can ship together, update every caller and delete the old
+API in the same change. Do not leave compatibility wrappers or parallel paths. If the migration
+must span several changes, mark the adapter as temporary and record the condition for removing it.
 
-Code that ships together only needs to represent current valid states. Contracts used across
-releases, and data that outlives a release, must remain compatible with older versions.
+Code released together only needs types for current valid states. Contracts used across releases,
+and data that outlives a release, must remain compatible with older versions.
 
 Prefer additive change:
 
@@ -88,8 +86,8 @@ Treat these as breaking changes unless the whole dependency graph changes togeth
 - adding a case to a closed enum or union that callers handle exhaustively;
 - changing ordering, atomicity, or failure guarantees.
 
-Serialized shape is only part of compatibility. A response with the same fields can still break a
-caller if a field changes units, interpretation, timing, or where its value comes from.
+Serialized shape is only part of compatibility. The same fields can still break a caller when their
+units, meaning, timing, or origin changes.
 
 ## Use types to exclude invalid values
 
@@ -157,9 +155,8 @@ Do not add a parallel write path without an explicit design decision.
 
 ## Keep business rules out of framework code
 
-Put business rules in functions with no framework dependencies. Pass in the data they need and
-return results without changing outside state. Let framework code parse inputs, call those
-functions, and save, send, or display their results.
+Put business rules in functions that do not depend on a framework or change external state. Let
+framework code parse inputs, call those functions, and save, send, or display their results.
 
 ## Bound work
 
@@ -168,22 +165,21 @@ Define what happens when a limit is reached.
 
 ## Define failure recovery
 
-Design state-changing operations so retries, restarts, and partial failures reach the correct
-state. Before implementing one, answer:
+A state-changing operation must recover after a retry, restart, or partial failure. Before
+implementing one, answer:
 
 - What happens if it runs twice?
 - What happens if it stops after each write?
 - How does the next run find and handle unfinished work?
 
-State whether changes are transactional, rolled back, compensated, or safely resumed. Do not make
-correctness depend on cleanup from a previous run having completed.
+Use a transaction, roll back completed work, compensate for it, or resume from recorded progress.
+Correctness must not depend on cleanup from an earlier run.
 
 ## Test behavior
 
 - Test behavior whose failure matters. Coverage is not a goal by itself.
-- Test through the same public interface that production uses when the test stays fast and
-  deterministic. Use lower-level tests only when the public interface makes the test slow or hard
-  to diagnose.
+- Test through production's public interface when the test stays fast and deterministic. Use
+  lower-level tests only when the public interface makes the test slow or hard to diagnose.
 - Assert visible results and effects, not implementation details. Derive expected results
   independently from production code.
 - Test failure cases, limits, concurrency, and recovery in proportion to risk. Fake only systems the

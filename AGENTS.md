@@ -1,2 +1,2 @@
 ## Skills
-- Only add `disable-model-invocation: true` and `policy.allow_implicit_invocation: false` when a skill must be invoked explicitly by the user. Leave both settings out when the model may invoke the skill on its own.
+- For skills that users must invoke explicitly, set `disable-model-invocation: true` in `SKILL.md` and `policy.allow_implicit_invocation: false` in `agents/openai.yaml`. Omit both settings when the model may invoke the skill.
