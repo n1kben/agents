@@ -1,6 +1,6 @@
 ---
 name: coding-standards
-description: Use only when `coding-standards` is specifically mentioned.
+description: General standards for writing and reviewing code, including API design, state, failures, testing, and maintainability. Use during implementation and code review unless the project has its own rule.
 ---
 
 # Coding standards
@@ -21,11 +21,9 @@ Read only the references relevant to the task:
 
 ## Build one use case at a time
 
-Start with a screen, route, endpoint, job, command, or another observable use case. Identify what
-starts it, what it should produce, how it can fail, and what it changes.
-
-Implement the use case end to end. Keep its code together until part of it has a separate
-responsibility. Do not split it only because the file is long.
+Choose one thing the system must do, such as render a screen, serve a route, or run a job. Keep the
+code needed for that behavior together. Extract a part only when it has a separate responsibility;
+file length alone is not a reason to split it.
 
 ## Share code only when it must change together
 
@@ -38,17 +36,17 @@ updateProfile: validate email, save profile, notify security log
 
 Share email validation. Keep the workflows separate.
 
-Do not add extension points for hypothetical uses. Build the second use first, then extract what
-actually varies.
+Do not add extension points for uses that do not exist. Build the second use first, then extract
+what actually varies.
 
-## Make abstractions earn their place
+## Keep difficult behavior in one place
 
-Start with code that is hard to get right or where bugs recur. The abstraction should make all
-decisions needed to keep that code correct. If callers still make those decisions, the abstraction
-is incomplete. Reuse is not required.
+When code is hard to get right or bugs recur, put the behavior, rules, and guarantees needed for
+correctness in one abstraction. Callers should use it instead of reproducing it. This can be useful
+even when there is only one caller.
 
-Use the smallest construct that solves the problem. Do not add state or coordination unless the
-problem requires it.
+Choose the smallest construct that fits the situation. Start with a pure function. Add state,
+lifetime, or coordination only when the behavior requires it.
 
 Delete wrappers that only rename another call. Keep a wrapper only if it changes or guarantees
 behavior.
@@ -65,10 +63,13 @@ publish(document)
 
 ## Preserve contracts across versions
 
-Design a contract around whether its producers and consumers can be updated together. When code
-ships together, a breaking change can update every caller at once, so its types only need to
-represent current valid states. Contracts used across releases, and data that outlives a release,
-must remain compatible with older versions.
+First determine whether a contract's producers and consumers can be updated together. If they can,
+migrate every caller and delete the old API in the same change. Do not leave compatibility wrappers
+or parallel paths. If the migration needs more than one change, mark any adapter as temporary and
+state when it can be removed.
+
+Code that ships together only needs to represent current valid states. Contracts used across
+releases, and data that outlives a release, must remain compatible with older versions.
 
 Prefer additive change:
 
@@ -88,7 +89,7 @@ Treat these as breaking changes unless the whole dependency graph changes togeth
 - changing ordering, atomicity, or failure guarantees.
 
 Serialized shape is only part of compatibility. A response with the same fields can still break a
-caller if a field changes units, interpretation, timing, or source of truth.
+caller if a field changes units, interpretation, timing, or where its value comes from.
 
 ## Use types to exclude invalid values
 
@@ -154,11 +155,11 @@ the boundary.
 Before adding a write to persistent state, find who owns changes to it and use that update path.
 Do not add a parallel write path without an explicit design decision.
 
-## Functional core, imperative shell
+## Keep business rules out of framework code
 
-Put business logic in pure functions with no framework dependencies. Pass in the data they need and
-return results without changing external state. Keep framework code and effects at the edges, where
-they translate inputs, call the business functions, and apply the results.
+Put business rules in functions with no framework dependencies. Pass in the data they need and
+return results without changing outside state. Let framework code parse inputs, call those
+functions, and save, send, or display their results.
 
 ## Bound work
 
@@ -167,14 +168,22 @@ Define what happens when a limit is reached.
 
 ## Define failure recovery
 
-Define how an operation handles partial failure. State whether changes are transactional, rolled
-back or compensated, and whether retries are idempotent.
+Design state-changing operations so retries, restarts, and partial failures reach the correct
+state. Before implementing one, answer:
+
+- What happens if it runs twice?
+- What happens if it stops after each write?
+- How does the next run find and handle unfinished work?
+
+State whether changes are transactional, rolled back, compensated, or safely resumed. Do not make
+correctness depend on cleanup from a previous run having completed.
 
 ## Test behavior
 
 - Test behavior whose failure matters. Coverage is not a goal by itself.
-- Test through the production interface when it stays fast and deterministic. Use lower-level tests
-  only when that interface makes the test slow or hard to diagnose.
+- Test through the same public interface that production uses when the test stays fast and
+  deterministic. Use lower-level tests only when the public interface makes the test slow or hard
+  to diagnose.
 - Assert visible results and effects, not implementation details. Derive expected results
   independently from production code.
 - Test failure cases, limits, concurrency, and recovery in proportion to risk. Fake only systems the
