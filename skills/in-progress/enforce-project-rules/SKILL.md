@@ -27,7 +27,8 @@ Apply these only when the user asks for the bundled rules.
 
 For every owned source language:
 
-- No comments of any kind, including documentation and lint-suppression comments.
+- Configure a syntax-aware lint check that rejects every comment, including documentation and
+  lint-suppression comments.
 
 Read the references that match the project:
 
@@ -35,5 +36,5 @@ Read the references that match the project:
 - [Swift](references/swift.md) for Swift source.
 - [TypeScript](references/typescript.md) for TypeScript source.
 
-Use syntax-aware checks so comment-like text inside strings or URLs remains valid. If a language
-has no linter, choose one that fits its existing toolchain.
+Comment-like text inside strings or URLs remains valid. If a language has no linter, choose one that
+fits its existing toolchain.
