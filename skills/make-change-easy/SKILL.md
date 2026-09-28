@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Make the change easy
 
-Use coding-standards and boundary-discipline throughout.
+Read and apply the **coding-standards** skill throughout.
 
 Inspect the affected code and any existing implementation of similar behavior. First look for code
 that can be deleted, combined, or simplified while preserving observable behavior. Then identify any
