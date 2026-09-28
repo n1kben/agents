@@ -8,9 +8,14 @@ disable-model-invocation: true
 
 Inspect the current state and fill in what is missing:
 
-1. If `VERIFICATION.md` does not exist, read [setup](references/setup.md) and create it.
-2. Find the `.feature` file for the current change. If it does not exist, read
-   [plan](references/plan.md) and create it.
-3. When the change is ready to exercise, read [run](references/run.md) and verify it.
+Work through these steps one at a time.
+
+1. Find `VERIFICATION.md`. If it does not exist:
+   - Read and follow [setup](references/setup.md).
+   - Stop and wait for the user to review and confirm it.
+2. Find the `.feature` file for the current change. If it does not exist:
+   - Read and follow [plan](references/plan.md).
+   - Stop and wait for the user to review and confirm it.
+3. Read and follow [run](references/run.md).
 
 Do not ask the user to choose a mode.

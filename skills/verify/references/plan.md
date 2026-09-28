@@ -2,9 +2,12 @@
 
 Write `.verification/<behavior>.feature`. Name it after the observable behavior.
 
-Write Gherkin scenarios with a starting state, actions, and observable results. Prefer a few broad
-scenarios over many narrow ones. Let one realistic flow verify several related outcomes. Add another
-scenario only when it needs a different setup, path, or failure condition.
+Write a small number of Gherkin scenarios that a user can quickly review. Usually two to five
+scenarios are enough. Give each scenario a starting state, actions, and observable results.
+
+Describe expected behavior from the user's request and decisions. Do not derive expected behavior
+from the current implementation. Keep technical edge cases in automated tests unless the user needs
+to approve them as product behavior.
 
 Match proof to the change:
 
@@ -14,5 +17,4 @@ Match proof to the change:
 
 Compilation, linting, and unrelated passing tests are supporting checks, not proof.
 
-Cover the requested behavior, important failures, boundaries, permissions, and likely regressions.
 Show the file to the user so they can correct or add scenarios.
