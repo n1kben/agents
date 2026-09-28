@@ -46,9 +46,6 @@ abstraction. Callers should not repeat them. The abstraction does not need multi
 Use the simplest construct that works. Prefer a pure function. Add state or coordination only when
 needed.
 
-Delete wrappers that only rename another call. Keep a wrapper only if it changes or guarantees
-behavior.
-
 ## Keep interfaces small
 
 Keep interfaces small and each operation specific.
@@ -177,14 +174,8 @@ Do not perform substantial work directly in reaction to external events. Accept 
 owned, bounded queue and process it at the program's pace. This keeps control flow internal and
 enables batching, backpressure, and predictable resource use.
 
-Before implementing work driven by external input, answer:
-
-- What happens when requests arrive faster than they can be processed?
-- What happens when the queue reaches its limit?
-- Who waits, retries, or loses work?
-- How does the system return to normal?
-
-Set explicit limits on queues, batches, concurrency, retries, and polling.
+Set explicit limits on queues, batches, concurrency, retries, and polling. Define what happens when
+work arrives faster than it can be processed or a limit is reached.
 
 ## Define failure recovery
 

@@ -5,13 +5,13 @@ description: Design or redesign an API by sketching the most precise and most ev
 
 # API design
 
+Read and apply the **coding-standards** skill throughout.
+
 Start from requirements, not the current API. Inspect existing callers, producers, stored data, and
 release boundaries as evidence. Then ask what you would build if the API did not exist.
 
-Identify the states, operations, and failures callers must distinguish. Parse external data into
-program types, distinguish values that cannot be exchanged safely, and handle closed variants
-exhaustively. Translate dependency errors at the boundary. Determine whether producers, consumers,
-and stored data can change atomically.
+Identify the states, operations, and failures callers must distinguish. Determine whether producers,
+consumers, and stored data can change atomically.
 
 ## Draw the extremes
 
@@ -37,9 +37,4 @@ each move, show:
 
 Pitch one move at a time. The user decides when the next gain no longer justifies its cost.
 
-Keep the common surface small. When a real exceptional caller needs more control, offer an explicit
-advanced surface instead of burdening everyone. Build the simple surface on the same core so their
-behavior cannot drift.
-
-Finish with the selected API and its migration or versioning consequences. Keep in-process types
-strict even when a wire or storage boundary must stay tolerant, unless the user chooses otherwise.
+Finish with the selected API and its migration or versioning consequences.
