@@ -1,9 +1,12 @@
 # Plan verification
 
-Write `.verification/<behavior>.feature`. Name it after the observable behavior.
+Write `verification/<behavior>.feature`. Name it after the observable behavior. This is a durable,
+reviewed behavior contract that remains available for later changes and regressions.
 
 Write a small number of Gherkin scenarios that a user can quickly review. Usually two to five
 scenarios are enough. Give each scenario a starting state, actions, and observable results.
+Starting state should be independently reproducible. State explicit dependencies when independence
+is not possible.
 
 Describe expected behavior from the user's request and decisions. Do not derive expected behavior
 from the current implementation. Keep technical edge cases in automated tests unless the user needs
