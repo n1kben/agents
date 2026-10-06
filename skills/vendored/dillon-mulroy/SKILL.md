@@ -1,6 +1,7 @@
 ---
 name: dillon-mulroy
 description: Apply Dillon Mulroy's correct-by-construction TypeScript and Effect standards when explicitly invoked by the user.
+disable-model-invocation: true
 ---
 
 # TypeScript and Effect Coding Standards
