@@ -24,6 +24,7 @@ same directory (e.g. `ln -sfn "$PWD/skills" <other-tool>/skills`).
 
 - `AGENTS.global.md` contains instructions shared across projects.
 - `AGENTS.md` contains instructions for working in this repository.
-- `skills/` contains locally authored skills.
+- `skills/<name>/` contains locally authored general-purpose skills.
+- `skills/tooling/` contains operational skills for tools that agents may invoke automatically.
 - `skills/vendored/` contains third-party and source-derived skills.
 - `skills/in-progress/` contains skills that are not ready for general use.

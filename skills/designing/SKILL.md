@@ -1,6 +1,7 @@
 ---
 name: designing
 description: Design something through back-and-forth discussion. Use when the user wants to explore and refine a design together.
+disable-model-invocation: true
 ---
 
 # Designing
