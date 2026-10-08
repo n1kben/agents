@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Kowalski · Pick UI Library
+  short_description: Choose a trusted frontend library for the task
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Kowalski · Mobile Native
+  short_description: Make web interfaces feel native on phones
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

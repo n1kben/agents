@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Kowalski · Apple Design
+  short_description: Apply Apple's interface and motion principles
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

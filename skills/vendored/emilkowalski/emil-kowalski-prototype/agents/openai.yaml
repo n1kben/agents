@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Kowalski · Prototype
+  short_description: Build and compare distinct interface variants
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

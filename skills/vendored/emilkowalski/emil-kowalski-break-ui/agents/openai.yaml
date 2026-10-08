@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Kowalski · Break UI
+  short_description: Stress-test interfaces with worst-case data
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

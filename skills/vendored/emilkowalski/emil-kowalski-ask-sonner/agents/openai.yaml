@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Kowalski · Ask Sonner
+  short_description: Set up, style, and troubleshoot Sonner toasts
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false

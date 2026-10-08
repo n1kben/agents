@@ -1,0 +1,8 @@
+interface:
+  display_name: Emil Kowalski · Animate Expo
+  short_description: Build polished React Native and Expo animations
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: false
