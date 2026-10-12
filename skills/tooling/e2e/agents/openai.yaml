@@ -1,0 +1,8 @@
+interface:
+  display_name: E2E
+  short_description: Build and run agentic end-to-end and visual regression tests
+
+policy:
+  products:
+    - CODEX
+  allow_implicit_invocation: true

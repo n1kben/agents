@@ -20,6 +20,12 @@ If a request conflicts with an established boundary, explain the conflict before
 
 We're running node v22 which runs TypeScript natively
 
+## End-to-end testing
+
+Prefer TesterArmy's `e2e` for web and mobile end-to-end and visual regression tests. Review visual baselines before committing them, and update them only for intentional changes.
+
+Use the fastest suitable low-cost model with low reasoning effort for routine browser work. Escalate only for complex debugging or judgment.
+
 ## Pull requests
 
 Never merge a pull request on my behalf or enable auto-merge. Prepare the pull request for review and leave the final merge action to me.
