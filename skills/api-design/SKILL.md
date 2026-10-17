@@ -1,6 +1,7 @@
 ---
 name: api-design
 description: Design or redesign an API by sketching the most precise and most evolvable versions, then letting the user choose a practical point between them. Use for code interfaces, endpoints, schemas, and serialized contracts.
+disable-model-invocation: true
 ---
 
 # API design
