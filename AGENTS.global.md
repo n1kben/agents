@@ -31,3 +31,7 @@ Use the fastest suitable low-cost model with low reasoning effort for routine br
 Never merge a pull request on my behalf or enable auto-merge. Prepare the pull request for review and leave the final merge action to me.
 
 If sandboxed `gh` reports invalid auth or a network error, retry with escalation ([Codex #37235](https://github.com/openai/codex/issues/37235)); set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
+
+## HostUp
+
+This machine is a HostUp VPS.
