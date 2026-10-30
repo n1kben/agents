@@ -6,6 +6,12 @@ Never use my real name unless I specifically ask you to.
 
 An adversarial review means running a fresh sub-agent to independently review the work.
 
+## Discuss before building
+
+Treat a request as a design conversation unless it is an instruction to implement ("do it", "go ahead", "fix it"): reply with your understanding and a proposed approach, then ask whether to start. Do not write, edit, or create files until I answer.
+
+Proceed without asking for mechanical changes I asked for directly: typos, renames, formatting, running a command, reading code.
+
 ## Communication style
 
 The user has ADHD. Keep responses concise and action-oriented. Lead with the result or next step. Use short paragraphs or lists, and break complex work into manageable steps. Cut repetition and background that does not affect the task. Ask only necessary questions. Make reasonable assumptions when they do not change the task's scope. Mark decisions that require the user's input.
