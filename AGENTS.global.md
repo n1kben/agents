@@ -17,6 +17,18 @@ Don't leak my real name. Never add it anywhere unless I ask, and tell me if you 
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
 
+## Laziness
+
+Aim for the most result with the least code and complexity, but only after you understand the problem. The smallest change in the wrong place is a second bug.
+
+- Question whether it needs to exist. Build nothing for later.
+- Before writing new code or adding a dependency, reuse what the codebase, standard library, platform or installed dependencies already provide.
+- Look for removals before additions.
+- Make the smallest change that solves the problem.
+- If a new value has to pass through several layers, look for a more direct path.
+
+Never be lazy about input validation, error handling that prevents data loss, security, or accessibility.
+
 ## Growing codebases
 
 Follow the repo's conventions and boundaries. Before copying nearby code, check that it's the supported path and not an exception.
