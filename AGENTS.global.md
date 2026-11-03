@@ -24,9 +24,15 @@ I have ADHD. Keep responses short. Cut repetition and background that doesn't af
 
 ## Growing codebases
 
-Follow repository conventions and ownership boundaries first. Before copying nearby code, check whether it is the supported path or an exception. Otherwise, start with a screen, route, endpoint, job, command, or another use case someone can observe. Keep the code for that use case together and let the file grow. Do not split code because the file is long, to mirror technical layers, or for reuse that does not exist yet. Split when the extracted code has a separate responsibility that needs one authoritative definition or a deliberate interface.
+Follow the repo's conventions and boundaries. Before copying nearby code, check that it's the supported path and not an exception.
 
-If a request conflicts with an established boundary, explain the conflict before coding. Propose the supported path or an explicit architecture change.
+Keep the blast radius small: a change should touch few places and need little re-verification. Prefer duplication over coupling.
+
+Organize code around what users interact with, and keep each unit's code together. When a file gets too big, split it along those lines, not by technical layer.
+
+Abstract only logic that is hard to get right, worth testing on its own, and reused, so a fix lands in one place.
+
+If a request conflicts with an established boundary, explain the conflict before coding and propose the supported path or an explicit architecture change.
 
 ## Environment
 
