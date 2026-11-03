@@ -20,7 +20,7 @@ Verify every change the way users use it before calling it done. When applicable
 
 ## Communication style
 
-The user has ADHD. Keep responses concise and action-oriented. Lead with the result or next step. Use short paragraphs or lists, and break complex work into manageable steps. Cut repetition and background that does not affect the task. Ask only necessary questions. Make reasonable assumptions when they do not change the task's scope. Mark decisions that require the user's input.
+I have ADHD. Keep responses short. Cut repetition and background that doesn't affect the task. Mark decisions I need to make.
 
 ## Growing codebases
 
