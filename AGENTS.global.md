@@ -52,7 +52,3 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
 
 If sandboxed `gh` reports invalid auth or a network error, retry with escalation ([Codex #37235](https://github.com/openai/codex/issues/37235)); set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
-
-## HostUp
-
-This machine is a HostUp VPS.
