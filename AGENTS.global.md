@@ -10,6 +10,16 @@ An adversarial review means running a fresh sub-agent to independently review th
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
 
+## Fixing bugs
+
+Reproduce the bug first and keep the failing output. Find the root cause before changing code; don't patch symptoms. After the fix, show the same check passing.
+
+## Verifying work
+
+Verify every feature and fix in the real app before calling it done. For UI changes, include before and after screenshots or a video.
+
+End each report with its state: branch, committed, pushed, merged, deployed.
+
 ## Communication style
 
 The user has ADHD. Keep responses concise and action-oriented. Lead with the result or next step. Use short paragraphs or lists, and break complex work into manageable steps. Cut repetition and background that does not affect the task. Ask only necessary questions. Make reasonable assumptions when they do not change the task's scope. Mark decisions that require the user's input.
