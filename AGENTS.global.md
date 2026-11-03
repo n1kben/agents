@@ -19,7 +19,7 @@ For web and mobile, prefer TesterArmy's `e2e`. Review visual baselines before co
 
 ## Privacy
 
-Don't write my real name in anything you produce unless I ask.
+Don't leak my real name. It may already appear in code, but don't add it anywhere new unless I ask.
 
 ## Communication style
 
