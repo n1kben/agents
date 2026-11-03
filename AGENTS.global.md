@@ -2,9 +2,8 @@ Never use my real name unless I specifically ask you to.
 
 ## Terminology
 
-"pi" means pi.dev, the agent harness.
-
-An adversarial review means running a fresh sub-agent to independently review the work.
+- "pi" means pi.dev, the agent harness.
+- adversarial review means running a fresh sub-agent to independently review the work.
 
 ## Discuss before building
 
@@ -14,9 +13,11 @@ If the task is clear, start. Ask first if it's ambiguous, needs a product or des
 
 Reproduce the bug first, then find the root cause before changing code. Don't patch symptoms.
 
-## Verifying work
+## Proving the work
 
-Verify every change the way users use it before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
+Prove every change works the way users use it before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
+
+For web and mobile, prefer TesterArmy's `e2e`. Review visual baselines before committing them, and update them only for intentional changes. Use a fast, low-cost model with low reasoning effort for routine browser work.
 
 ## Communication style
 
@@ -32,25 +33,23 @@ Organize code around what users interact with, and keep each unit's code togethe
 
 Abstract only logic that is hard to get right, worth testing on its own, and reused, so a fix lands in one place.
 
-If a request conflicts with an established boundary, explain the conflict before coding and propose the supported path or an explicit architecture change.
-
 ## Environment
 
-We're running node v22 which runs TypeScript natively
-
-## End-to-end testing
-
-Prefer TesterArmy's `e2e` for web and mobile end-to-end and visual regression tests. Review visual baselines before committing them, and update them only for intentional changes.
-
-Use the fastest suitable low-cost model with low reasoning effort for routine browser work. Escalate only for complex debugging or judgment.
+- Node v22, which runs TypeScript natively.
+- gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
 
 ## Pull requests
 
-Never merge a pull request on my behalf or enable auto-merge. Prepare the pull request for review and leave the final merge action to me.
+A pull request contains, in order:
 
-When reading PR review comments (especially from bots), validate each claim against the code before fixing it. Push back when the claim is wrong.
+- Why: the problem or goal behind the change.
+- References: issues, threads, docs, related PRs.
+- What: a short summary of the change.
+- Proof: images or video that show it works.
 
-We have gh 2.101, so `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video. Use it for before and after evidence.
+Merge only after I approve that specific pull request. Never enable auto-merge.
+
+Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
 
 If sandboxed `gh` reports invalid auth or a network error, retry with escalation ([Codex #37235](https://github.com/openai/codex/issues/37235)); set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
 
