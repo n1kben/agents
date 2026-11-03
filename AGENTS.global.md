@@ -12,13 +12,11 @@ If the task is clear, start. Ask first if it's ambiguous, needs a product or des
 
 ## Fixing bugs
 
-Reproduce the bug first and keep the failing output. Find the root cause before changing code; don't patch symptoms. After the fix, show the same check passing.
+Reproduce the bug first, then find the root cause before changing code. Don't patch symptoms.
 
 ## Verifying work
 
-Verify every feature and fix in the real app before calling it done. For UI changes, include before and after screenshots or a video.
-
-End each report with its state: branch, committed, pushed, merged, deployed.
+Verify every feature and fix in the real app before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
 
 ## Communication style
 
