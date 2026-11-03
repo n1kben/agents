@@ -10,7 +10,6 @@ Don't leak my real name. Never add it anywhere unless I ask, and tell me if you 
 
 - pi: pi.dev, the agent harness.
 - Adversarial review: a fresh sub-agent independently reviews the work.
-- Hill climb: iterate against a reference until the result matches it.
 - Native: the platform's own components, not lookalikes.
 
 ## Discuss before building
@@ -42,6 +41,10 @@ Abstract only logic that is hard to get right, worth testing on its own, and reu
 ## Fixing bugs
 
 Reproduce the bug first, then find the root cause before changing code. Don't patch symptoms.
+
+## Hill climbing
+
+Pick one metric, a target, and a repeatable way to measure it, then record the baseline. Make one change at a time and measure before and after. Keep the change only if it clearly improves the metric and nothing breaks; otherwise revert it. Push past the first plateau, and stop when the target is met.
 
 ## Proving the work
 
