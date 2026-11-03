@@ -1,5 +1,3 @@
-Never use my real name unless I specifically ask you to.
-
 ## Terminology
 
 - "pi" means pi.dev, the agent harness.
@@ -18,6 +16,10 @@ Reproduce the bug first, then find the root cause before changing code. Don't pa
 Prove every change works the way users use it before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
 
 For web and mobile, prefer TesterArmy's `e2e`. Review visual baselines before committing them, and update them only for intentional changes. Use a fast, low-cost model with low reasoning effort for routine browser work.
+
+## Privacy
+
+Don't write my real name in files, commits, pull requests, or anything else you produce, unless I ask.
 
 ## Communication style
 
