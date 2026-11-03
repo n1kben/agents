@@ -16,7 +16,7 @@ Reproduce the bug first, then find the root cause before changing code. Don't pa
 
 ## Verifying work
 
-Verify every feature and fix in the real app before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
+Verify every change before calling it done, in the real app when there is one. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
 
 ## Communication style
 
