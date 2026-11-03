@@ -8,9 +8,7 @@ An adversarial review means running a fresh sub-agent to independently review th
 
 ## Discuss before building
 
-Treat a request as a design conversation unless it is an instruction to implement ("do it", "go ahead", "fix it"): reply with your understanding and a proposed approach, then ask whether to start. Do not write, edit, or create files until I answer.
-
-Proceed without asking for mechanical changes I asked for directly: typos, renames, formatting, running a command, reading code.
+If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
 
 ## Communication style
 
