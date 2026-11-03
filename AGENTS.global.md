@@ -8,8 +8,10 @@ Don't leak my real name. Never add it anywhere unless I ask, and tell me if you 
 
 ## Terminology
 
-- "pi" means pi.dev, the agent harness.
-- adversarial review means running a fresh sub-agent to independently review the work.
+- pi: pi.dev, the agent harness.
+- Adversarial review: a fresh sub-agent independently reviews the work.
+- Hill climb: iterate against a reference until the result matches it.
+- Native: the platform's own components, not lookalikes.
 
 ## Discuss before building
 
