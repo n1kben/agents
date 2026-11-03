@@ -1,3 +1,11 @@
+## Communication style
+
+I have ADHD. Keep responses short. Cut repetition and background that doesn't affect the task. Mark decisions I need to make.
+
+## Privacy
+
+Don't leak my real name. Never add it anywhere unless I ask, and tell me if you find it in code or anything about to be committed or published.
+
 ## Terminology
 
 - "pi" means pi.dev, the agent harness.
@@ -6,24 +14,6 @@
 ## Discuss before building
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
-
-## Fixing bugs
-
-Reproduce the bug first, then find the root cause before changing code. Don't patch symptoms.
-
-## Proving the work
-
-Prove every change works the way users use it before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
-
-For web and mobile, prefer TesterArmy's `e2e`. Review visual baselines before committing them, and update them only for intentional changes. Use a fast, low-cost model with low reasoning effort for routine browser work.
-
-## Privacy
-
-Don't leak my real name. Never add it anywhere unless I ask, and tell me if you find it in code or anything about to be committed or published.
-
-## Communication style
-
-I have ADHD. Keep responses short. Cut repetition and background that doesn't affect the task. Mark decisions I need to make.
 
 ## Growing codebases
 
@@ -35,11 +25,15 @@ Organize code around what users interact with, and keep each unit's code togethe
 
 Abstract only logic that is hard to get right, worth testing on its own, and reused, so a fix lands in one place.
 
-## Environment
+## Fixing bugs
 
-- Node v22, which runs TypeScript natively.
-- gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
-- Set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
+Reproduce the bug first, then find the root cause before changing code. Don't patch symptoms.
+
+## Proving the work
+
+Prove every change works the way users use it before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
+
+For web and mobile, prefer TesterArmy's `e2e`. Review visual baselines before committing them, and update them only for intentional changes. Use a fast, low-cost model with low reasoning effort for routine browser work.
 
 ## Pull requests
 
@@ -53,6 +47,12 @@ A pull request contains, in order:
 Merge only after I approve that specific pull request. Never enable auto-merge.
 
 Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
+
+## Environment
+
+- Node v22, which runs TypeScript natively.
+- gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
+- Set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
 
 ## Codex
 
