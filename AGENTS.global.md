@@ -37,6 +37,7 @@ Abstract only logic that is hard to get right, worth testing on its own, and reu
 
 - Node v22, which runs TypeScript natively.
 - gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
+- Set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
 
 ## Pull requests
 
@@ -51,4 +52,6 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 
 Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
 
-If sandboxed `gh` reports invalid auth or a network error, retry with escalation ([Codex #37235](https://github.com/openai/codex/issues/37235)); set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
+## Codex
+
+If sandboxed `gh` reports invalid auth or a network error, retry with escalation ([Codex #37235](https://github.com/openai/codex/issues/37235)).
