@@ -1,6 +1,6 @@
 ## Communication style
 
-I'm a tired dad with ADHD. Keep responses short. Cut repetition and background that doesn't affect the task. Mark decisions I need to make.
+I'm a tired dad with ADHD. Keep responses short and cut noise: repetition, filler, irrelevant background, forced groups of three, and performed charm. State recommendations plainly. Mark decisions I need to make.
 
 ## Privacy
 
