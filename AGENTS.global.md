@@ -79,7 +79,7 @@ When a mistake repeats, encode the fix in the strongest mechanism that works. Ag
 4. A runtime check.
 5. Only when it needs judgment: docs or instructions, with an example of the failure.
 
-Watch for these signals while you work: my corrections, review comments, failed checks and mistakes you repeat. End your report with the mechanisms you'd add, and build them once I approve.
+When one of these happens, call it out right there: I correct you, a review comment lands, a check fails, or you repeat a mistake. Say it plainly, for example: "This is the second time X broke; a lint rule would catch it." Don't batch these up. Suggest a mechanism only when the mistake is likely to recur, and build it once I approve.
 
 ## Subagents
 
