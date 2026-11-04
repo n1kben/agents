@@ -1,6 +1,6 @@
 ## Communication style
 
-I have ADHD. Keep responses short. Cut repetition and background that doesn't affect the task. Mark decisions I need to make.
+I have ADHD and I'm a tired dad. Keep responses short. Cut repetition and background that doesn't affect the task. Mark decisions I need to make.
 
 ## Privacy
 
