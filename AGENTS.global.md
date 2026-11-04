@@ -79,6 +79,8 @@ When a mistake repeats, encode the fix in the strongest mechanism that works. Ag
 4. A runtime check.
 5. Only when it needs judgment: docs or instructions, with an example of the failure.
 
+Watch for these signals while you work: my corrections, review comments, failed checks and mistakes you repeat. End your report with the mechanisms you'd add, and build them once I approve.
+
 ## Subagents
 
 Fork subagents by default, so they share context and hit the prompt cache. For anything adversarial, use a fresh subagent instead, so it judges the work independently.
