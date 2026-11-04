@@ -116,7 +116,6 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 - pi is pi.dev, the agent harness.
 - Node v22, which runs TypeScript natively.
 - gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
-- Set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
 
 ## Codex
 
