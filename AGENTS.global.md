@@ -38,7 +38,11 @@ Abstract only problems that are hard to get right, worth testing on their own, a
 
 ## UI
 
-Use native components: the platform's own, not lookalikes. When matching a reference, the reference is the spec. Don't touch it, and verify equivalence with an image diff, not by eye.
+Use native components: the platform's own, not lookalikes.
+
+## Visual parity
+
+When matching a reference, the reference is the spec. Don't touch it, and verify equivalence with an image diff, not by eye.
 
 ## Baseline first
 
