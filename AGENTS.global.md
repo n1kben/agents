@@ -6,22 +6,18 @@ I have ADHD. Keep responses short. Cut repetition and background that doesn't af
 
 Don't leak my real name. Never add it anywhere unless I ask, and tell me if you find it in code or anything about to be committed or published.
 
-## Terminology
-
-- pi: pi.dev, the agent harness.
-- Adversarial review: a fresh sub-agent independently reviews the work.
-- Native: the platform's own components, not lookalikes.
-
 ## Discuss before building
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
+
+Investigating is read-only: answer with evidence and make no changes.
 
 ## Laziness
 
 Aim for the most result with the least code and complexity, but only after you understand the problem. The smallest change in the wrong place is a second bug.
 
 - Question whether it needs to exist. Build nothing for later.
-- Before writing new code or adding a dependency, reuse what the codebase, standard library, platform or installed dependencies already provide.
+- Before writing new code or adding a dependency, reuse what the codebase, standard library, platform or installed dependencies already provide. Native means the platform's own components, not lookalikes.
 - Look for removals before additions.
 - Make the smallest change that solves the problem.
 - If a new value has to pass through several layers, look for a more direct path.
@@ -38,9 +34,13 @@ Organize code around what users interact with, such as routes, screens or featur
 
 Abstract only problems that are hard to get right, worth testing on their own, and reused, so a fix lands in one place.
 
-## Fixing bugs
+## Baseline first
 
-Reproduce the bug first. This is non-negotiable. Then find the root cause before changing code. Don't patch symptoms.
+Before changing anything, capture what you'll compare against. Never edit the baseline to make a change pass.
+
+- Bug: reproduce it. This is non-negotiable. Then find the root cause; don't patch symptoms.
+- Refactor: pin current behavior with a test or snapshot. Types and lint are not a pin.
+- Visual match: compare against the reference with an image diff, not by eye.
 
 ## Hill climbing
 
@@ -48,7 +48,7 @@ Pick one metric, a target, and a repeatable way to measure it, then record the b
 
 ## Proving the work
 
-Prove every change works the way users use it before calling it done. When applicable, show before and after with screenshots or a video.
+Prove every change works the way users use it before calling it done. For an adversarial review, a fresh sub-agent independently reviews the work. When applicable, show before and after with screenshots or a video.
 
 To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
 
@@ -67,6 +67,7 @@ Validate each claim in a review comment against the code before fixing it. Push 
 
 ## Environment
 
+- pi is pi.dev, the agent harness.
 - Node v22, which runs TypeScript natively.
 - gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
 - Set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
