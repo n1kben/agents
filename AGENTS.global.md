@@ -36,8 +36,6 @@ Abstract only problems that are hard to get right, worth testing on their own, a
 
 When replacing an API, migrate every caller and delete the old one in the same change.
 
-When a mistake repeats, turn it into a lint rule or check instead of another instruction.
-
 ## Boundaries
 
 Parse external data into types where it enters the system, and trust those types inside. Make illegal states unrepresentable.
@@ -70,6 +68,10 @@ Pick one metric and a target, record the baseline, and run experiments until the
 Prove every change works the way users use it before calling it done. Tests call code the way its users do and check behavior, not implementation. When applicable, show before and after with evidence such as screenshots, video, or output from logs, commands and manual checks against the running system.
 
 To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
+
+## Encode lessons in structure
+
+When a mistake repeats, turn it into a lint rule or check instead of another instruction.
 
 ## Subagents
 
