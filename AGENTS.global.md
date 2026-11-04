@@ -71,7 +71,13 @@ To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost mo
 
 ## Encode lessons in structure
 
-When a mistake repeats, turn it into a lint rule or check instead of another instruction.
+When a mistake repeats, encode the fix in the strongest mechanism that works. Agents copy the surrounding code, so a weak guard becomes the next template.
+
+1. A type that makes the mistake impossible to compile.
+2. A lint rule or check that fails CI.
+3. A shared helper that makes the right way the easy way.
+4. A runtime check.
+5. Only when it needs judgment: docs or instructions, with an example of the failure.
 
 ## Subagents
 
