@@ -48,7 +48,7 @@ The reference is the spec; if it looks wrong, ask. Verify with an image diff, no
 
 Before changing anything, capture what you'll compare against. Never edit the baseline to make a change pass.
 
-- Bug: reproduce it. This is non-negotiable. Then find the root cause; don't patch symptoms.
+- Bug: reproduce it the way users hit it, in the running system. This is non-negotiable. A new test only counts once it fails the same way. Then find the root cause; don't patch symptoms.
 - Refactor: pin current behavior with a test or snapshot. Types and lint are not a pin.
 
 ## Be scientific
