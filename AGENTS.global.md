@@ -61,9 +61,11 @@ Prove every change works the way users use it before calling it done. When appli
 
 To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
 
-## Reviews
+## Subagents
 
-An adversarial review means a fresh sub-agent independently reviews the work.
+Fork subagents by default, so they share context and hit the prompt cache. For an adversarial review, use a fresh subagent instead, so it judges the work independently.
+
+## Reviews
 
 Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
 
