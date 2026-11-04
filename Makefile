@@ -13,7 +13,7 @@ help: ## Show available targets
 	@grep -E '^[a-z][a-zA-Z-]*:.*##' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
 
 install: uninstall ## Link skills and global instructions into Claude Code and Codex
-	@mkdir -p $(HOME)/.claude $(HOME)/.codex
+	@mkdir -p $(HOME)/.claude $(HOME)/.claude_personal $(HOME)/.codex
 	@for target in $(SKILL_DIRS); do \
 		mkdir -p "$$target"; \
 		find "$(DIR)/skills" -name SKILL.md | while read -r file; do \
@@ -28,6 +28,7 @@ install: uninstall ## Link skills and global instructions into Claude Code and C
 		echo "$$target: $$(find "$$target" -maxdepth 1 -type l | wc -l | tr -d ' ') skills"; \
 	done
 	ln -sfn "$(DIR)/AGENTS.global.md" "$(HOME)/.claude/CLAUDE.md"
+	ln -sfn "$(DIR)/AGENTS.global.md" "$(HOME)/.claude_personal/CLAUDE.md"
 	ln -sfn "$(DIR)/AGENTS.global.md" "$(HOME)/.codex/AGENTS.md"
 
 uninstall: ## Remove only the links that point into this repo
@@ -36,6 +37,6 @@ uninstall: ## Remove only the links that point into this repo
 		elif [ -d "$$target" ]; then find "$$target" -maxdepth 1 -type l -lname "$(DIR)/skills/*" -delete; \
 		fi; \
 	done
-	@for f in "$(HOME)/.claude/CLAUDE.md" "$(HOME)/.codex/AGENTS.md"; do \
+	@for f in "$(HOME)/.claude/CLAUDE.md" "$(HOME)/.claude_personal/CLAUDE.md" "$(HOME)/.codex/AGENTS.md"; do \
 		if [ -L "$$f" ]; then rm "$$f"; fi; \
 	done

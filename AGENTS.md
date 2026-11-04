@@ -8,3 +8,7 @@
 Delegate mechanical, tool-heavy work—such as Playwright browser interaction, UI walkthroughs, screenshot collection, log inspection, repository searches, and routine verification—to a sub-agent using a fast, lightweight model with low reasoning effort by default.
 
 Provide a concrete task, relevant context, expected outcome, and evidence to return. Use a more capable model when the work requires complex debugging, architectural judgment, security analysis, or nuanced visual evaluation.
+
+## Claude Code
+
+We use Claude Code 2.1.317, which loads `AGENTS.md` when a project has no `CLAUDE.md`. Don't add `CLAUDE.md` symlinks to projects.

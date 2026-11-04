@@ -10,6 +10,15 @@ Don't leak my real name. Never add it anywhere unless I ask, and tell me if you 
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
 
+## Working autonomously
+
+When I ask you to work autonomously, don't wait for me:
+
+- Define done as a check you can run, and keep going until it passes. Stop early only at a real dead end, and say what blocked you.
+- Make reversible choices yourself. For product or design calls, pick a sensible default.
+- Still stop before anything irreversible or outward-facing.
+- In the final report, list each choice and default, and how to reverse it.
+
 ## Investigating
 
 Investigating is read-only: answer with evidence and make no changes. To explain how something works, start where it's triggered and follow the calls to the code that does the work. Read it; don't guess from names or docs. Mention anything surprising, and say what you couldn't trace. To explain why code is the way it is, read its history back to where it started, including commit messages and old versions of deleted docs. Say "because" only when you can quote the reason; mark the rest as guesses. Point out decisions that were later reversed.
@@ -68,6 +77,8 @@ Pick one metric and a target, record the baseline, and run experiments until the
 Prove every change works the way users use it before calling it done. Tests call code the way its users do and check behavior, not implementation. When applicable, show before and after with evidence such as screenshots, video, or output from logs, commands and manual checks against the running system.
 
 To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
+
+Run apps on my machine in the background without taking focus.
 
 ## Encode lessons in structure
 
