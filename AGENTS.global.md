@@ -34,13 +34,13 @@ Follow the repo's conventions and boundaries. Before copying nearby code, check 
 
 Keep the blast radius small: a change should touch few places and need little re-verification. Prefer duplication over coupling.
 
-Organize code around what users interact with, and keep each unit's code together. When a file gets too big, split it along those lines, not by technical layer.
+Organize code around what users interact with, such as routes, screens or features, and keep each unit's code together. When a file gets too big, split it along those lines, not by technical layer.
 
-Abstract only logic that is hard to get right, worth testing on its own, and reused, so a fix lands in one place.
+Abstract only problems that are hard to get right, worth testing on their own, and reused, so a fix lands in one place.
 
 ## Fixing bugs
 
-Reproduce the bug first, then find the root cause before changing code. Don't patch symptoms.
+Reproduce the bug first. This is non-negotiable. Then find the root cause before changing code. Don't patch symptoms.
 
 ## Hill climbing
 
@@ -48,9 +48,9 @@ Pick one metric, a target, and a repeatable way to measure it, then record the b
 
 ## Proving the work
 
-Prove every change works the way users use it before calling it done. When applicable, show before and after: the failing and passing check for a bug, screenshots or a video for UI changes.
+Prove every change works the way users use it before calling it done. When applicable, show before and after with screenshots or a video.
 
-For web and mobile, prefer TesterArmy's `e2e`. Review visual baselines before committing them, and update them only for intentional changes. Use a fast, low-cost model with low reasoning effort for routine browser work.
+To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
 
 ## Pull requests
 
