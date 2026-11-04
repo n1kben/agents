@@ -38,11 +38,11 @@ Abstract only problems that are hard to get right, worth testing on their own, a
 
 ## UI
 
-Use native components: the platform's own, not lookalikes.
+Use native components the way the platform intends: pick the component built for the job, keep its default behavior, and follow the platform's design guidelines. Don't restyle or wrap a component to imitate a different one.
 
 ## Visual parity
 
-When matching a reference, the reference is the spec. Don't touch it, and verify equivalence with an image diff, not by eye.
+The reference is the spec. Never edit it; if it looks wrong, ask. Verify with an image diff, not by eye. Any difference is a failure.
 
 ## Baseline first
 
