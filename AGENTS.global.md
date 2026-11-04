@@ -12,7 +12,7 @@ If the task is clear, start. Ask first if it's ambiguous, needs a product or des
 
 ## Investigating
 
-Investigating is read-only: answer with evidence and make no changes.
+Investigating is read-only: answer with evidence and make no changes. To explain how something works, start where it's triggered and follow the calls to the code that does the work. Read it; don't guess from names or docs. Mention anything surprising, and say what you couldn't trace. To explain why code is the way it is, read its history back to where it started, including commit messages and old versions of deleted docs. Say "because" only when you can quote the reason; mark the rest as guesses. Point out decisions that were later reversed.
 
 ## Laziness
 
