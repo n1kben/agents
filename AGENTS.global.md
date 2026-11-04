@@ -42,7 +42,7 @@ Use native components the way the platform intends: pick the component built for
 
 ## Visual parity
 
-The reference is the spec. Never edit it; if it looks wrong, ask. Verify with an image diff, not by eye. Any difference is a failure.
+The reference is the spec; if it looks wrong, ask. Verify with an image diff, not by eye. Any difference is a failure.
 
 ## Baseline first
 
@@ -51,9 +51,13 @@ Before changing anything, capture what you'll compare against. Never edit the ba
 - Bug: reproduce it. This is non-negotiable. Then find the root cause; don't patch symptoms.
 - Refactor: pin current behavior with a test or snapshot. Types and lint are not a pin.
 
+## Be scientific
+
+Treat each change as an experiment: state the hypothesis, make the change, and measure it. Ship only what the evidence supports. A change that "might help" is a hypothesis, not a fix. When evidence refutes a hypothesis, revert what it motivated.
+
 ## Hill climbing
 
-Pick one metric and a target, and record the baseline. Make one change at a time: keep it if the metric improves and nothing breaks, otherwise revert it. Don't stop until the target is met.
+Pick one metric and a target, record the baseline, and run experiments until the target is met.
 
 ## Proving the work
 
@@ -63,7 +67,7 @@ To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost mo
 
 ## Subagents
 
-Fork subagents by default, so they share context and hit the prompt cache. For an adversarial review, use a fresh subagent instead, so it judges the work independently.
+Fork subagents by default, so they share context and hit the prompt cache. For anything adversarial, use a fresh subagent instead, so it judges the work independently.
 
 ## Reviews
 
