@@ -16,15 +16,13 @@ Investigating is read-only: answer with evidence and make no changes.
 
 ## Laziness
 
-Aim for the most result with the least code and complexity, but only after you understand the problem. The smallest change in the wrong place is a second bug.
+Aim for the most result with the least code and complexity. Be lazy about the solution, never about understanding the problem.
 
-- Question whether it needs to exist. Build nothing for later.
-- Before writing new code or adding a dependency, reuse what the codebase, standard library, platform or installed dependencies already provide.
-- Look for removals before additions.
-- Make the smallest change that solves the problem.
-- If a new value has to pass through several layers, look for a more direct path.
+- Skip what nobody needs yet. Don't scaffold for later.
+- Before writing new code, reuse what the codebase, standard library, platform or installed dependencies already provide, but only as-is. Don't add a flag or mode to existing code to fit a new case; write a separate version instead.
+- Prefer deletion: look for removals before additions.
 
-Never be lazy about input validation, error handling that prevents data loss, security, or accessibility.
+Never simplify away input validation, data-loss protection, security, or accessibility.
 
 ## Growing codebases
 
@@ -35,6 +33,14 @@ Keep the blast radius small: a change should touch few places and need little re
 Organize code around what users interact with, such as routes, screens or features, and keep each unit's code together. When a file gets too big, split it along those lines, not by technical layer.
 
 Abstract only problems that are hard to get right, worth testing on their own, and reused, so a fix lands in one place.
+
+When replacing an API, migrate every caller and delete the old one in the same change.
+
+When a mistake repeats, turn it into a lint rule or check instead of another instruction.
+
+## Boundaries
+
+Parse external data into types where it enters the system, and trust those types inside. Make illegal states unrepresentable.
 
 ## UI
 
@@ -61,7 +67,7 @@ Pick one metric and a target, record the baseline, and run experiments until the
 
 ## Proving the work
 
-Prove every change works the way users use it before calling it done. When applicable, show before and after with evidence such as screenshots, video, or output from logs, commands and manual checks against the running system.
+Prove every change works the way users use it before calling it done. Tests call code the way its users do and check behavior, not implementation. When applicable, show before and after with evidence such as screenshots, video, or output from logs, commands and manual checks against the running system.
 
 To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
 
