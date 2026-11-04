@@ -96,7 +96,7 @@ A pull request contains, in order:
 - Why: the problem or goal behind the change.
 - References: issues, threads, docs, related PRs.
 - What: a short summary of the change.
-- Proof: images or video that show it works.
+- Proof: before and after evidence that it works, such as screenshots, video, or output from logs, commands and manual checks.
 
 Merge only after I approve that specific pull request. Never enable auto-merge.
 
