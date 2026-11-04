@@ -3,4 +3,4 @@ interface:
   short_description: "Resolve uncertainty with a small, bounded investigation"
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

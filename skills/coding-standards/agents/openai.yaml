@@ -1,3 +1,6 @@
 interface:
   display_name: "Coding Standards"
   short_description: "Apply coding standards during implementation and review"
+
+policy:
+  allow_implicit_invocation: false
