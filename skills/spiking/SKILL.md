@@ -1,7 +1,6 @@
 ---
 name: spiking
 description: Use when a decision is blocked by uncertainty that can be resolved through a small test or inspection, or when the user asks to spike something.
-disable-model-invocation: true
 ---
 
 # Spiking

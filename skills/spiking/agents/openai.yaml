@@ -1,6 +1,3 @@
 interface:
   display_name: "Spiking"
   short_description: "Resolve uncertainty with a small, bounded investigation"
-
-policy:
-  allow_implicit_invocation: false
