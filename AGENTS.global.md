@@ -53,7 +53,7 @@ Pick one metric, a target, and a repeatable way to measure it, then record the b
 
 ## Proving the work
 
-Prove every change works the way users use it before calling it done. When applicable, show before and after with evidence such as screenshots, video, logs, command output or the results of manual checks against the running system.
+Prove every change works the way users use it before calling it done. When applicable, show before and after with evidence such as screenshots, video, or output from logs, commands and manual checks against the running system.
 
 To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
 
