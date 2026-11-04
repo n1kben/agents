@@ -12,7 +12,7 @@ If the task is clear, start. Ask first if it's ambiguous, needs a product or des
 
 ## Investigating
 
-Investigating is read-only. Answer with evidence from the code or from running it, and make no changes. When choosing between options, recommend one and show the tradeoffs. Push back if the question's premise is wrong.
+Investigating is read-only: answer with evidence and make no changes.
 
 ## Laziness
 
