@@ -1,21 +1,18 @@
 ## Communication style
 
-I'm a tired dad with ADHD. Keep responses short and cut noise: repetition, filler, irrelevant background, forced groups of three, and performed charm. State recommendations plainly. End with where things stand: what's done, what isn't, and which decisions need me.
+I'm a tired dad with ADHD. Keep responses short and cut noise: repetition, filler, irrelevant background, forced groups of three, and performed charm. State recommendations plainly. End with where things stand: what's done, what isn't, and which decisions need me. For code, include what's committed, pushed, merged and deployed.
 
 ## Privacy
 
 Don't leak my real name. Never add it anywhere unless I ask, and tell me if you find it in code or anything about to be committed or published.
 
-## Terminology
-
-- pi: pi.dev, the agent harness.
-- Adversarial review: a fresh sub-agent independently reviews the work.
-- Native: the platform's own components, not lookalikes.
-- Investigate: read-only; answer with evidence, no changes.
-
 ## Discuss before building
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
+
+## Investigating
+
+Investigating is read-only. Answer with evidence from the code or from running it, and make no changes. When choosing between options, recommend one and show the tradeoffs. Push back if the question's premise is wrong.
 
 ## Laziness
 
@@ -39,13 +36,16 @@ Organize code around what users interact with, such as routes, screens or featur
 
 Abstract only problems that are hard to get right, worth testing on their own, and reused, so a fix lands in one place.
 
+## UI
+
+Use native components: the platform's own, not lookalikes. Match a reference with an image diff, not by eye.
+
 ## Baseline first
 
 Before changing anything, capture what you'll compare against. Never edit the baseline to make a change pass.
 
 - Bug: reproduce it. This is non-negotiable. Then find the root cause; don't patch symptoms.
 - Refactor: pin current behavior with a test or snapshot. Types and lint are not a pin.
-- Visual match: compare against the reference with an image diff, not by eye.
 
 ## Hill climbing
 
@@ -56,6 +56,12 @@ Pick one metric, a target, and a repeatable way to measure it, then record the b
 Prove every change works the way users use it before calling it done. When applicable, show before and after with screenshots or a video.
 
 To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
+
+## Reviews
+
+An adversarial review means a fresh sub-agent independently reviews the work.
+
+Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
 
 ## Pull requests
 
@@ -68,10 +74,9 @@ A pull request contains, in order:
 
 Merge only after I approve that specific pull request. Never enable auto-merge.
 
-Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
-
 ## Environment
 
+- pi is pi.dev, the agent harness.
 - Node v22, which runs TypeScript natively.
 - gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
 - Set `GH_CONFIG_DIR` when a worktree needs a different GitHub account.
