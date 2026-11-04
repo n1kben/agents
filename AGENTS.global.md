@@ -49,7 +49,7 @@ Before changing anything, capture what you'll compare against. Never edit the ba
 
 ## Hill climbing
 
-Pick one metric, a target, and a repeatable way to measure it, then record the baseline. Make one change at a time and measure before and after. Keep the change only if it clearly improves the metric and nothing breaks; otherwise revert it. Push past the first plateau, and stop when the target is met.
+Pick one metric and a target, and record the baseline. Make one change at a time: keep it if the metric improves and nothing breaks, otherwise revert it. Don't stop until the target is met.
 
 ## Proving the work
 
