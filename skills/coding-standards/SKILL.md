@@ -1,6 +1,7 @@
 ---
 name: coding-standards
 description: Use only when `coding-standards` is specifically mentioned.
+disable-model-invocation: true
 ---
 
 # Coding standards

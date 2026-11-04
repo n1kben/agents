@@ -1,6 +1,7 @@
 ---
 name: prototyping
 description: Prototype several UI options before implementation. Use when the user requests UI without specifying its design, or asks to compare options.
+disable-model-invocation: true
 ---
 
 # Prototyping

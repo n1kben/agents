@@ -1,6 +1,7 @@
 ---
 name: debugging
 description: Reproduce a reported bug, identify and fix its root cause, and prove the failure is gone. Use for debugging or requests to diagnose and fix a defect.
+disable-model-invocation: true
 ---
 
 # Debugging
