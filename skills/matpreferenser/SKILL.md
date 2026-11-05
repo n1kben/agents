@@ -1,6 +1,7 @@
 ---
 name: matpreferenser
 description: Matcha varor på en inköpslista mot våra sparade produktval och logga vad som läggs i varukorgen. Använd när du fyller en varukorg i valfri butik. Genomför inte köpet.
+disable-model-invocation: true
 ---
 
 # Matpreferenser
