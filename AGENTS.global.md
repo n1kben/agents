@@ -10,27 +10,6 @@ Don't leak my real name. Never add it anywhere unless I ask, and tell me if you 
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
 
-## Working autonomously
-
-When I ask you to work autonomously, don't wait for me:
-
-- Define done as a check you can run, and keep going until it passes. Stop early only at a real dead end, and say what blocked you.
-- Make reversible choices yourself. For product or design calls, pick a sensible default.
-- Still stop before anything irreversible or outward-facing.
-- In the final report, list each choice and default, and how to reverse it.
-
-## Investigating
-
-Investigating is read-only: answer with evidence and make no changes.
-
-### How
-
-Start where it's triggered and follow the calls to the code that does the work. Read it; don't guess from names or docs. Mention anything surprising, and say what you couldn't trace.
-
-### Why
-
-Read its history back to where it started, including commit messages and old versions of deleted docs. Say "because" only when you can quote the reason; mark the rest as guesses. Point out decisions that were later reversed.
-
 ## Laziness
 
 Aim for the most result with the least code and complexity. Be lazy about the solution, never about understanding the problem.
@@ -53,38 +32,11 @@ Abstract only problems that are hard to get right, worth testing on their own, a
 
 When replacing an API, migrate every caller and delete the old one in the same change.
 
-## Boundaries
-
-Parse external data into types where it enters the system, and trust those types inside. Make illegal states unrepresentable.
-
 ## UI
 
 Use native components the way the platform intends: pick the component built for the job, keep its default behavior, and follow the platform's design guidelines. Don't restyle or wrap a component to imitate a different one.
 
-## Visual parity
-
-The reference is the spec; if it looks wrong, ask. Verify with an image diff, not by eye. Any difference is a failure.
-
-## Baseline first
-
-Before changing anything, capture what you'll compare against. Never edit the baseline to make a change pass.
-
-- Bug: reproduce it the way users hit it, in the running system. This is non-negotiable. Then find the root cause; don't patch symptoms.
-- Refactor: pin current behavior with a test or snapshot. Types and lint are not a pin.
-
-## Be scientific
-
-Treat each change as an experiment: state the hypothesis, make the change, and measure it. Ship only what the evidence supports. A change that "might help" is a hypothesis, not a fix. When evidence refutes a hypothesis, revert what it motivated.
-
-## Hill climbing
-
-Pick one metric and a target, record the baseline, and run experiments until the target is met.
-
-## Proving the work
-
-Prove every change works the way users use it before calling it done. Tests call code the way its users do and check behavior, not implementation. When applicable, show before and after with evidence such as screenshots, video, or output from logs, commands and manual checks against the running system.
-
-To drive web and mobile apps, prefer TesterArmy's `e2e`. Use a fast, low-cost model with low reasoning effort for routine driving.
+## [LETS MAKE A NEW TITLE HERE OR MOVE IT]
 
 Run apps on my machine in the background without taking focus.
 
@@ -110,13 +62,6 @@ Validate each claim in a review comment against the code before fixing it. Push 
 
 ## Pull requests
 
-A pull request contains, in order:
-
-- Why: the problem or goal behind the change.
-- References: issues, threads, docs, related PRs.
-- What: a short summary of the change.
-- Proof: before and after evidence that it works, such as screenshots, video, or output from logs, commands and manual checks.
-
 Merge only after I approve that specific pull request. Never enable auto-merge.
 
 ## Environment
@@ -124,7 +69,3 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 - pi is pi.dev, the agent harness.
 - Node v22, which runs TypeScript natively.
 - gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
-
-## Codex
-
-If sandboxed `gh` reports invalid auth or a network error, retry with escalation ([Codex #37235](https://github.com/openai/codex/issues/37235)).
