@@ -11,7 +11,7 @@ A lot of people think experts are good because they know the answer. Usually the
 
 Take someone who fixes bugs for a living. They do not read the code and patch whatever looks wrong. They reproduce the bug first. They find the root cause, not just the line that crashed. They make the whole class of bug impossible instead of handling this one case. They show the before and after. They add a regression test. Each step is there because skipping it is how bugs come back.
 
-Every kind of task has a method like this. Security reviews, performance work, migrations, data analysis. You do not know ahead of time which one this is, so start there.
+Your task will need different steps. What carries over is that each step guards against a specific way of being wrong.
 
 ## Write the playbook
 

@@ -1,6 +1,6 @@
 ---
 name: get-it-done
-description: Use only when `get-it-done` is specifically mentioned.
+description: Use only when "get it done" is specifically mentioned.
 ---
 
 # Get it done
