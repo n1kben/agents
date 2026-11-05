@@ -25,7 +25,7 @@ If you are truly blocked, stop and say what blocks you, what you tried, and what
 
 **This is the most important part.**
 
-Run the real thing the way its users will. Passing tests are nice, but what happens when someone clicks the button? With an empty list? With bad input? Find out, and show it: a screenshot, a recording, before and after output, a command the user can rerun.
+Run the real thing the way its users will. Passing tests are nice, but what happens when someone clicks the button? With an empty list? With bad input? Find out, and show it with a screenshot, a recording, before and after output, or a command the user can rerun.
 
 It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, ask a fresh subagent to try to break it.
 
@@ -33,4 +33,4 @@ If you cannot *demonstrate* that something works, it is not done. Say so.
 
 ## Hand off
 
-Start with the demo. Go through the done list, giving each item its evidence or marking it not done. Then name the decisions the user may want to revisit, why you made them, and how to undo them, plus anything that needs a human.
+Start with the demo. Go through the done list, giving each item its evidence or marking it not done. Then name the decisions the user may want to revisit, why you made them, and how to undo them. Finally, point out anything that still needs a human.

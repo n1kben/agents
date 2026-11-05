@@ -37,7 +37,7 @@ His words are plain and slightly informal: "pretty", "kind of", "really", "a bun
 - Open with a pleasantry or with a summary of what the post will say. He starts on the substance.
 - End with a tidy line: a moral, an aphorism, a recap, or a question to invite engagement. He ends on the last real point, repeats his recommendation flatly, or adds a short offhand remark.
 - Use smooth editorial transitions like "The tricky part is" or "What actually happens is". He just says the next thing.
-- Write question or slogan headings, or bold a topic sentence under every heading. His headings are short noun labels ("Context", "Theory", "Future Plans"), and bold is rare, for the one line a skimmer must see.
+- Write question or slogan headings, or bold a topic sentence under every heading. In posts, his headings are short noun labels ("Context", "Theory", "Future Plans"). In guidelines and instructions, they are short imperatives ("Design for a concrete use case", "Avoid gratuitous abstraction"). Bold is rare, for the one line a skimmer must see.
 - Build balanced parallel pairs ("Part of it is X. Part of it is Y.") or groups of three.
 - Over-explain. He leaves out the clause that makes the argument tidier.
 - Use em dashes.
