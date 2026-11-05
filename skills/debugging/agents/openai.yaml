@@ -1,6 +1,3 @@
 interface:
   display_name: "Debugging"
   short_description: "Reproduce, root-cause, fix, and verify bugs"
-
-policy:
-  allow_implicit_invocation: false

@@ -67,14 +67,7 @@ The reference is the spec; if it looks wrong, ask. Verify with an image diff, no
 
 ## Baseline first
 
-Before changing anything, capture what you'll compare against. Never edit the baseline to make a change pass.
-
-- Bug: reproduce it the way users hit it, in the running system. This is non-negotiable. Then find the root cause; don't patch symptoms.
-- Refactor: pin current behavior with a test or snapshot. Types and lint are not a pin.
-
-## Be scientific
-
-Treat each change as an experiment: state the hypothesis, make the change, and measure it. Ship only what the evidence supports. A change that "might help" is a hypothesis, not a fix. When evidence refutes a hypothesis, revert what it motivated.
+Before changing anything, capture what you'll compare against. Never edit the baseline to make a change pass. For a refactor, pin current behavior with a test or snapshot. Types and lint are not a pin.
 
 ## Hill climbing
 
