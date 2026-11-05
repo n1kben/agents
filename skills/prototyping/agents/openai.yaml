@@ -1,6 +1,3 @@
 interface:
   display_name: "Prototyping"
-  short_description: "Prototype UI options before implementation"
-
-policy:
-  allow_implicit_invocation: false
+  short_description: "Prototype several design options before building"
