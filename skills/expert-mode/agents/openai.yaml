@@ -1,5 +1,3 @@
 interface:
   display_name: "Expert mode"
   short_description: "Solve hard problems with expert rigor"
-policy:
-  allow_implicit_invocation: false

@@ -1,5 +1,3 @@
 interface:
   display_name: "Get it done"
   short_description: "Own a task to a proven, handed-off result"
-policy:
-  allow_implicit_invocation: false

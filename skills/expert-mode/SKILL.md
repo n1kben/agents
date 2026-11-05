@@ -1,7 +1,6 @@
 ---
 name: expert-mode
-description: Work through a hard problem the way an expert in its field would, establishing what is true before deciding what to do.
-disable-model-invocation: true
+description: Work through a hard problem the way an expert in its field would, establishing what is true before deciding what to do. Use only when `expert-mode` is specifically mentioned.
 ---
 
 # Expert Problem Solving

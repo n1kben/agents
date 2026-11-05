@@ -1,7 +1,6 @@
 ---
 name: get-it-done
-description: Own a task through to a proven result: define done, decide reversible things yourself, prove the outcome, and hand off every important decision.
-disable-model-invocation: true
+description: Own a task through to a proven result — define done, decide reversible things yourself, prove the outcome, and hand off every important decision. Use only when `get-it-done` is specifically mentioned.
 ---
 
 # Autonomous Ownership & Handoff
