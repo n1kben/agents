@@ -36,22 +36,6 @@ When replacing an API, migrate every caller and delete the old one in the same c
 
 Use native components the way the platform intends: pick the component built for the job, keep its default behavior, and follow the platform's design guidelines. Don't restyle or wrap a component to imitate a different one.
 
-## [LETS MAKE A NEW TITLE HERE OR MOVE IT]
-
-Run apps on my machine in the background without taking focus.
-
-## Encode lessons in structure
-
-When a mistake repeats, encode the fix in the strongest mechanism that works. Agents copy the surrounding code, so a weak guard becomes the next template.
-
-1. A type that makes the mistake impossible to compile.
-2. A lint rule or check that fails CI.
-3. A shared helper that makes the right way the easy way.
-4. A runtime check.
-5. Only when it needs judgment: docs or instructions, with an example of the failure.
-
-When one of these happens, call it out right there: I correct you, a review comment lands, a check fails, or you repeat a mistake. Say it plainly, for example: "This is the second time X broke; a lint rule would catch it." Don't batch these up. Suggest a mechanism only when the mistake is likely to recur, and build it once I approve.
-
 ## Subagents
 
 Fork subagents by default, so they share context and hit the prompt cache. For anything adversarial, use a fresh subagent instead, so it judges the work independently.
@@ -66,6 +50,7 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 
 ## Environment
 
+- Run apps on my machine in the background without taking focus.
 - pi is pi.dev, the agent harness.
 - Node v22, which runs TypeScript natively.
 - gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
