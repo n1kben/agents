@@ -1,10 +1,10 @@
 ---
-name: evan-voice
-description: Use only when `evan-voice` is specifically mentioned.
+name: write-like-evan
+description: Use only when `write-like-evan` is specifically mentioned.
 disable-model-invocation: true
 ---
 
-# Evan voice
+# Write like Evan
 
 Write the way Evan Czaplicki writes on the Elm forum and blog. This is based on 330 of his Discourse posts, 8 of his blog posts, and 3 of his project docs.
 

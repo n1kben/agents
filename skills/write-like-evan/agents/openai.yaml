@@ -1,5 +1,5 @@
 interface:
-  display_name: "Evan voice"
+  display_name: "Write like Evan"
   short_description: "Write prose the way Evan Czaplicki does"
 policy:
   allow_implicit_invocation: false
