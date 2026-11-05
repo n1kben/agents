@@ -1,42 +1,38 @@
 ---
 name: expert-mode
-description: Expert playbook. Use when a hard problem needs solving the way the best people in its field would, with evidence for every claim.
+description: Work through a hard problem the way an expert in its field would, establishing what is true before deciding what to do.
 disable-model-invocation: true
 ---
 
-# Expert mode
+# Expert Problem Solving
 
-Work the way the best people in the field would. Establish what's true before deciding what to do.
+Approach difficult problems as an exceptional expert in the relevant field would. Be rigorous, scientific, systematic and thorough. Prioritize correctness and quality over speed or superficial progress.
 
-## Plan
+## Method
 
-Before investigating, write a short plan:
+1. **Plan like an expert, in writing.** Before investigating, show a short plan:
+   - **Field and method:** the discipline and the standard method an exceptional practitioner would use (for example, a threat model for a security review, or a minimal reproduction for a bug).
+   - **Scope:** every part of the system involved, including the parts outside the code you were pointed at, such as linked PRs, configuration, other repos and the docs behind the problem.
+   - **Questions:** what must be true or false for the answer to hold.
+   - **Evidence:** for each question, the tool or source that can settle it.
+   - **Done:** what result would let you stop.
 
-- The field, and the method its best people would use, like a threat model for a security review.
-- Everything involved, including what's outside the code you were pointed at: linked PRs, config, other repos, the background docs.
-- The questions that decide the answer, and the tool or source that can settle each one.
-- What result lets you stop.
+2. **Understand before acting.** Establish the objective, context and constraints. Investigate the underlying problem rather than blindly accepting its framing. Identify root causes, dependencies, risks and relevant unknowns.
 
-## Investigate
+3. **Reason from evidence, and keep a claim ledger.** Every claim the answer depends on gets a tag:
+   - **Verified:** with its evidence, such as a `file:line`, command output, a test result or a cited doc.
+   - **Inferred:** with the reasoning and what would confirm it.
+   - **Unknown:** with how to find out.
 
-Question the framing; the problem you were given may not be the real one. Read the source; don't guess from names or docs. Follow edge cases and failure modes, and look for a better approach than the first one that works.
+   An unknown that changes the answer must be investigated, not handed to the user, unless only the user can answer it. Then say so and ask. Show the tags inline in the final answer, for example `[verified: auth.go:79]`.
 
-Investigate independent areas, like separate repos or services, in parallel with forked subagents. Each one owns questions from the plan and returns tagged claims. Do small areas yourself.
+4. **Explore thoroughly.** Consider alternatives, challenge plausible conclusions and investigate important edge cases and failure modes. Don't settle for the first plausible solution when better approaches may exist. When the plan has independent areas, such as separate repos, services or open questions, investigate them in parallel with forked subagents. Each one owns its questions from the plan and returns ledger-tagged claims. Do small areas yourself.
 
-## Tag every claim
+5. **Validate conclusions with a fresh verifier.** Before reporting, start a fresh subagent (not a fork) and give it:
+   - the ledger's claims, without your reasoning,
+   - where the evidence lives (files, PRs, commands), and
+   - the task of refuting each claim.
 
-Tag each claim the answer rests on, inline:
+   Fix or drop every claim it overturns, and recheck any disputed claim yourself. In the answer, say what the verifier changed. Communicate the uncertainty that remains honestly.
 
-- `[verified: auth.go:79]` with the source, output or test that proves it.
-- `[guess]` with the reasoning and what would confirm it.
-- `[unknown]` with how to find out.
-
-If an unknown changes the answer, find out. Ask only when the user is the only one who can answer.
-
-## Verify
-
-Before reporting, give a fresh subagent, not a fork, the claims and where the evidence lives, but not your reasoning. Ask it to refute each claim. Fix or drop what it overturns, and recheck disputes yourself.
-
-## Report
-
-Report the answer, the tagged claims, what the verifier changed, and what's still uncertain.
+**Principle:** Think like an expert. Investigate like a scientist. Establish what is true before deciding what to do.
