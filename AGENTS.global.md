@@ -48,6 +48,8 @@ Validate each claim in a review comment against the code before fixing it. Push 
 
 Merge only after I approve that specific pull request. Never enable auto-merge.
 
+`reviewDecision: REVIEW_REQUIRED` doesn't mean I need a reviewer: I may be exempt from the repo's review rule. Check `current_user_can_bypass` in `gh api repos/<owner>/<repo>/rulesets/<id>` before saying a review blocks the merge.
+
 ## Environment
 
 - Run apps on my machine in the background without taking focus.
