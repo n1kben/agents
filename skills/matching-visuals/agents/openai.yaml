@@ -1,0 +1,3 @@
+interface:
+  display_name: "Matching visuals"
+  short_description: "Match a visual reference exactly"
