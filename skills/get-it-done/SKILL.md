@@ -1,44 +1,36 @@
 ---
 name: get-it-done
-description: Own a task through to a proven result — define done, decide reversible things yourself, prove the outcome, and hand off every important decision. Use only when `get-it-done` is specifically mentioned.
+description: Use only when `get-it-done` is specifically mentioned.
 ---
 
-# Autonomous Ownership & Handoff
+# Get it done
 
-Take ownership of delivering the intended outcome. Work like a capable, independent colleague responsible for the result, not someone who merely executes instructions or reports activity.
+**The goal is a result the user can trust without checking it themselves.**
 
-## 1. Own Completion
+It is tempting to call a task done when the code is written and the tests pass. That leaves the hard part for the user: running it and figuring out whether it actually works. Take that part off their hands.
 
-- Write down what done means before acting, as a short checklist of observable results.
-- Carry the assignment through until completion criteria are met.
-- Stop early only when genuinely blocked. Explain the obstacle, what you tried and what is needed to proceed.
-- Anticipate necessary work that may not have been explicitly specified.
+## Decide what done means
 
-## 2. Exercise Judgment
+Before starting, write down what done means as things someone could see happen. "The export button downloads a CSV with every row" can be checked. "Export works" cannot.
 
-- Make reversible decisions independently. For product and design choices, select sensible defaults rather than unnecessarily interrupting the user.
-- Investigate alternatives and resolve obstacles yourself.
-- Stop and seek authorization before irreversible, consequential or outward-facing actions.
-- Preserve the user's ability to review and change decisions.
+If you are doing this right, you will know how to demo the result before you change anything.
 
-## 3. Maintain Continuity
+## Keep going
 
-For prolonged tasks, preserve objectives, decisions, findings, progress and next steps in durable records. Revisit them after interruptions or context loss. Avoid repeating completed work.
+Make reversible decisions yourself, including product and design defaults. Ask before anything that cannot be undone, like deleting data, pushing, deploying, or sending messages.
 
-## 4. Demonstrate and Prove
+If you are truly blocked, stop and say what blocks you, what you tried, and what you need. On long tasks, keep notes somewhere durable so an interruption does not mean starting over.
 
-- Verify results from the perspective of their intended users. Test actual behavior and outcomes, not merely internal implementation or convenient proxies.
-- Where applicable, validate complete, real-world workflows rather than relying solely on isolated checks or simulations.
-- Demonstrate the result using appropriate evidence: before/after comparisons, screenshots, videos, observations, measurements, logs or reproducible checks.
-- Make important results easy to inspect and independently verify.
-- Never claim more than the evidence establishes.
+## Demo it
 
-## 5. Hand Off Professionally
+**This is the most important part.**
 
-- Explain what was accomplished and how it was validated.
-- Go through the done checklist item by item, giving each one its proof or marking it not done.
-- Surface consequential decisions, including design choices, interfaces, architecture, coupling and trade-offs.
-- Report important decisions and defaults, why they were chosen and how to reverse them.
-- Clearly disclose incomplete work, limitations, unresolved issues and anything requiring human judgment.
+Run the real thing the way its users will. Passing tests are nice, but what happens when someone clicks the button? With an empty list? With bad input? Find out, and show it: a screenshot, a recording, before and after output, a command the user can rerun.
 
-**Principle:** Own the outcome. Decide independently within safe boundaries. Demonstrate the result. Make every important decision visible.
+It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, ask a fresh subagent to try to break it.
+
+If you cannot *demonstrate* that something works, it is not done. Say so.
+
+## Hand off
+
+Start with the demo. Go through the done list, giving each item its evidence or marking it not done. Then name the decisions the user may want to revisit, why you made them, and how to undo them, plus anything that needs a human.
