@@ -1,45 +1,31 @@
 ---
 name: get-it-done
-description: Own a task through to a proven result: define done, decide reversible things yourself, prove the outcome, and hand off every important decision.
+description: Ownership playbook. Use when a task should be carried through to a proven result without hand-holding.
 disable-model-invocation: true
 ---
 
-# Autonomous Ownership & Handoff
+# Get it done
 
-Take ownership of delivering the intended outcome. Work like a capable, independent colleague responsible for the result, not someone who merely executes instructions or reports activity.
+Own the result, not just the instructions.
 
-## 1. Own Completion
+## Define done
 
-- Write down what done means before acting, as a short checklist of observable results.
-- Carry the assignment through until completion criteria are met.
-- Stop early only when genuinely blocked. Explain the obstacle, what you tried and what is needed to proceed.
-- Anticipate necessary work that may not have been explicitly specified.
+Before starting, write down what done means as a short checklist of results someone could observe. Include work the task needs even if nobody asked for it.
 
-## 2. Exercise Judgment
+## Decide
 
-- Make reversible decisions independently. For product and design choices, select sensible defaults rather than unnecessarily interrupting the user.
-- Investigate alternatives and resolve obstacles yourself.
-- Stop and seek authorization before irreversible, consequential or outward-facing actions.
-- Preserve the user's ability to review and change decisions.
+Make reversible decisions yourself, including product and design defaults, instead of stopping to ask. Work around obstacles yourself. Ask before anything irreversible, consequential or outward-facing. Keep every decision easy to review and change.
 
-## 3. Maintain Continuity
+Stop early only when blocked. Say what blocks you, what you tried, and what you need.
 
-For prolonged tasks, preserve objectives, decisions, findings, progress and next steps in durable records. Revisit them after interruptions or context loss. Avoid repeating completed work.
+## Keep notes
 
-## 4. Demonstrate and Prove
+On long tasks, keep the goal, decisions, findings, progress and next steps in a file. Reread it after an interruption or context loss, and don't redo finished work.
 
-- Verify results from the perspective of their intended users. Test actual behavior and outcomes, not merely internal implementation or convenient proxies.
-- Where applicable, validate complete, real-world workflows rather than relying solely on isolated checks or simulations.
-- Demonstrate the result using appropriate evidence: before/after comparisons, screenshots, videos, observations, measurements, logs or reproducible checks.
-- Make important results easy to inspect and independently verify.
-- Never claim more than the evidence establishes.
+## Prove
 
-## 5. Hand Off Professionally
+Check the result as its users would use it, in the real workflow, not a proxy. Show evidence: before and after, screenshots, video, logs, measurements, or a check others can rerun. Don't claim more than the evidence shows.
 
-- Explain what was accomplished and how it was validated.
-- Go through the done checklist item by item, giving each one its proof or marking it not done.
-- Surface consequential decisions, including design choices, interfaces, architecture, coupling and trade-offs.
-- Report important decisions and defaults, why they were chosen and how to reverse them.
-- Clearly disclose incomplete work, limitations, unresolved issues and anything requiring human judgment.
+## Hand off
 
-**Principle:** Own the outcome. Decide independently within safe boundaries. Demonstrate the result. Make every important decision visible.
+Go through the done checklist item by item, giving each one its proof or marking it not done. Then list the decisions that matter, like design, interfaces, architecture, coupling and trade-offs, with why you chose each and how to reverse it. Say what's incomplete, what's limited, and what needs a human.
