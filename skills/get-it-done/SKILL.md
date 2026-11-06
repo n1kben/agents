@@ -27,7 +27,7 @@ It is easy to look at your own work and decide it is fine. When the result canno
 
 ## Open a PR
 
-Push a branch and open a pull request. Then wait for CI to finish (it is easy to walk away while it is still running) and fix whatever fails. Pending is not green.
+Push a branch and open a pull request. Attach the proof from the demo (the screenshots and videos you took) so reviewers can see it working without running anything. With `gh`, both `pr create` and `pr edit` take `--attach <file>` for images and video. That needs gh 2.101 or later. Then wait for CI to finish (it is easy to walk away while it is still running) and fix whatever fails. Pending is not green.
 
 ## Hand off
 
