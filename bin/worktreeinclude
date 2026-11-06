@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Copy gitignored files listed in the main checkout's .worktreeinclude into a
+# worktree, the way Claude Code does. A file is copied only when it matches a
+# .worktreeinclude pattern (gitignore syntax) and git ignores it. Existing
+# files in the worktree are never overwritten.
+#
+# Usage: worktreeinclude [worktree]
+# Run it from inside a new worktree, or pass its path. Works as a setup hook
+# in any tool that creates git worktrees.
+set -eu
+
+dest=$(git -C "${1:-.}" rev-parse --show-toplevel)
+src=$(cd "$dest" && cd "$(git rev-parse --git-common-dir)/.." && pwd)
+
+[ -f "$src/.worktreeinclude" ] || exit 0
+[ "$(cd "$src" && pwd -P)" = "$(cd "$dest" && pwd -P)" ] && exit 0
+
+cd "$src"
+git ls-files -z --others --ignored --directory --exclude-from=.worktreeinclude |
+	git check-ignore -z --stdin |
+	while IFS= read -r -d '' path; do
+		path=${path%/}
+		[ -e "$dest/$path" ] && continue
+		mkdir -p "$dest/$(dirname "$path")"
+		# -c clones on APFS, so large folders copy instantly.
+		cp -Rc "$path" "$dest/$path" 2>/dev/null || cp -R "$path" "$dest/$path"
+		echo "copied $path"
+	done
