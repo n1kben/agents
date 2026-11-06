@@ -13,23 +13,25 @@ It is tempting to call a task done when the code is written and the tests pass. 
 
 Before starting, write down what done means as things someone could see happen. "The export button downloads a CSV with every row" can be checked. "Export works" cannot.
 
-If you are doing this right, you will know how to demo the result before you change anything.
+Make the smallest change that gets there. Fix the case that actually happened. (Ideas for other cases can go in the handoff.)
 
 ## Keep going
 
 Make reversible decisions yourself, including product and design defaults. Ask before anything that cannot be undone, like deleting data, pushing, deploying, or sending messages.
 
-If you are truly blocked, stop and say what blocks you, what you tried, and what you need. On long tasks, keep notes somewhere durable so an interruption does not mean starting over.
+If you are truly blocked, stop and say what blocks you, what you tried, and what you need.
 
 ## Demo it
 
 **This is the most important part.**
 
-Run the real thing the way its users will. Passing tests are nice, but what happens when someone clicks the button? With an empty list? With bad input? Find out, and show it with a screenshot, a recording, before and after output, or a command the user can rerun.
+Show that the real thing works the way its users will use it, including the cases they are likely to hit. Passing tests help, but the proof is the real thing working.
 
-It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, ask a fresh subagent to try to break it.
+It only counts if you saw it work yourself, in this session, after your last change.
 
-If you cannot *demonstrate* that something works, it is not done. Say so.
+It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, get it checked by someone else. (A fresh subagent works.)
+
+Call something done only once you have *demonstrated* it. Mark the rest as not done.
 
 ## Hand off
 
