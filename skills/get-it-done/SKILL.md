@@ -19,7 +19,7 @@ If you are truly blocked, stop and say what blocks you, what you tried, and what
 
 **This is the most important part.**
 
-Show that the real thing works, use it like the user would. Passing tests help, but the proof is the real thing working.
+Show that the real thing works: use it like the user would. Passing tests help, but the proof is the real thing working.
 
 It only counts if you saw it work yourself, in this session, after your last change.
 
@@ -29,4 +29,4 @@ Call something done only once you have demonstrated it. Mark the rest as not don
 
 ## Hand off
 
-Start with the demo. Go through the done list, and what is not done. Then name the decisions the user may want to revisit, why you made them, and how to undo them. Finally, point out anything that still needs a human.
+Start with the demo. Go through the done list and what is not done. Then name the decisions the user may want to revisit, why you made them, and how to undo them. Finally, point out anything that still needs a human.
