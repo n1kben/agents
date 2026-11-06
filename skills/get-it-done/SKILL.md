@@ -23,6 +23,8 @@ Show that the real thing works: use it like the user would. Passing tests help, 
 
 It only counts if you saw it work yourself, in this session, after your last change.
 
+Capture the most telling proof you can get. A video beats a screenshot, and a screenshot beats terminal output.
+
 It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, have an unbiased subagent try to break it.
 
 ## Open a PR
