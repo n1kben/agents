@@ -19,14 +19,14 @@ If you are truly blocked, stop and say what blocks you, what you tried, and what
 
 **This is the most important part.**
 
-Show that the real thing works the way its users will use it, including the cases they are likely to hit. Passing tests help, but the proof is the real thing working.
+Show that the real thing works, use it like the user would. Passing tests help, but the proof is the real thing working.
 
 It only counts if you saw it work yourself, in this session, after your last change.
 
-It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, get it checked by a fresh subagent.
+It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, have an unbiased subagent try to break it.
 
-Call something done only once you have _demonstrated_ it. Mark the rest as not done.
+Call something done only once you have demonstrated it. Mark the rest as not done.
 
 ## Hand off
 
-Start with the demo. Go through the done list, giving each item its evidence or marking it not done. Then name the decisions the user may want to revisit, why you made them, and how to undo them. Finally, point out anything that still needs a human.
+Start with the demo. Go through the done list, and what is not done. Then name the decisions the user may want to revisit, why you made them, and how to undo them. Finally, point out anything that still needs a human.
