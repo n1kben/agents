@@ -11,7 +11,7 @@ It is tempting to call a task done when the code is written and the tests pass. 
 
 ## Keep going
 
-Make reversible decisions yourself, including product and design defaults. Ask before anything that cannot be undone, like deleting data, pushing, deploying, or sending messages.
+Make reversible decisions yourself, including product and design defaults. Ask before anything that cannot be undone, like deleting data, merging, deploying, or sending messages.
 
 If you are truly blocked, stop and say what blocks you, what you tried, and what you need.
 
@@ -25,7 +25,9 @@ It only counts if you saw it work yourself, in this session, after your last cha
 
 It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, have an unbiased subagent try to break it.
 
-Call something done only once you have demonstrated it. Mark the rest as not done.
+## Open a PR
+
+Push a branch and open a pull request. Then wait for CI to finish (it is easy to walk away while it is still running) and fix whatever fails. Pending is not green.
 
 ## Hand off
 
