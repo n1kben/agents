@@ -5,24 +5,22 @@ description: Prototyping playbook. Use before building something whose design is
 
 # Prototyping
 
-If you're unsure whether to prototype, do it. Showing options costs less than building the wrong one.
+If you are unsure whether to prototype, do it. Showing a few options is cheaper than building the wrong one.
 
-## Propose
+## Plan
 
-Name the decision the prototypes will settle. If there's no decision to make, build it instead.
+Name the decision the prototypes will settle. No decision? Just build it.
 
-Start from what its users need to do, not the current design, and ask what you'd build if it didn't exist. Check what already exists for constraints, and look at prior art when the direction is open.
+Start from what people need to do, not from the current design. What would you build if it did not exist yet? Check what already exists for constraints, and look at prior art when the direction is open.
 
-Name the main tradeoff in the decision. Plan one option at each extreme, pushed further than you'd normally go, and one in between. Make them wildly different, not variations on one shape. At least one should be something the user didn't ask for.
-
-Describe each option in a line and wait for the user's approval before building.
+Find the main tradeoff. Plan one option at each extreme (pushed further than feels comfortable) and one in between. They should be really different, not three takes on the same shape. At least one should be something the user did not ask for.
 
 ## Build options
 
-Build only enough of each option to compare them. Keep the prototypes throwaway and separate from the real thing. Make the options easy to switch between.
+Build just enough of each to compare them. Keep them throwaway, separate from the real code, and easy to switch between.
 
 ## Show the options
 
-Try each option the way its users would. Fix anything that prevents a fair comparison.
+Try each one the way people would actually use it, and fix anything that makes the comparison unfair.
 
-Show each option, how to try it, and what it makes easy or hard. Recommend one and wait for the user's choice.
+Show each option, how to try it, and what it makes easy or hard. Recommend one and wait for the user to pick.

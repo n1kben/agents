@@ -5,20 +5,18 @@ description: Spiking playbook. Use before asking the user a question that runnin
 
 # Spiking
 
-If running something can answer a question, don't ask the user; propose a spike. Ask the user only about what they want.
+If running something can answer the question, do not ask the user. Run a spike. (Only ask them about what they want.)
 
-## Propose the spike
+## Plan the spike
 
-State the question it will answer, what you will test or inspect, why the result matters, and when you will stop.
+Write down the question, what you will test, why the answer matters, and when you will stop.
 
-Use the smallest test that represents the real case. Ask a question only when missing information prevents a meaningful test.
-
-Wait for the user's approval before starting.
+Use the smallest test that still looks like the real case. Ask something only if a missing fact would make the test meaningless.
 
 ## Run and report
 
-Run every spike in a background agent. Give the agent a local worktree with the state it needs. If that is impractical, use the current checkout only when the spike will not conflict with ongoing work.
+Run every spike in a background agent, in its own local worktree with the state it needs. If that is impractical, the current checkout is fine as long as it will not collide with ongoing work.
 
-Spike code is throwaway. Don't polish it or ship it.
+Spike code is throwaway. Do not polish it or ship it.
 
-Inspect the evidence yourself. Report what you learned, what remains uncertain, and what you recommend doing next. Stop when the question is answered or the agreed boundary is reached.
+Check the evidence yourself. Then say what you learned, what is still uncertain, and what you would do next. Stop when the question is answered or you hit the boundary you set.

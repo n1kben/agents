@@ -21,7 +21,11 @@ Write down the steps someone who does this every day would follow, and what goes
 
 Do every step, and check each explanation before you settle on it. If you learn something that changes the plan, change the playbook (and say why).
 
-A claim only counts when you can point at the file, the output, or the test that shows it.
+Memory is not a source. An expert looks things up (the docs for the exact version, the source, the issue tracker, other people who hit the same thing), so do that at each step.
+
+If reading does not settle it, spike it and trust the result.
+
+A claim only counts when you can point at the file, the output, the test, or the source that shows it.
 
 ## Show the work
 
