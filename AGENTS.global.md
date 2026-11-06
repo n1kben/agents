@@ -53,6 +53,7 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 ## Environment
 
 - Run apps on my machine in the background without taking focus.
+- Run browsers headless when testing.
 - pi is pi.dev, the agent harness.
 - Node v22, which runs TypeScript natively.
 - gh 2.101: `gh pr` and `gh issue` (create, edit, comment) take `--attach` to upload images and video.
