@@ -1,0 +1,3 @@
+interface:
+  display_name: "Write like me"
+  short_description: "Write Slack, GitHub and Linear text in the user's voice"
