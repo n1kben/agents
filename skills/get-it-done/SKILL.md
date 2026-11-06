@@ -9,12 +9,6 @@ description: Use only when "get it done" is specifically mentioned.
 
 It is tempting to call a task done when the code is written and the tests pass. That leaves the hard part for the user: running it and figuring out whether it actually works. Take that part off their hands.
 
-## Decide what done means
-
-Before starting, write down what done means as things someone could see happen. "The export button downloads a CSV with every row" can be checked. "Export works" cannot.
-
-Make the smallest change that gets there. Fix the case that actually happened. (Ideas for other cases can go in the handoff.)
-
 ## Keep going
 
 Make reversible decisions yourself, including product and design defaults. Ask before anything that cannot be undone, like deleting data, pushing, deploying, or sending messages.
@@ -29,9 +23,9 @@ Show that the real thing works the way its users will use it, including the case
 
 It only counts if you saw it work yourself, in this session, after your last change.
 
-It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, get it checked by someone else. (A fresh subagent works.)
+It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, get it checked by a fresh subagent.
 
-Call something done only once you have *demonstrated* it. Mark the rest as not done.
+Call something done only once you have _demonstrated_ it. Mark the rest as not done.
 
 ## Hand off
 
