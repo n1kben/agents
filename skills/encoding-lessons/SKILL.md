@@ -1,27 +1,15 @@
 ---
 name: encoding-lessons
-description: Turn a mistake into a check that fails, and install the bundled lint rules into a project. Use when the user corrects you, states a rule with "always" or "never", a review comment lands, a check fails, you repeat a mistake, or a project lacks the bundled rules.
+description: Turn a mistake into a check that fails, and install the bundled lint rules. Use when the user corrects you, a review comment lands, a check fails, you repeat a mistake, or a project lacks the bundled rules.
 ---
 
-# Encoding lessons
+When you hand off, list the mistakes that could happen again and the check that would catch each. Build one once the user approves.
 
-Agents copy the code around them and miss written rules. Encode a lesson in the strongest mechanism that works, so the next agent can't repeat the mistake:
+Use the strongest fix that works: make the mistake impossible to write, then a lint or CI check whose error names the fix, then a test. Write it down only when it needs judgment.
 
-1. A type or API that can't represent the mistake.
-2. A lint rule or check that fails CI.
-3. A shared helper that makes the right way the easy way.
-4. A runtime check where data enters the system.
-5. Only when it needs judgment: a written rule with an example of the failure.
+Prove the check fails on the real mistake and passes on the fix. If existing code already breaks it, fail only on new violations.
 
-## Propose
-
-When the user corrects you, a review comment lands, a check fails, or you repeat a mistake, say so right away, for example: "This is the second time X broke; a lint rule would catch it." Propose a check only when the mistake is likely to recur, and build it once the user approves.
-
-## Build
-
-Write one invalid example and its valid counterpart. Prove the invalid one fails the check and the valid one passes. Use the project's existing tools and keep its configuration. If existing code breaks the check, report it; don't weaken the check.
-
-Delete any written rule the check replaces. If the lesson applies beyond this project, add it to the bundled rules too.
+Delete any written rule the check replaces.
 
 ## Bundled rules
 
