@@ -24,7 +24,7 @@ Never simplify away input validation, data-loss protection, security, or accessi
 
 Follow the repo's conventions and boundaries. Before copying nearby code, check that it's the supported path and not an exception.
 
-Keep the blast radius small: a change should touch few places and need little re-verification. Prefer duplication over coupling.
+Agents now ship many times faster, so optimize for changes you can verify in one place. Reuse what the repo already shares, but don't couple features to avoid duplication: copies may drift and a bug may need fixing twice, and that's the trade.
 
 Organize code around what users interact with, such as routes, screens or features, and keep each unit's code together. When a file gets too big, split it along those lines, not by technical layer.
 
