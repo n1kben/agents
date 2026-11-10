@@ -1,6 +1,0 @@
-interface:
-  display_name: "Researching"
-  short_description: "Settle facts from primary sources outside the repo"
-
-policy:
-  allow_implicit_invocation: false
