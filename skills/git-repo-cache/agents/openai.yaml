@@ -1,0 +1,3 @@
+interface:
+  display_name: "Git repo cache"
+  short_description: "Reuse a cached local checkout of a remote repo"
