@@ -1,3 +1,0 @@
-interface:
-  display_name: "Hill climbing"
-  short_description: "Improve one metric against a baseline"

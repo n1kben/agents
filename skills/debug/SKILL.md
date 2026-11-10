@@ -1,16 +1,12 @@
 ---
 name: debug
-description: Systematic root-cause debugging. Use when diagnosing or fixing a bug.
+description: Find and fix the root cause of a bug. Use when something is broken or behaves unexpectedly.
 ---
 
-Debug like a scientist.
+Reproduce it the way it actually happens before changing anything.
 
-Reproduce exactly as the user did, in the real thing (non-negotiable), with before and after proof from the same place.
+Find the root cause. Read the docs and source of what's involved, and test your hypotheses and the user's instead of trusting them.
 
-Falsify hypotheses, the user's and yours. Change only what is proven causal.
+Change only what you proved causes the bug.
 
-Make the bug impossible, not handled: delete the path (mind Chesterton's fence), else make illegal states unrepresentable, else fix where the bad state is created. Never guard the crash site.
-
-Fix the class, not the instance.
-
-Report only what you observed.
+Fix it where the bad state is created, not where it shows up, so it can't happen again, here or anywhere else with the same cause.
