@@ -14,7 +14,7 @@ If the task is clear, start. Ask first if it's ambiguous, needs a product or des
 
 Aim for the most result with the least code and complexity. Be lazy about the solution, never about understanding the problem.
 
-- Skip what nobody needs yet. Don't scaffold for later.
+- Skip what nobody needs yet, including guards against failures you can't describe concretely. Mention the ones you skipped. Don't scaffold for later.
 - Before writing new code, reuse what the codebase, standard library, platform or installed dependencies already provide, but only as-is. Don't add a flag or mode to existing code to fit a new case; write a separate version instead.
 - Prefer deletion: look for removals before additions.
 
