@@ -5,6 +5,8 @@ description: Test that a change works the way it is actually used. Use before ca
 
 Test the real thing with realistic data, after your last change.
 
+If the real thing is out of reach, find another way to run it before calling it untested.
+
 Before testing, list the cases from what was asked, edge cases you find in the code, and what the change must not break.
 
 For a fix, show it failing before and passing after, for the same reason.

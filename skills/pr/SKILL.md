@@ -3,7 +3,7 @@ name: pr
 description: Open or update a pull request. Use when creating one or pushing to one.
 ---
 
-Rebase on the latest base branch, then QA it and demo it.
+Rebase on the latest base branch, then run the `qa` and `demo` skills.
 
 The PR is a one-minute read for reviewers who weren't there: why, references, a short what, what it leaves out, any check, test or lint rule it disables, a demo as proof, and the merge risk. Claim nothing you didn't check. Attach images and videos with `gh pr create --attach <file>` or `gh pr edit --attach <file>` (gh 2.101 or later).
 
