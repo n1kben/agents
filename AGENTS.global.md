@@ -50,6 +50,10 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 
 `reviewDecision: REVIEW_REQUIRED` doesn't mean I need a reviewer: I may be exempt from the repo's review rule. Check `current_user_can_bypass` in `gh api repos/<owner>/<repo>/rulesets/<id>` before saying a review blocks the merge.
 
+## T3 Code
+
+T3's `watch_pull_request` doesn't fire reliably, so don't use it to wait for CI. This overrides the harness rule against `gh --watch`. Instead, run `gh pr checks <n> --required --watch --fail-fast` from inside the repo with Bash `run_in_background`, and act when it exits. If it exits right away with "no checks reported", run it again once checks show up.
+
 ## Environment
 
 - Run apps on my machine in the background without taking focus.
