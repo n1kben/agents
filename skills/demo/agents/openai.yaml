@@ -1,0 +1,3 @@
+interface:
+  display_name: "Demoing"
+  short_description: "Prove a change works by using it like the user would"
