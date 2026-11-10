@@ -1,3 +1,3 @@
 interface:
-  display_name: "Testing"
+  display_name: "QA"
   short_description: "Try to break a change end to end before the user does"
