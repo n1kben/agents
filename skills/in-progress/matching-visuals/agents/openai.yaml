@@ -1,0 +1,6 @@
+interface:
+  display_name: "Matching visuals"
+  short_description: "Match a visual reference exactly"
+
+policy:
+  allow_implicit_invocation: false
