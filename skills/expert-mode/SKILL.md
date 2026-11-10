@@ -9,6 +9,8 @@ Before starting, write their playbook: the steps they'd follow, what goes wrong 
 
 Follow it. If you learn something that changes the plan, change the playbook and say why.
 
+Run independent parts in parallel with forked subagents.
+
 Prove every finding before reporting it.
 
 Show the playbook and the evidence for each step.
