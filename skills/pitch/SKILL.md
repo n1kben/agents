@@ -1,6 +1,6 @@
 ---
 name: pitch
-description: Pitch ideas or proposed changes one at a time. Use when the user wants to evaluate options or approve changes before they are applied, or uses a "pitch" trigger phrase.
+description: Use only when "pitch" is specifically mentioned.
 ---
 
 Relentlessly pitch ideas or changes for me to evaluate until I stop you. Start with pitches that later proposals depend on. For each pitch, explain the option or change, what it would improve, and why you recommend it.

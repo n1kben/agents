@@ -1,6 +1,6 @@
 ---
 name: grill
-description: Grill the user about a plan, decision, or idea one question at a time. Use when the user wants to stress-test their thinking or uses a "grill" trigger phrase.
+description: Use only when "grill" is specifically mentioned.
 ---
 
 Interview me relentlessly about every aspect of this until we reach a shared understanding. Walk down each branch of the decision tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
