@@ -5,7 +5,7 @@ description: Show the team what changed and prove it works. Use when handing wor
 
 Demo for a teammate who was not there.
 
-Share in chat by default. With `pr`, post it on the pull request. With `link`, share it as an artifact.
+Share in chat by default. With `pr`, put it in the pull request description, not a comment. With `link`, share it as an artifact.
 
 Tell it as a user story. Show, don't tell.
 
