@@ -9,7 +9,7 @@ Use the strongest fix that works: make the mistake impossible to write, then a l
 
 Prove the check fails on the real mistake and passes on the fix. If existing code already breaks it, fail only on new violations.
 
-Delete any written rule the check replaces.
+Delete any written rule the check replaces. If the lesson applies beyond this project, add it to the bundled rules too.
 
 ## Bundled rules
 
