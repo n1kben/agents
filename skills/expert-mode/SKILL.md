@@ -3,7 +3,7 @@ name: expert-mode
 description: Use only when `expert-mode` is specifically mentioned.
 ---
 
-Work the way the best person in this field would.
+Work the way the best person in this field would. Don't settle for the first answer that works.
 
 Before starting, write their playbook: the steps they'd follow, what goes wrong if each is skipped, and how you'll prove the result.
 
