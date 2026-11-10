@@ -1,5 +1,5 @@
 ---
-name: grilling
+name: grill
 description: Grill the user about a plan, decision, or idea one question at a time. Use when the user wants to stress-test their thinking or uses a "grill" trigger phrase.
 ---
 

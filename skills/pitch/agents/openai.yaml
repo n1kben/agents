@@ -1,5 +1,5 @@
 interface:
-  display_name: "Pitching"
+  display_name: "Pitch"
   short_description: "Shape work through one proposal at a time"
 
 policy:

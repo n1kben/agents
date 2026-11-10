@@ -1,5 +1,5 @@
 ---
-name: pitching
+name: pitch
 description: Pitch ideas or proposed changes one at a time. Use when the user wants to evaluate options or approve changes before they are applied, or uses a "pitch" trigger phrase.
 ---
 
