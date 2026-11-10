@@ -1,0 +1,3 @@
+interface:
+  display_name: "Merge risk"
+  short_description: "Risk-assess and recap a pull request before merging"
