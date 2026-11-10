@@ -3,9 +3,9 @@ name: qa
 description: Test that a change works the way it is actually used. Use before calling work done, or when asked to test or verify something.
 ---
 
-Test it the way it is actually used, against what was asked, not what you built.
+Test the real thing with realistic data, after your last change.
 
-Go past the happy path.
+Before testing, list the cases from what was asked, plus edge cases you find in the code.
 
 For a fix, show it failing before and passing after, for the same reason.
 
