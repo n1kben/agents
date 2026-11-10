@@ -9,6 +9,4 @@ Separate the risk if merged now from the risk once the code is live.
 
 List deliberate choices, like keeping old behavior, as questions I can overrule.
 
-After opening a PR, put this in your reply, not the PR description.
-
 Asking about risk is not approval to merge.
