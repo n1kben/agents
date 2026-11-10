@@ -3,9 +3,11 @@ name: get-it-done
 description: Use only when "get it done" is specifically mentioned.
 ---
 
+Definition of done: qa found nothing left to break, the PR is open, CI is green by fixing not skipping, and demo ran on the PR after the last change.
+
 # Get it done
 
-**The goal is a result the user can trust without checking it themselves.**
+**The goal is to take a task all the way to a demoed pull request with green CI, without the user's help along the way.**
 
 It is tempting to call a task done when the code is written and the tests pass. That leaves the hard part for the user: running it and figuring out whether it actually works. Take that part off their hands.
 
@@ -15,21 +17,12 @@ Make reversible decisions yourself, including product and design defaults. Ask b
 
 If you are truly blocked, stop and say what blocks you, what you tried, and what you need.
 
-## Demo it
+## Finish it
 
-**This is the most important part.**
-
-Show that the real thing works: use it like the user would. Passing tests help, but the proof is the real thing working.
-
-It only counts if you saw it work yourself, in this session, after your last change.
-
-Capture the most telling proof you can get. A video beats a screenshot, and a screenshot beats terminal output.
-
-It is easy to look at your own work and decide it is fine. When the result cannot be checked at a glance, have an unbiased subagent try to break it.
-
-## Open a PR
-
-Push a branch and open a pull request. Attach the proof from the demo (the screenshots and videos you took) so reviewers can see it working without running anything. With `gh`, both `pr create` and `pr edit` take `--attach <file>` for images and video. That needs gh 2.101 or later. Then wait for CI to finish (it is easy to walk away while it is still running) and fix whatever fails. Pending is not green.
+1. Test the change.
+2. Demo the change. This is the most important part.
+3. Open a pull request with the proof from the demo.
+4. Get CI green.
 
 ## Hand off
 
