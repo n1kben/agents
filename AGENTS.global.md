@@ -24,7 +24,7 @@ Never simplify away input validation, data-loss protection, security, or accessi
 
 Follow the repo's conventions and boundaries.
 
-Agents now ship many times faster, so optimize for changes you can verify in one place. Reuse what the repo already shares, but don't couple features to avoid duplication: copies may drift and a bug may need fixing twice, and that's the trade.
+Agents now ship many times faster, so optimize for changes you can verify in one place. Prefer cohesion and isolation over coupling, so a change's blast radius stays small. Couple code only when keeping it apart would be clearly foolish. Reuse what the repo already shares, but don't couple features to avoid duplication: copies may drift and a bug may need fixing twice, and that's the trade.
 
 Build the smallest version that works end to end first, and keep it working as you add to it.
 
