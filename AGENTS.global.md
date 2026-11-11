@@ -54,7 +54,7 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 
 ## T3 Code
 
-T3's `watch_pull_request` doesn't fire reliably, so don't use it to wait for CI. This overrides the harness rule against `gh --watch`. Instead, run `gh pr checks <n> --required --watch --fail-fast` from inside the repo with Bash `run_in_background`, and act when it exits. If it exits right away with "no checks reported", run it again once checks show up.
+To wait for CI, don't use T3's `watch_pull_request` or `gh pr checks --watch`; neither works reliably. Poll yourself instead: run `gh pr checks <n> --required` and act on the result. If checks are still pending or not reported yet, check again later and wait longer each time, about 30s, 1m, 2m, then every 5m.
 
 ## Environment
 
