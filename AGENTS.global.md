@@ -56,6 +56,8 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 
 To wait for CI, don't use T3's `watch_pull_request` or `gh pr checks --watch`; neither works reliably. Poll yourself instead: run `gh pr checks <n> --required` and act on the result. If checks are still pending or not reported yet, check again later and wait longer each time, about 30s, 1m, 2m, then every 5m.
 
+Don't delegate to T3 child threads; they don't show in my inbox. Use your harness's native subagent, unless I'll want to inspect or collaborate on the work. Then start a new top-level T3 thread instead.
+
 ## Environment
 
 - Run apps on my machine in the background without taking focus.
