@@ -22,7 +22,7 @@ Never simplify away input validation, data-loss protection, security, or accessi
 
 ## Growing codebases
 
-Follow the repo's conventions and boundaries. Before copying nearby code, check that it's the supported path and not an exception.
+Follow the repo's conventions and boundaries.
 
 Agents now ship many times faster, so optimize for changes you can verify in one place. Reuse what the repo already shares, but don't couple features to avoid duplication: copies may drift and a bug may need fixing twice, and that's the trade.
 
