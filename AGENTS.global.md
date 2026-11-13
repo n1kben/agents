@@ -42,6 +42,8 @@ Use native components the way the platform intends: pick the component built for
 
 Fork subagents by default, so they share context and hit the prompt cache. For anything adversarial, use a fresh subagent instead, so it judges the work independently.
 
+Hand mechanical tool work, like driving a browser or simulator, to a fresh subagent on a fast model with low effort. Keep the judgment calls yourself.
+
 ## Reviews
 
 Validate each claim in a review comment against the code before fixing it. Push back when the claim is wrong.
