@@ -1,3 +1,0 @@
-interface:
-  display_name: "PR"
-  short_description: "Open a proven pull request with green CI"
