@@ -1,5 +1,5 @@
 ---
-name: you-got-this
+name: playbook
 description: Playbooks for getting work done. Use only when "you got this" is specifically mentioned.
 ---
 

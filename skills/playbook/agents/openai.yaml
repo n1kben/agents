@@ -1,5 +1,5 @@
 interface:
-  display_name: "You got this"
+  display_name: "Playbook"
   short_description: "Build a feature, fix a bug or refactor, and hand it back with proof"
 policy:
   allow_implicit_invocation: true

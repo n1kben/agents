@@ -10,6 +10,10 @@ Change structure only. Fix bugs you find in a separate change.
 
 Look for deletions first. Move in small steps and keep the checks green after each one.
 
+## Verify
+
+Run the verify skill. Fix what's broken and verify again until it works.
+
 ## Handback
 
 Hand back in chat and in the PR description with this template. Drop a section only when it would be empty.

@@ -14,6 +14,10 @@ Change only what you proved causes the bug. Fix it where the bad state is create
 
 Show the same reproduction failing before and passing after, for the same reason. Check what shares the cause.
 
+## Verify
+
+Run the verify skill. Fix what's broken and verify again until it works.
+
 ## Handback
 
 Hand back in chat and in the PR description with this template. Drop a section only when it would be empty.

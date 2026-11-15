@@ -3,15 +3,37 @@ name: find-out
 description: Settle an unknown instead of guessing. Use before acting on an assumption, before copying a pattern, or before asking the user something you could find out.
 ---
 
-Don't guess, and don't ask the user what you can find out. Ask them only about what they want.
+Find out instead of guessing. Don't ask the user what you can look up yourself. If the question is ambiguous, state your reading and go.
 
-- Investigate how: start where it's triggered and follow each step to what does the work.
-- Investigate what's used: find every place that does it, not just the first, and say which is the supported path and which are exceptions.
-- Investigate why: read the history back to the commit, PR or issue that made the decision. Say "because" only when you can quote the reason.
-- Research: go to the primary source, such as the paper, the spec or the docs for the version in use.
-- Spike: run the smallest throwaway test that still looks like the real case, and make sure it can fail.
-- Prototype: build three versions you'd each ship, each a different direction rather than a tweak. Make each fully work with realistic content, away from production code. Show one at a time in its real context with instant switching, and try each yourself first. Give each one's strength and cost, and let the user pick.
+## How it works
 
-Investigating and researching change nothing. Spikes and prototypes are throwaway.
+Explain it so a senior engineer new to the area could start working in it. Follow it from where it's triggered to the code that does the work, citing file:line. Where you're unsure, add a log and run it.
 
-Back each claim with what you saw, and mark the rest as guesses.
+## What uses it
+
+Find every use, including dynamic and generated ones. Follow the newest way, not the legacy one.
+
+## Why it is this way
+
+Answer from the record, not the code: the commits, PRs and issues that introduced it and each later change. Quote the authors, check that the reason still holds, and say what the record doesn't answer.
+
+## Whether it's true
+
+Test against a baseline with real data. A test you never saw fail proves nothing.
+
+## Which to pick
+
+Build three versions you'd each ship, each a different direction. Make each fully work, try each yourself, then show them in context with instant switching, each with its strength and cost.
+
+## Who solved it
+
+Read the docs for the version in use, then the library's tests, source and issues. Not blog posts or forum answers.
+
+## Respond
+
+```markdown
+**{Answer}**
+{Evidence: file:line, commit, quote or output}
+Guesses: {what you inferred}
+Open: {what you couldn't settle}
+```

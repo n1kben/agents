@@ -8,7 +8,7 @@ Build the smallest version that works end to end, then grow it in slices. Commit
 
 ## Verify and demo
 
-Run the verify skill, then the demo skill.
+Run the verify skill. Fix what's broken and verify again until it works. Then run the demo skill.
 
 ## Handback
 
