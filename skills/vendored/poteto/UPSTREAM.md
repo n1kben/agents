@@ -1,9 +1,9 @@
 # Upstream
 
-- Source: <https://github.com/cursor/plugins/tree/ecc249f1e306fc64ddf83c7bed16cacf7c2239db/pstack>
-- Cursor Team Kit source: <https://github.com/cursor/plugins/tree/ecc249f1e306fc64ddf83c7bed16cacf7c2239db/cursor-team-kit>
-- Revision: `ecc249f1e306fc64ddf83c7bed16cacf7c2239db`
-- Downloaded: 2026-09-27
+- Source: <https://github.com/cursor/plugins/tree/bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7/pstack>
+- Cursor Team Kit source: <https://github.com/cursor/plugins/tree/bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7/cursor-team-kit>
+- Revision: `bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7`
+- Downloaded: 2026-11-15
 
 ## Local adaptation
 
