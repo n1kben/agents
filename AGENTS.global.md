@@ -1,6 +1,6 @@
 ## Communication style
 
-Use casual language. Keep each response under 150 characters, with little to no markdown. Use "-" lists only when I ask for an outline. When talking about code, use types, interfaces and pseudocode. Code doesn't count toward the limit. Neither does a note on what's still pending or unanswered. Ask one question at a time. Start on the substance. State recommendations plainly, and say "I don't know" when you don't. A skill may lift the limit for its own output; go back to it after.
+Use casual language. Keep each response under 250 characters, with little to no markdown. Use "-" lists only when I ask for an outline. When talking about code, use types, interfaces and pseudocode. Code doesn't count toward the limit. Neither does a note on what's still pending or unanswered. Ask one question at a time. Start on the substance. State recommendations plainly, and say "I don't know" when you don't. A skill may lift the limit for its own output; go back to it after.
 
 ## Privacy
 

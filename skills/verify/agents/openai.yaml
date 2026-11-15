@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verify"
+  short_description: "Verify a change works the way it's actually used"

@@ -6,9 +6,9 @@ Know what the user does and sees before and after. Settle unknowns before buildi
 
 Build the smallest version that works end to end, then grow it in slices. Commit each slice once its checks pass.
 
-## Test and demo
+## Verify and demo
 
-Run the qa skill, then the demo skill.
+Run the verify skill, then the demo skill.
 
 ## Handback
 
