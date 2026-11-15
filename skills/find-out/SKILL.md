@@ -7,7 +7,7 @@ Find out instead of guessing. Don't ask the user what you can look up yourself. 
 
 ## How it works
 
-Explain it so a senior engineer new to the area could start working in it. Follow it from where it's triggered to the code that does the work, citing file:line. Where you're unsure, add a log and run it.
+Explain it so a senior engineer new to the area could start working in it. Follow it from where it's triggered to the code that does the work, naming each file and function. Where you're unsure, add a log and run it.
 
 ## What uses it
 
@@ -33,7 +33,7 @@ Read the docs for the version in use, then the library's tests, source and issue
 
 ```markdown
 **{Answer}**
-{Evidence: file:line, commit, quote or output}
+{Evidence: file and function, commit, quote or output}
 Guesses: {what you inferred}
 Open: {what you couldn't settle}
 ```

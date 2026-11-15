@@ -1,6 +1,6 @@
 ---
 name: playbook
-description: Playbooks for getting work done. Use only when "you got this" is specifically mentioned.
+description: Playbooks for getting work done. Use only when "you got this" or "get it done" is specifically mentioned.
 ---
 
 Pick the playbook that fits and read only that file:
