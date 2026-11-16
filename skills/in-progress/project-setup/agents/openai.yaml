@@ -1,0 +1,5 @@
+interface:
+  display_name: "Project setup"
+  short_description: "Write down a project's goals, non-goals and promises"
+policy:
+  allow_implicit_invocation: false
