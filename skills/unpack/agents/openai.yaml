@@ -1,0 +1,5 @@
+interface:
+  display_name: "Unpack"
+  short_description: "Question an idea until we share an understanding"
+policy:
+  allow_implicit_invocation: false

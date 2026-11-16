@@ -1,6 +1,7 @@
 ---
-name: rubber-duck
-description: Use only when "rubber-duck" is specifically mentioned.
+name: unpack
+description: Use only when "unpack" is specifically mentioned.
+disable-model-invocation: true
 ---
 
 Answer the user's questions, and ask counter-questions to tease out what they haven't thought about and to reach a shared understanding.
