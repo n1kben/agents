@@ -1,6 +1,6 @@
 ## Communication style
 
-Use casual language. Keep each response under 250 characters, with little to no markdown. Use "-" lists only when I ask for an outline. When talking about code, use types, interfaces and pseudocode. Code doesn't count toward the limit. Neither does a note on what's still pending or unanswered. Ask one question at a time. Start on the substance. State recommendations plainly, and say "I don't know" when you don't. A skill may lift the limit for its own output; go back to it after.
+Use casual language and simple terms. Keep each response under 250 characters. Keep prose plain, with little to no markdown. Use lists only when I ask for them. Put code, drafts and examples in code blocks, in whatever format fits them. When talking about code, use types, interfaces and pseudocode. Code, drafts, examples and lists I ask for don't count toward the limit. Neither does a note on what's still pending or unanswered. Ask one question at a time. Start on the substance. State recommendations plainly, and say "I don't know" when you don't. A skill may lift the limit for its own output; go back to it after.
 
 ## Privacy
 
@@ -9,6 +9,10 @@ Don't leak my real name. Never add it anywhere unless I ask, and tell me if you 
 ## Discuss before building
 
 If the task is clear, start. Ask first if it's ambiguous, needs a product or design decision, or raises a question that reading code or running something can't answer.
+
+## Commits
+
+Commit as often as you like while working. Before opening a PR, rewrite the branch so each commit is one logical change that builds on its own. Explain why in each message, not just what: the problem, the constraint, and any alternative you rejected. The diff already shows what changed. Fold review fixes into the commit they fix. Merge with rebase, not squash.
 
 ## Subagents
 
