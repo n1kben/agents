@@ -8,6 +8,7 @@ Pick the playbook that fits and read only that file:
 - New or changed behavior: `feature.md`
 - Something broken: `bug.md`
 - Same behavior, better code: `refactor.md`
+- How others solved it: `prior-art.md`
 - None of these: use the expert-mode skill
 
 If the work spans more than one, split it into one change per playbook, refactor first.

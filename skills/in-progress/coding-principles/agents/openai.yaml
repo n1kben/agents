@@ -1,0 +1,5 @@
+interface:
+  display_name: "Coding principles"
+  short_description: "When to move fast and when to slow down"
+policy:
+  allow_implicit_invocation: false
