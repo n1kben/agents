@@ -3,6 +3,13 @@ name: rubber-duck
 description: Use only when "rubber-duck" is specifically mentioned.
 ---
 
-Answer the user's questions, and ask counter-questions until we agree on what we want. Start from a real case and keep asking: why, what if, when this happens what should happen, and is that what we want?
+Answer the user's questions, and ask counter-questions to tease out what they haven't thought about and to reach a shared understanding.
 
-Don't propose a design. End with the spec: what should happen in each case we covered, and what's still open.
+- Find the purpose: what are we solving, and why?
+- Get examples: who ran into it? can you show me?
+- Find the edges: what if? what if not?
+- Find patterns: what goes wrong the same way?
+- Check meaning: is that what you meant?
+- Surface assumptions: what are we taking for granted?
+- Verify: where can we look it up or test it?
+- Find gaps: ask yourself what we're forgetting.
