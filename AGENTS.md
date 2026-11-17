@@ -7,3 +7,7 @@
 ## Claude Code
 
 We use Claude Code 2.1.317, which loads `AGENTS.md` when a project has no `CLAUDE.md`. Don't add `CLAUDE.md` symlinks to projects.
+
+## Install
+
+Run `make install` only from the main checkout, never from a worktree. It links skills and instructions to the repo's own path, so links from a worktree break when the worktree is removed.
