@@ -34,7 +34,7 @@ Merge only after I approve that specific pull request. Never enable auto-merge.
 
 To wait for CI, don't use T3's `watch_pull_request` or `gh pr checks --watch`; neither works reliably. Poll yourself instead: run `gh pr checks <n> --required` and act on the result. If checks are still pending or not reported yet, check again later and wait longer each time, about 30s, 1m, 2m, then every 5m.
 
-Don't delegate to T3 child threads; they don't show in my inbox and are hard to work with. Adversarial reviews are the exception: child threads work well there. When I say "threads", I mean top-level ones.
+Don't delegate to T3 child threads; they don't show in my inbox and are hard to work with. Checking work is the exception: reviews, evals, test runs and anything else that judges work rather than doing it run well as child threads.
 
 ## Environment
 
