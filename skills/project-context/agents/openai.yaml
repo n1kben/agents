@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project context"
+  short_description: "Document who uses a project and what that demands"
+  default_prompt: "Use $project-context to document this project's context in the README."
+policy:
+  allow_implicit_invocation: false
