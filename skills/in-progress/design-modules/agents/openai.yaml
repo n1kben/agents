@@ -1,0 +1,5 @@
+interface:
+  display_name: "Design modules"
+  short_description: "Build primitives up into deep modules"
+policy:
+  allow_implicit_invocation: false

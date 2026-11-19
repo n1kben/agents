@@ -1,5 +1,0 @@
-interface:
-  display_name: "Primitives"
-  short_description: "Propose the primitives an app should be built on"
-policy:
-  allow_implicit_invocation: false

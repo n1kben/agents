@@ -1,0 +1,5 @@
+interface:
+  display_name: "Find primitives"
+  short_description: "Break a problem down to its primitives"
+policy:
+  allow_implicit_invocation: false
