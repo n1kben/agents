@@ -1,0 +1,5 @@
+#!/bin/sh
+# Relink after every pull, so new, renamed and removed skills take effect.
+# Skipped in worktrees: links made from a worktree break when it is removed.
+[ "$(git rev-parse --absolute-git-dir)" = "$(cd "$(git rev-parse --git-common-dir)" && pwd)" ] || exit 0
+make -C "$(git rev-parse --show-toplevel)" install >/dev/null

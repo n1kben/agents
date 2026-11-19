@@ -7,7 +7,7 @@
 DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 SKILL_DIRS := $(HOME)/.claude/skills $(HOME)/.claude_personal/skills $(HOME)/.agents/skills
 
-.PHONY: install uninstall help
+.PHONY: install uninstall sync autosync help
 
 help: ## Show available targets
 	@grep -E '^[a-z][a-zA-Z-]*:.*##' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
@@ -32,6 +32,30 @@ install: uninstall ## Link skills, CLIs and global instructions into Claude Code
 	ln -sfn "$(DIR)/AGENTS.global.md" "$(HOME)/.claude/CLAUDE.md"
 	ln -sfn "$(DIR)/AGENTS.global.md" "$(HOME)/.claude_personal/CLAUDE.md"
 	ln -sfn "$(DIR)/AGENTS.global.md" "$(HOME)/.codex/AGENTS.md"
+	@git -C "$(DIR)" config core.hooksPath githooks
+
+sync: ## Pull main; the post-merge hook reruns install
+	git -C "$(DIR)" pull --ff-only --quiet
+
+PLIST := $(HOME)/Library/LaunchAgents/local.agents-sync.plist
+
+autosync: ## Run `make sync` every hour (launchd on macOS, cron elsewhere)
+ifeq ($(shell uname),Darwin)
+	@mkdir -p "$(dir $(PLIST))"
+	@printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>' \
+		'<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' \
+		'<plist version="1.0"><dict>' \
+		'<key>Label</key><string>local.agents-sync</string>' \
+		'<key>ProgramArguments</key><array><string>/usr/bin/make</string><string>-C</string><string>$(DIR)</string><string>sync</string></array>' \
+		'<key>StartInterval</key><integer>3600</integer>' \
+		'<key>RunAtLoad</key><true/>' \
+		'<key>StandardErrorPath</key><string>/tmp/agents-sync.log</string>' \
+		'</dict></plist>' > "$(PLIST)"
+	-@launchctl bootout gui/$$(id -u) "$(PLIST)" 2>/dev/null
+	launchctl bootstrap gui/$$(id -u) "$(PLIST)"
+else
+	(crontab -l 2>/dev/null | grep -v agents-sync; echo '0 * * * * make -C "$(DIR)" sync >/dev/null 2>&1 # agents-sync') | crontab -
+endif
 
 uninstall: ## Remove only the links that point into this repo
 	@for target in $(SKILL_DIRS); do \

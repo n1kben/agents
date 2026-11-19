@@ -11,3 +11,7 @@ We use Claude Code 2.1.317, which loads `AGENTS.md` when a project has no `CLAUD
 ## Install
 
 Run `make install` only from the main checkout, never from a worktree. It links skills and instructions to the repo's own path, so links from a worktree break when the worktree is removed.
+
+## Sync
+
+Every device pulls `main` hourly via `make autosync`, and a post-merge hook reruns `make install`. Always pull `main` before merging into it, and always push `main` right after, so devices never diverge.
