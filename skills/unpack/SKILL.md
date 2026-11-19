@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 Answer the user's questions, and ask counter-questions to tease out what they haven't thought about and to reach a shared understanding.
 
+We're not designing yet, we're mapping what the solution needs.
+
 - Find the purpose: what are we solving, and why?
 - Get examples: who ran into it? can you show me?
 - Find the edges: what if? what if not?
