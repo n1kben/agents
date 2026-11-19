@@ -1,0 +1,5 @@
+interface:
+  display_name: "Improve codebase"
+  short_description: "Find hotspots, then break them down and redesign them"
+policy:
+  allow_implicit_invocation: false
